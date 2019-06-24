@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "rm -rf ./node_modules/.cache dist && nodemon",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.ts",
     "new:page": "ts-node template-generator/generate_new_page.ts"
   },
   "keywords": [],
