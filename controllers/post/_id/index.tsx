@@ -1,11 +1,13 @@
 import React, { useContext } from 'react'
 import { NextContext } from 'next'
 import { AppInitialProps, AppProps } from '@src/app'
-import Layout from '@layouts/post'
+import Layout from '@layouts/post/_id'
 
 interface InitialProps {}
 
-type Query = {}
+type Query = {
+  post_id: string
+}
 
 const getInitialProps = async ({
 
