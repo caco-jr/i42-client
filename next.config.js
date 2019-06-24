@@ -1,7 +1,7 @@
 const path = require('path')
 const withTypescript = require('@zeit/next-typescript')
 
-module.exports = withTypescript({
+const nextConfig = {
   webpack: config => {
     config.plugins = config.plugins || []
 
@@ -13,5 +13,8 @@ module.exports = withTypescript({
       '@router': path.resolve(__dirname, 'router')
     }
     return config
-  }
-})
+  },
+  target: 'serverless'
+}
+
+module.exports = withTypescript(nextConfig)

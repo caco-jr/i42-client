@@ -6,8 +6,11 @@
   "scripts": {
     "dev": "rm -rf ./node_modules/.cache dist && nodemon",
     "build": "next build",
+    "build:serverless": "serverless package",
     "start": "NODE_ENV=production node server.ts -p $PORT",
-    "new:page": "ts-node template-generator/generate_new_page.ts"
+    "new:page": "ts-node template-generator/generate_new_page.ts",
+    "lambda": "serverless offline start",
+    "deploy": "serverless deploy --package .serverless"
   },
   "keywords": [],
   "author": "",
@@ -31,6 +34,8 @@
     "typescript": "^3.5.2"
   },
   "devDependencies": {
-    "pluralize": "^8.0.0"
+    "pluralize": "^8.0.0",
+    "serverless-nextjs-plugin": "^2.0.7-alpha.0",
+    "serverless-offline": "^5.4.4"
   }
 }
