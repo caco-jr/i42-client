@@ -10,7 +10,11 @@ const nextConfig = {
       '@src': path.resolve(__dirname, 'src'),
       '@layouts': path.resolve(__dirname, 'layouts'),
       '@controllers': path.resolve(__dirname, 'controllers'),
-      '@router': path.resolve(__dirname, 'router')
+      '@router': path.resolve(__dirname, 'router'),
+      '@components': path.resolve(__dirname, 'components'),
+      '@helpers': path.resolve(__dirname, 'helpers'),
+      '@utils': path.resolve(__dirname, 'utils'),
+      '@interfaces': path.resolve(__dirname, 'interfaces')
     }
     return config
   },

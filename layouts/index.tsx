@@ -1,10 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
+import Home from './home'
 
 interface Props {}
 
-const Layout = ({  }: Props) => <Wrapper>Hello World</Wrapper>
-
-const Wrapper = styled.div``
+const Layout = ({  }: Props) => <Home />
 
 export default Layout

@@ -1,0 +1,32 @@
+@import '../../assets/styles/all-react';
+
+.form-group {
+  display: flex;
+  flex-flow: column;
+
+  &__text {
+    margin-bottom: 4px;
+  }
+
+  &__input {
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    padding: 8px 10px;
+    order: 1;
+    color: #111;
+
+    &:focus {
+      outline: none;
+      border-color: $border-color-dark;
+    }
+
+    &--error {
+      border-color: $error-color;
+    }
+  }
+
+  &__error-message {
+    color: $error-color;
+    order: 3;
+  }
+}

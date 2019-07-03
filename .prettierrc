@@ -1,6 +1,6 @@
-singleQuote: true
-semi: false
-parser: typescript
+singleQuote: true;
+semi: true;
+parser: typescript;
 overrides: [
   {
     files: '*.json',
@@ -8,4 +8,4 @@ overrides: [
       parser: 'json'
     }
   }
-]
+];

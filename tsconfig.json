@@ -68,6 +68,10 @@
       "@locale": ["./locale"],
       "@router": ["./router"],
       "@router/*": ["./router/*"],
+      "@components/*": ["./components/*"],
+      "@helpers/*": ["./helpers/*"],
+      "@utils/*": ["./utils/*"],
+      "@interfaces/*": ["./interfaces/*"],
       "*": ["*"]
     },
     "resolveJsonModule": true

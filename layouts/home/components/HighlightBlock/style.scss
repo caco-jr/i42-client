@@ -1,0 +1,24 @@
+@import '../../../../assets/styles/base/_all-react.sass';
+
+$component: '.highlight-block';
+
+#{ $component } {
+  padding: 0 0 55px;
+  border-radius: $border-radius;
+  position: relative;
+
+  &__posts-container {
+    display: flex;
+    flex-flow: column;
+  }
+
+  &__post,
+  &__post-large {
+    margin-bottom: 30px;
+  }
+
+  .c-post-card-horizontal__image {
+    width: 120px;
+    height: 120px;
+  }
+}
