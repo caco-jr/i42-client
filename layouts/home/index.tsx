@@ -19,8 +19,8 @@ const Home = () => {
 };
 
 const Teste = styled.h1`
-  background: var(--color-bg);
-  color: var(--color-text);
+  background: var(--background-color);
+  color: var(--text-color);
 `;
 
 export default Home;
