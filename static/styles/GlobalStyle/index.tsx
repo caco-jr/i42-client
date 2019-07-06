@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
   --grey: #bababa;
   --dark-grey: #7c7c84;
   --blue: #1ea2e0;
+  --darker-blue: #0a0818;
   --green: #0ad0b5;
   --pink: #d83f87;
   --red: #fb5050;
@@ -26,7 +27,7 @@ export const GlobalStyle = createGlobalStyle`
   --border-radius: 5px;
   // -------------------------
   // --- Others
-  --background-color: #0a0818;
+  --background-color: var(--darker-blue);
   --text-color: #fff;
   // -------------------------
 }

@@ -12,7 +12,7 @@ import {
   PostCardCompactDesktopInfo,
   PostCardCompactDesktopImage
 } from './index.style';
-import Mask from '@components/Mask';
+import Mask from 'static/styles/Mask';
 
 const PostCardCompactDesktop = ({
   className = '',
@@ -36,8 +36,6 @@ const PostCardCompactDesktop = ({
 
     setImageURL(handleImageSize(image, postWidth, newHeight));
   }, [height, width, image, title]);
-
-  const componentClassName = 'post-card-compact-desktop';
 
   return (
     <PostCardCompactDesktopWrapper ref={ref}>

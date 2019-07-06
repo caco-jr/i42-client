@@ -19,7 +19,8 @@ const nextConfig = {
       '@components': path.resolve(__dirname, 'components'),
       '@helpers': path.resolve(__dirname, 'helpers'),
       '@utils': path.resolve(__dirname, 'utils'),
-      '@interfaces': path.resolve(__dirname, 'interfaces')
+      '@interfaces': path.resolve(__dirname, 'interfaces'),
+      '@static': path.resolve(__dirname, 'static')
     };
     return config;
   },

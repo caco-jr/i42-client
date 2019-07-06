@@ -7,7 +7,7 @@ import SvgLoader from '@components/SvgLoader';
 import Navbar from './components/Navbar';
 import Search from './components/Search';
 import HeaderWrapper from './header.style';
-import { GlobalStyle } from '@components/GlobalStyle';
+import { GlobalStyle } from '@static/styles/GlobalStyle';
 
 const Header = () => {
   const componentClassName = 'header-bar';
