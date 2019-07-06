@@ -16,9 +16,9 @@ const Header = () => {
     <HeaderWrapper>
       <GlobalStyle />
 
-      <Container>
+      <Container style={{ width: '100%' }}>
         <Row>
-          <Col sm={4}>
+          <Col sm={3}>
             <Link href="/">
               <a className={`${componentClassName}__logo`}>
                 <SvgLoader
@@ -29,7 +29,7 @@ const Header = () => {
             </Link>
           </Col>
 
-          <Col sm={8}>
+          <Col sm={9}>
             <Navbar />
 
             <Search />
