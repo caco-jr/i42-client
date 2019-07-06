@@ -26,6 +26,7 @@
     "@zeit/next-typescript": "^1.1.1",
     "babel-plugin-styled-components": "^1.10.4",
     "express": "^4.17.1",
+    "graphql": "^14.4.2",
     "next": "^8.1.0",
     "nodemon": "^1.19.1",
     "postcss": "^7.0.17",
