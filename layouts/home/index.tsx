@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { ScreenClassProvider } from 'react-grid-system';
 
 import Header from '@components/Header';
