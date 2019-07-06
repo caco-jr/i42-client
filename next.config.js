@@ -1,9 +1,14 @@
-const path = require('path')
-const withTypescript = require('@zeit/next-typescript')
+const path = require('path');
+const withTypescript = require('@zeit/next-typescript');
+const withCSS = require('@zeit/next-css');
+
+const cssConfig = {
+  cssModules: true
+};
 
 const nextConfig = {
   webpack: config => {
-    config.plugins = config.plugins || []
+    config.plugins = config.plugins || [];
 
     config.resolve.alias = {
       ...config.resolve.alias,
@@ -15,10 +20,11 @@ const nextConfig = {
       '@helpers': path.resolve(__dirname, 'helpers'),
       '@utils': path.resolve(__dirname, 'utils'),
       '@interfaces': path.resolve(__dirname, 'interfaces')
-    }
-    return config
+    };
+    return config;
   },
+  ...cssConfig,
   target: 'serverless'
-}
+};
 
-module.exports = withTypescript(nextConfig)
+module.exports = withTypescript(withCSS(nextConfig));

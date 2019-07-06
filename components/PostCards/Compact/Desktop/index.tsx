@@ -1,9 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import { PostCardCompactIterface } from '../post-card-compact.interface';
-import { handleImageSize } from '../../../../utils/image';
-import { decode, handleLimitCharacters } from '../../../../helpers/helpers';
-import { getPostURL } from '../../../../helpers/urls';
+import Link from 'next/link';
+import { getPostURL } from '@helpers/urls';
+import { handleImageSize } from '@utils/image';
+import CategoryLabel from '@components/CategoryLabel';
+import { handleLimitCharacters, decode } from '@helpers/helpers';
+import {
+  PostCardCompactDesktopWrapper,
+  PostCardCompactDesktopTitle,
+  PostCardCompactDesktopInfo,
+  PostCardCompactDesktopImage
+} from './index.style';
+import Mask from '@components/Mask';
 
 const PostCardCompactDesktop = ({
   className = '',
@@ -31,29 +40,29 @@ const PostCardCompactDesktop = ({
   const componentClassName = 'post-card-compact-desktop';
 
   return (
-    <figure ref={ref} className={`${className} ${componentClassName}`}>
-      <Link to={link}>
-        <img
-          alt={title}
-          className={`${componentClassName}__image`}
-          src={imageURL}
-        />
+    <PostCardCompactDesktopWrapper ref={ref}>
+      <Link href={link}>
+        <a>
+          <PostCardCompactDesktopImage alt={title} src={imageURL} />
 
-        <div className={`${componentClassName}__mask`} />
+          <Mask />
+        </a>
       </Link>
 
-      <figcaption className={`${componentClassName}__info`}>
+      <PostCardCompactDesktopInfo>
         {categories
           ? categories.map((item, index) => (
               <CategoryLabel id={item.id} name={item.name} key={index} />
             ))
           : null}
 
-        <Link to={link} className={`${componentClassName}__title`}>
-          {handleLimitCharacters(decode(title))}
+        <Link href={link}>
+          <PostCardCompactDesktopTitle>
+            {handleLimitCharacters(decode(title))}
+          </PostCardCompactDesktopTitle>
         </Link>
-      </figcaption>
-    </figure>
+      </PostCardCompactDesktopInfo>
+    </PostCardCompactDesktopWrapper>
   );
 };
 

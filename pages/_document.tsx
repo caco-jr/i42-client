@@ -1,22 +1,22 @@
-import React from 'react'
+import React from 'react';
 import Document, {
   Head,
   Main,
   NextScript,
   NextDocumentContext
-} from 'next/document'
-import { ServerStyleSheet } from 'styled-components'
+} from 'next/document';
+import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document<any> {
   static async getInitialProps(ctx: NextDocumentContext) {
-    const initialProps = await Document.getInitialProps(ctx)
-    const sheet = new ServerStyleSheet()
+    const initialProps = await Document.getInitialProps(ctx);
+    const sheet = new ServerStyleSheet();
     const page = ctx.renderPage(App => props =>
       sheet.collectStyles(<App {...props} />)
-    )
-    const styleTags = sheet.getStyleElement()
+    );
+    const styleTags = sheet.getStyleElement();
 
-    return { ...initialProps, ...page, styleTags }
+    return { ...initialProps, ...page, styleTags };
   }
 
   render() {
@@ -32,7 +32,6 @@ export default class MyDocument extends Document<any> {
             rel="stylesheet"
             href="https://cdn.rawgit.com/filipelinhares/ress/master/dist/ress.min.css"
           />
-          <link rel="stylesheet" href="/static/styles/default.css" />
           <link rel="manifest" href="/static/manifest/manifest.json" />
           <link rel="manifest" href="manifest.webmanifest" />
           <script
@@ -48,6 +47,6 @@ export default class MyDocument extends Document<any> {
           <NextScript />
         </body>
       </html>
-    )
+    );
   }
 }
