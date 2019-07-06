@@ -4,16 +4,13 @@ import { ScreenClassProvider } from 'react-grid-system';
 import Header from '@components/Header';
 import HeroSection from './components/HeroSection';
 import styled from 'styled-components';
-import { GlobalStyles } from '@components/GlobalStyles/index';
 
 const Home = () => {
   return (
     <ScreenClassProvider>
-      <GlobalStyles>
-        <Header />
-        {/* <HeroSection /> */}
-        <Teste> Olá </Teste>
-      </GlobalStyles>
+      <Header />
+      {/* <HeroSection /> */}
+      <Teste> Olá </Teste>
     </ScreenClassProvider>
   );
 };

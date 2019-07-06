@@ -1,20 +1,20 @@
-import React from 'react'
-import { NextContext } from 'next'
-import { AppProps } from '@src/app'
-import Layout from '@layouts/index'
+import React from 'react';
+import { NextContext } from 'next';
+import { AppProps } from '@src/_app';
+import Layout from '@layouts/index';
 
 interface InitialProps {}
 
-type Query = {}
+type Query = {};
 
 const getInitialProps = async ({
 
 }: NextContext<Query> & AppProps): Promise<InitialProps> => {
-  return {}
-}
+  return {};
+};
 
-const Page = ({  }: AppProps & InitialProps) => <Layout />
+const Page = ({  }: AppProps & InitialProps) => <Layout />;
 
-Page.getInitialProps = getInitialProps
+Page.getInitialProps = getInitialProps;
 
-export default Page
+export default Page;
