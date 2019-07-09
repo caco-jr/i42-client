@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noUnusedLocals": true /* Report errors on unused locals. */,
+    "noUnusedParameters": true /* Report errors on unused parameters. */,
+    "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
+    "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "exclude": ["node_modules"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "baseUrl": ".",
+  "paths": {
+    "@src/*": ["src/*"],
+    "@layouts/*": ["layouts/*"],
+    "@controllers/*": ["controllers/*"],
+    "@components/*": ["components/*"],
+    "@helpers/*": ["helpers/*"],
+    "@utils/*": ["utils/*"],
+    "@interfaces/*": ["interfaces/*"],
+    "@static/*": ["static/*"],
+    "*": ["*"]
+  }
+}

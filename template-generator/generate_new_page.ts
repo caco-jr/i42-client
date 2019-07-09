@@ -5,6 +5,7 @@ const puralize = require('pluralize');
 const originalPath = process.argv[2].replace(/\/$/, '');
 
 const splitted = originalPath.split('/');
+splitted.push('index.tsx');
 
 if (splitted.find(p => p.startsWith('_'))) {
   console.error('ERROR: `_` prefix is not allowed');
@@ -17,7 +18,7 @@ if (splitted.filter(p => p.startsWith(':')).find(p => p !== ':id')) {
 }
 
 const pathStr = splitted
-  .map(s => (s.startsWith(':') ? `[${s.replace(':', '')}].tsx` : s))
+  .map(s => (s.startsWith(':') ? `[${s.replace(':', '')}]` : s))
   .join('/');
 
 const queries = splitted
@@ -56,7 +57,7 @@ function checkExists(filePath: string) {
 }
 
 function checkDir(filePath: string) {
-  const dirPath = filePath.replace(/\/(\[(.*?)\](.tsx))$/g, '');
+  const dirPath = filePath.replace(/\/\w*\.tsx$/, '');
 
   try {
     fs.statSync(dirPath);
@@ -72,7 +73,7 @@ function createNewFileFromTemplate(
 ) {
   const data = fs
     .readFileSync(templatePath, 'utf8')
-    .replace(/__PATH__/g, filePath.replace(/\/(\[(.*?)\](.tsx))$/g, ''))
+    .replace(/__PATH__/g, filePath.replace(/(\/index|\.tsx)/g, ''))
     .replace(/__QUERY_TYPES__/g, queryTypeStr);
 
   fs.writeFileSync(path.resolve(rootPath, filePath), data);
