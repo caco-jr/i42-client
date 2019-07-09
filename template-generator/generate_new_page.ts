@@ -5,9 +5,8 @@ const puralize = require('pluralize');
 const originalPath = process.argv[2].replace(/\/$/, '');
 
 const splitted = originalPath.split('/');
-splitted.push('index.tsx');
 
-if (splitted.find(p => !!p.startsWith('_'))) {
+if (splitted.find(p => p.startsWith('_'))) {
   console.error('ERROR: `_` prefix is not allowed');
   process.exit();
 }
@@ -18,8 +17,9 @@ if (splitted.filter(p => p.startsWith(':')).find(p => p !== ':id')) {
 }
 
 const pathStr = splitted
-  .map(s => (s.startsWith(':') ? s.replace(':', '_') : s))
+  .map(s => (s.startsWith(':') ? `[${s.replace(':', '')}].tsx` : s))
   .join('/');
+
 const queries = splitted
   .map((s, i, array) =>
     s.startsWith(':') ? `${puralize.singular(array[i - 1])}_${s.slice(1)}` : ''
@@ -41,6 +41,7 @@ const LAYOUT_TEMPLATE_PATH = path.resolve(
   __dirname,
   'templates/layout.template'
 );
+
 const CONTROLLER_TEMPLATE_PATH = path.resolve(
   __dirname,
   'templates/controller.template'
@@ -55,7 +56,8 @@ function checkExists(filePath: string) {
 }
 
 function checkDir(filePath: string) {
-  const dirPath = filePath.replace(/\/\w*\.tsx$/, '');
+  const dirPath = filePath.replace(/\/(\[(.*?)\](.tsx))$/g, '');
+
   try {
     fs.statSync(dirPath);
   } catch (e) {
@@ -70,8 +72,9 @@ function createNewFileFromTemplate(
 ) {
   const data = fs
     .readFileSync(templatePath, 'utf8')
-    .replace(/__PATH__/g, filePath.replace(/(\/index|\.tsx)/g, ''))
+    .replace(/__PATH__/g, filePath.replace(/\/(\[(.*?)\](.tsx))$/g, ''))
     .replace(/__QUERY_TYPES__/g, queryTypeStr);
+
   fs.writeFileSync(path.resolve(rootPath, filePath), data);
 }
 

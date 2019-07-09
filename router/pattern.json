@@ -1,8 +1,0 @@
-{
-  "patterns": [
-    {
-      "page": "/post/_id",
-      "pattern": "/p/:post_id"
-    }
-  ]
-}
