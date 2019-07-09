@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { NextContext } from 'next'
+import { NextPageContext } from 'next'
 import { AppInitialProps, AppProps } from '@src/app'
 import Layout from '@layouts/__PATH__'
 
@@ -9,7 +9,7 @@ type Query = __QUERY_TYPES__
 
 const getInitialProps = async ({
 
-}: NextContext<Query> & AppInitialProps): Promise<InitialProps> => {
+}: NextPageContext & AppInitialProps): Promise<InitialProps> => {
   return {}
 }
 
