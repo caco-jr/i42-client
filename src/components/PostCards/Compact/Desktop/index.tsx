@@ -1,19 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 
 import { PostCardCompactIterface } from '../post-card-compact.interface';
-import Link from 'next/link';
+import { getPostURL } from '@helpers/urls';
+import { handleImageSize } from '@utils/image';
 import {
   PostCardCompactDesktopWrapper,
-  PostCardCompactDesktopTitle,
+  PostCardCompactDesktopImage,
   PostCardCompactDesktopInfo,
-  PostCardCompactDesktopImage
+  PostCardCompactDesktopTitle
 } from './index.style';
-import { getPostURL } from '../../../../helpers/urls';
-import { handleImageSize } from '../../../../utils/image';
-import Mask from '../../../../static/styles/Mask';
-import CategoryLabel from '../../../CategoryLabel';
-import { handleLimitCharacters } from '../../../../helpers/helpers';
-import { decode } from 'punycode';
+import Mask from '@static/styles/Mask';
+import CategoryLabel from '@components/CategoryLabel';
+import { handleLimitCharacters, decode } from '@helpers/helpers';
 
 const PostCardCompactDesktop = ({
   className = '',

@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { withRouter } from 'next/router';
 
-// import './style.scss'
 import { NavbarInterface } from './navbar.interface';
-import { getCategoryURL } from '../../../../helpers/urls';
+import { getCategoryURL } from '@helpers/urls';
 
 const Navbar = (props: NavbarInterface) => {
   const componentClassName = 'navbar';

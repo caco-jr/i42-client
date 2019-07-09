@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react';
-
-import './style.scss';
-import { PostCardHorizontalInterface } from './post-card-horizontal.interface';
-import { getPostURL } from '../../../helpers/urls';
-import { handleImageSize } from '../../../utils/image';
-import {
-  handleLimitCharacters,
-  decode,
-  handleDate
-} from '../../../helpers/helpers';
 import Link from 'next/link';
+
+import { PostCardHorizontalInterface } from './post-card-horizontal.interface';
+import { getPostURL } from '@helpers/urls';
+import { handleImageSize } from '@utils/image';
+import { handleLimitCharacters, handleDate, decode } from '@helpers/helpers';
 
 const PostCardHorizontal = ({
   className = '',

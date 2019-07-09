@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 
-import PostCard from '../../../../components/PostCards/Default';
-import Button from '../../../../components/Button';
 import { CategoryPostInterface } from './category-post.interface';
-import { getCategoryURL } from '../../../../helpers/urls';
-import PostCardLoading from '../../../../components/PostCards/Default/Loading';
+import PostCard from '@components/PostCards/Default';
+import PostCardLoading from '@components/PostCards/Default/Loading';
+import { getCategoryURL } from '@helpers/urls';
+import Button from '@components/Button';
 
 const CategoryPostBlock = ({
   sectionTitle,

@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-
-import './style.scss';
-import { PostCardInterface } from './post-card.interface';
-import { handleImageSize } from '../../../utils/image';
-import { decode, handleLimitCharacters } from '../../../helpers/helpers';
-import { getPostURL } from '../../../helpers/urls';
-import CategoryLabel from '../../CategoryLabel';
 import Link from 'next/link';
+
+import { PostCardInterface } from './post-card.interface';
+import { getPostURL } from '@helpers/urls';
+import { handleImageSize } from '@utils/image';
+import CategoryLabel from '@components/CategoryLabel';
+import { handleLimitCharacters, decode } from '@helpers/helpers';
 
 const PostCard = ({
   className = '',

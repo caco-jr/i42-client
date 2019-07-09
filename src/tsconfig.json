@@ -20,7 +20,7 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["src/*"],
+      "@pages/*": ["pages/*"],
       "@layouts/*": ["layouts/*"],
       "@controllers/*": ["controllers/*"],
       "@components/*": ["components/*"],

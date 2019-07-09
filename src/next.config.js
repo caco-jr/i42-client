@@ -6,7 +6,7 @@ const nextConfig = {
 
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@src': path.resolve(__dirname, 'src/'),
+      '@pages': path.resolve(__dirname, 'pages/'),
       '@layouts': path.resolve(__dirname, 'layouts'),
       '@controllers': path.resolve(__dirname, 'controllers'),
       '@components': path.resolve(__dirname, 'components'),

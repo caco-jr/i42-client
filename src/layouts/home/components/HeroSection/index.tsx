@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container } from 'react-grid-system';
 
+import { PostInterface } from '@interfaces/post/post.interface';
 import { HeroSectionWrapper } from './hero-section.style';
-import { PostInterface } from '../../../../interfaces/post/post.interface';
-import PostCardCompact from '../../../../components/PostCards/Compact';
-import PostCardCompactLoading from '../../../../components/PostCards/Compact/Loading';
+import PostCardCompact from '@components/PostCards/Compact';
+import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
 
 const HeroSection = ({ posts }: { posts: PostInterface[] }) => {
   const componentClassName = 'hero-section';

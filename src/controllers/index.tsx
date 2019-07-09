@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { AppProps } from '../pages/_app';
-import Layout from '../layouts';
+import { AppProps } from '@pages/_app';
+import Layout from '@layouts/index';
 
 interface InitialProps {}
 

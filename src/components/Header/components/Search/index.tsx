@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { withRouter } from 'next/router';
 
-// import './style.scss'
 import { SearchInterface } from './search.interface';
-import Button from '../../../Button';
-import SvgLoader from '../../../SvgLoader';
-import Input from '../../../Input';
+import Button from '@components/Button';
+import SvgLoader from '@components/SvgLoader';
+import Input from '@components/Input';
 
 const Search = (props: SearchInterface) => {
   const componentClassName = 'c-search';

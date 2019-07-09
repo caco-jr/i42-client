@@ -1,1 +1,1 @@
-export { default } from '../controllers/index';
+export { default } from '@controllers/index';

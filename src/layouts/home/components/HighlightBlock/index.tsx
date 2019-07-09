@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { HighlightBlockInterface } from './highlight-block.interface';
-import PostCardHorizontal from '../../../../components/PostCards/Horizontal/index';
-import PostCardCompact from '../../../../components/PostCards/Compact/index';
-import PostCardCompactLoading from '../../../../components/PostCards/Compact/Loading/index';
-import PostCardHorizontalLoading from '../../../../components/PostCards/Horizontal/Loading';
+import PostCardCompact from '@components/PostCards/Compact';
+import PostCardHorizontal from '@components/PostCards/Horizontal';
+import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
+import PostCardHorizontalLoading from '@components/PostCards/Horizontal/Loading';
 
 const HighlightBlock = (props: HighlightBlockInterface) => {
   const componentClassName = 'highlight-block';
