@@ -5,6 +5,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "noImplicitAny": false,
     // "noUnusedLocals": true /* Report errors on unused locals. */,
     // "noUnusedParameters": true /* Report errors on unused parameters. */,
     // "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
@@ -16,20 +17,20 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@layouts/*": ["layouts/*"],
+      "@controllers/*": ["controllers/*"],
+      "@components/*": ["components/*"],
+      "@helpers/*": ["helpers/*"],
+      "@utils/*": ["utils/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@static/*": ["static/*"],
+      "*": ["*"]
+    }
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "baseUrl": ".",
-  "paths": {
-    "@src/*": ["src/*"],
-    "@layouts/*": ["layouts/*"],
-    "@controllers/*": ["controllers/*"],
-    "@components/*": ["components/*"],
-    "@helpers/*": ["helpers/*"],
-    "@utils/*": ["utils/*"],
-    "@interfaces/*": ["interfaces/*"],
-    "@static/*": ["static/*"],
-    "*": ["*"]
-  }
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }
