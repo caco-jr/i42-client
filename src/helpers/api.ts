@@ -96,7 +96,8 @@ export const postsTransform = (posts: PostWPInterface[]): PostInterface[] => {
       categories: _embedded['wp:term'][0].map(category => ({
         id: category.id,
         name: category.name,
-        slug: category.slug
+        slug: category.slug,
+        color: category.acf.category_color
       }))
     };
   });

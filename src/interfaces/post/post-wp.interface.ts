@@ -273,7 +273,7 @@ interface WpFeaturedmedia {
   link: string;
   title: Title;
   author: number;
-  acf: any[];
+  acf: WpFeaturedmediaACF;
   jetpack_shortlink: string;
   caption: Caption;
   alt_text: string;
@@ -282,6 +282,10 @@ interface WpFeaturedmedia {
   media_details: Media_detail;
   source_url: string;
   _links: _link;
+}
+
+interface WpFeaturedmediaACF {
+  category_color: string;
 }
 
 interface _embedded {

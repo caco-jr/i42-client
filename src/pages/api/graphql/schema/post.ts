@@ -16,7 +16,7 @@ const postSchema = gql`
     media: MediaPost
     author: AuthorPost
     tags: [TermPost]
-    categories: [TermPost]
+    categories: [CategoryPost]
     acf: ACFPost
   }
 
@@ -34,6 +34,13 @@ const postSchema = gql`
     id: Int
     name: String
     slug: String
+  }
+
+  type CategoryPost {
+    id: Int
+    name: String
+    slug: String
+    color: String
   }
 
   type ACFPost {
