@@ -24,7 +24,6 @@ interface PostsParamsWPAPI {
     | 'title';
   slug?: string;
   categories?: number;
-  category?: string;
   categories_exclude?: number;
   tags?: number;
   tags_exclude?: number;
