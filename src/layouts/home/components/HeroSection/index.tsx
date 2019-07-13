@@ -1,12 +1,12 @@
 import React from 'react';
 import { Container } from 'react-grid-system';
 
-import { PostInterface } from '@interfaces/post/post.interface';
+import { PostWPInterface } from '@interfaces/post/post-wp.interface';
 import { HeroSectionWrapper } from './hero-section.style';
 import PostCardCompact from '@components/PostCards/Compact';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
 
-const HeroSection = ({ posts }: { posts: PostInterface[] }) => {
+const HeroSection = ({ posts }: { posts: PostWPInterface[] }) => {
   const componentClassName = 'hero-section';
 
   return (
@@ -18,19 +18,20 @@ const HeroSection = ({ posts }: { posts: PostInterface[] }) => {
               const height = index === 0 ? 495 : 230;
 
               return (
-                <PostCardCompact
-                  key={index}
-                  className={`${componentClassName}__post`}
-                  width={width}
-                  height={height}
-                  image={post.media.medium}
-                  title={post.title}
-                  slug={post.slug}
-                  categories={post.terms!.map(item => ({
-                    id: item.term_id,
-                    name: item.name
-                  }))}
-                />
+                <p>Olá</p>
+                // <PostCardCompact
+                //   key={index}
+                //   className={`${componentClassName}__post`}
+                //   width={width}
+                //   height={height}
+                //   image={post.media.medium}
+                //   title={post.title}
+                //   slug={post.slug}
+                //   categories={post.terms!.map(item => ({
+                //     id: item.term_id,
+                //     name: item.name
+                //   }))}
+                // />
               );
             })
           : [...Array(3)].map((item, index) => (

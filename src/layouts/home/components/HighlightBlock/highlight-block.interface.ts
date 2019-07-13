@@ -1,6 +1,6 @@
-import { PostInterface } from '../../../../interfaces/post/post.interface';
+import { PostWPInterface } from '@interfaces/post/post-wp.interface';
 
 export interface HighlightBlockInterface {
-  posts: PostInterface[];
+  posts: PostWPInterface[];
   sectionTitle: string;
 }

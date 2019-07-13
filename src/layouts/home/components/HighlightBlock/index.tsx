@@ -15,7 +15,7 @@ const HighlightBlock = (props: HighlightBlockInterface) => {
     <section className={componentClassName}>
       <h2 className={`${componentClassName}__title`}>{sectionTitle}</h2>
 
-      <section className={`${componentClassName}__posts-container`}>
+      {/* <section className={`${componentClassName}__posts-container`}>
         {posts.length
           ? posts.map((post, index) => {
               if (index === 0) {
@@ -62,7 +62,7 @@ const HighlightBlock = (props: HighlightBlockInterface) => {
                 );
               }
             })}
-      </section>
+      </section> */}
     </section>
   );
 };

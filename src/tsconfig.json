@@ -28,6 +28,7 @@
       "@utils/*": ["utils/*"],
       "@interfaces/*": ["interfaces/*"],
       "@static/*": ["static/*"],
+      "@services/*": ["services/*"],
       "*": ["*"]
     }
   },

@@ -1,7 +1,7 @@
-import { PostInterface } from '../../../../interfaces/post/post.interface';
+import { PostWPInterface } from 'interfaces/post/post-wp.interface';
 
 export interface CategoryPostInterface {
-  posts: PostInterface[];
+  posts: PostWPInterface[];
   sectionTitle: string;
   categorySlug: string;
 }

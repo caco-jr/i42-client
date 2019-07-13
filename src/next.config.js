@@ -13,7 +13,8 @@ const nextConfig = {
       '@helpers': path.resolve(__dirname, 'helpers/'),
       '@utils': path.resolve(__dirname, 'utils'),
       '@interfaces': path.resolve(__dirname, 'interfaces'),
-      '@static': path.resolve(__dirname, 'static')
+      '@static': path.resolve(__dirname, 'static'),
+      '@services': path.resolve(__dirname, 'services')
     };
 
     return config;
