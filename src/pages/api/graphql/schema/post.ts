@@ -4,7 +4,7 @@ const postSchema = gql`
   extend type Query {
     post(slug: String!): Post!
     posts: [Post!]!
-    postsByCategory(category: Int!, limit: Int, page: Int): [Post!]!
+    postsByCategory(ID: Int!, limit: Int, page: Int): [Post!]!
   }
 
   type Post {

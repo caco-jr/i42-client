@@ -17,9 +17,9 @@ const postResolvers = {
 
       return treatedData;
     },
-    async postsByCategory(parent, { category, limit = 6, page = 1 }, context) {
+    async postsByCategory(parent, { ID, limit = 6, page = 1 }, context) {
       const postData = await getPostsWPAPI({
-        categories: category,
+        categories: ID,
         per_page: limit,
         page
       });
