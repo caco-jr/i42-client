@@ -3,6 +3,14 @@ import { postsTransform } from '@helpers/api';
 
 const postResolvers = {
   Query: {
+    async post(parent, { slug }, context) {
+      const postData = await getPostsWPAPI({
+        slug
+      });
+      const treatedData = await postsTransform(postData.data)[0];
+
+      return treatedData;
+    },
     async posts(parent, args, context) {
       const postData = await getPostsWPAPI();
       const treatedData = await postsTransform(postData.data);
