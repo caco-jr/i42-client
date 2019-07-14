@@ -62,12 +62,9 @@ const CategoryPostBlock = ({
           </section>
 
           <Link href={getCategoryURL(categorySlug)}>
-            <Button
-              className={`${componentClassName}__button`}
-              styleType="outline"
-            >
+            <a className={`${componentClassName}__button`}>
               Mais {sectionTitle}
-            </Button>
+            </a>
           </Link>
         </section>
       )}
