@@ -2,7 +2,6 @@ import React from 'react';
 import { Container } from 'react-grid-system';
 import gql from 'graphql-tag';
 
-import { PostWPInterface } from '@interfaces/post/post-wp.interface';
 import { HeroSectionWrapper } from './hero-section.style';
 import PostCardCompact from '@components/PostCards/Compact';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
