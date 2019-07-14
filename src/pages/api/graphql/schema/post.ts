@@ -3,7 +3,7 @@ import { gql } from 'apollo-server-micro';
 const postSchema = gql`
   extend type Query {
     post(slug: String!): Post!
-    posts: [Post!]!
+    allPosts: [Post!]!
     postsByCategory(ID: Int!, limit: Int, page: Int): [Post!]!
   }
 

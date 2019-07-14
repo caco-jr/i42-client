@@ -7,13 +7,13 @@ const postResolvers = {
       const postData = await getPostsWPAPI({
         slug
       });
-      const treatedData = await postsTransform(postData.data)[0];
+      const treatedData = await postsTransform(postData)[0];
 
       return treatedData;
     },
-    async posts(parent, args, context) {
+    async allPosts(parent, args, context) {
       const postData = await getPostsWPAPI();
-      const treatedData = await postsTransform(postData.data);
+      const treatedData = await postsTransform(postData);
 
       return treatedData;
     },
@@ -23,7 +23,7 @@ const postResolvers = {
         per_page: limit,
         page
       });
-      const treatedData = await postsTransform(postData.data);
+      const treatedData = await postsTransform(postData);
 
       return treatedData;
     }

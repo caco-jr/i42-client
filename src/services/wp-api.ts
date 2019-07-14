@@ -1,4 +1,4 @@
-import axios from 'axios';
+import fetch from 'isomorphic-unfetch';
 
 const _baseAPI = 'https://imperio42.com.br/wp-json';
 
@@ -29,18 +29,20 @@ interface PostsParamsWPAPI {
   tags_exclude?: number;
 }
 
+const handleParams = params => {
+  return new URLSearchParams(Object.entries(params));
+};
+
 export const getMenuWPAPI = (menuSlug: string) =>
-  axios.get(`${_customAPI}/menus/${menuSlug}`);
+  fetch(`${_customAPI}/menus/${menuSlug}`).then(res => res.json());
 
 export const getPostsWPAPI = (params?: PostsParamsWPAPI) =>
-  axios.get(`${_wpAPI}/posts`, {
-    params: {
+  fetch(
+    `${_wpAPI}/posts?${handleParams({
       ...params,
       _embed: true
-    }
-  });
+    })}`
+  ).then(res => res.json());
 
 export const getCategoryInfoWPAPI = (params?: PostsParamsWPAPI) =>
-  axios.get(`${_wpAPI}/categories`, {
-    params
-  });
+  fetch(`${_wpAPI}/categories?${handleParams(params)}`).then(res => res.json());

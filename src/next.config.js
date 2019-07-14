@@ -14,7 +14,8 @@ const nextConfig = {
       '@utils': path.resolve(__dirname, 'utils'),
       '@interfaces': path.resolve(__dirname, 'interfaces'),
       '@static': path.resolve(__dirname, 'static'),
-      '@services': path.resolve(__dirname, 'services')
+      '@services': path.resolve(__dirname, 'services'),
+      '@lib': path.resolve(__dirname, 'lib')
     };
 
     return config;

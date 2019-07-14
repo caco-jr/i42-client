@@ -2,15 +2,10 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "strict": false,
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
     "noImplicitAny": false,
-    // "noUnusedLocals": true /* Report errors on unused locals. */,
-    // "noUnusedParameters": true /* Report errors on unused parameters. */,
-    // "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
-    "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
-    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -29,8 +24,10 @@
       "@interfaces/*": ["interfaces/*"],
       "@static/*": ["static/*"],
       "@services/*": ["services/*"],
+      "@lib/*": ["lib/*"],
       "*": ["*"]
-    }
+    },
+    "forceConsistentCasingInFileNames": true
   },
   "exclude": ["node_modules"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]

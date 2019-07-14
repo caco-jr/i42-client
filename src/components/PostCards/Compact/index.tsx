@@ -1,6 +1,5 @@
 import React from 'react';
 
-import './style.scss';
 import { PostCardCompactIterface } from './post-card-compact.interface';
 import PostCardCompactDesktop from './Desktop';
 import PostCardCompactMobile from './Mobile';
