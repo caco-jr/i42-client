@@ -3,7 +3,7 @@ import { postsTransform } from '@helpers/api';
 
 const postResolvers = {
   Query: {
-    async post(parent, { slug }, context) {
+    post: async (parent, { slug }, context) => {
       const postData = await getPostsWPAPI({
         slug
       });
@@ -11,11 +11,11 @@ const postResolvers = {
 
       return treatedData;
     },
-    async allPosts(
+    allPosts: async (
       parent,
       { categoriesExclude, limit = 6, page = 1 },
       context
-    ) {
+    ) => {
       const postData = await getPostsWPAPI({
         categories_exclude: categoriesExclude,
         per_page: limit,
@@ -26,7 +26,7 @@ const postResolvers = {
 
       return treatedData;
     },
-    async postsByCategory(parent, { ID, limit = 6, page = 1 }, context) {
+    postsByCategory: async (parent, { ID, limit = 6, page = 1 }, context) => {
       const postData = await getPostsWPAPI({
         categories: ID,
         per_page: limit,
