@@ -1,4 +1,4 @@
-export interface PostCardCompactIterface {
+export interface PostCardCompactInterface {
   className?: string;
   image: string;
   slug: string;

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PostCard from '../../Default/index';
-import { PostCardCompactIterface } from '../post-card-compact.interface';
+import { PostCardCompactInterface } from '../post-card-compact.interface';
 
 const PostCardCompactMobile = ({
   className = '',
@@ -11,7 +11,7 @@ const PostCardCompactMobile = ({
   categories,
   width,
   height
-}: PostCardCompactIterface) => {
+}: PostCardCompactInterface) => {
   const componentClassName = 'post-card-compact-mobile';
 
   return (

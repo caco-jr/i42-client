@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 
-import { PostCardCompactIterface } from '../post-card-compact.interface';
+import { PostCardCompactInterface } from '../post-card-compact.interface';
 import { getPostURL } from '@helpers/urls';
 import { handleImageSize } from '@utils/image';
 import {
@@ -22,7 +22,7 @@ const PostCardCompactDesktop = ({
   categories,
   width,
   height
-}: PostCardCompactIterface) => {
+}: PostCardCompactInterface) => {
   const ref = useRef<HTMLElement>(null);
   const [imageURL, setImageURL] = useState('');
 

@@ -37,7 +37,7 @@ const CategoryPostBlock = ({
       query={postsByCategoryQuery}
       variables={{ ID: categoryID, limit: 3 }}
     >
-      {({ loading, error, data: { postsByCategory } }) => (
+      {({ loading, data: { postsByCategory } }) => (
         <section className={componentClassName}>
           <h2 className={`${componentClassName}__title`}>{sectionTitle}</h2>
 

@@ -1,6 +1,7 @@
 import React from 'react';
+import { Visible, Hidden } from 'react-grid-system';
 
-import { PostCardCompactIterface } from './post-card-compact.interface';
+import { PostCardCompactInterface } from './post-card-compact.interface';
 import PostCardCompactDesktop from './Desktop';
 import PostCardCompactMobile from './Mobile';
 
@@ -12,32 +13,32 @@ const PostCardCompact = ({
   categories,
   width,
   height
-}: PostCardCompactIterface) => {
-  const showOnlyDesktop = 'd-none d-md-block';
-
-  const showOnlyMobile = 'd-md-none';
-
+}: PostCardCompactInterface) => {
   return (
     <>
-      <PostCardCompactDesktop
-        className={`${className} ${showOnlyDesktop}`}
-        image={image}
-        slug={slug}
-        title={title}
-        categories={categories}
-        width={width}
-        height={height}
-      />
+      <Visible lg xl>
+        <PostCardCompactDesktop
+          className={`${className}`}
+          image={image}
+          slug={slug}
+          title={title}
+          categories={categories}
+          width={width}
+          height={height}
+        />
+      </Visible>
 
-      <PostCardCompactMobile
-        className={`${className} ${showOnlyMobile}`}
-        image={image}
-        slug={slug}
-        title={title}
-        categories={categories}
-        width={width}
-        height={height}
-      />
+      <Hidden lg xl>
+        <PostCardCompactMobile
+          className={`${className}`}
+          image={image}
+          slug={slug}
+          title={title}
+          categories={categories}
+          width={width}
+          height={height}
+        />
+      </Hidden>
     </>
   );
 };
