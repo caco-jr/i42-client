@@ -12,7 +12,7 @@ const Home = () => {
     <ScreenClassProvider>
       <BodyBackground>
         <Header />
-        <HeroSection categoriesExclude={[2, 132]} />
+        <HeroSection categoriesExclude={[2, 132, 3, 11, 1]} />
 
         <CategoryPostBlock
           categoryID={2}
@@ -26,7 +26,7 @@ const Home = () => {
           sectionTitle="Reviews"
         />
 
-        <HighlightBlock sectionTitle="Nave Mainha" categoryID={132} />
+        <HighlightBlock sectionTitle="Nave Mainha" categoryID={3} />
         <HighlightBlock sectionTitle="Games" categoryID={11} />
         <HighlightBlock sectionTitle="Controle da Missão" categoryID={1} />
       </BodyBackground>
