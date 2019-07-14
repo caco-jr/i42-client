@@ -1,5 +1,7 @@
 const path = require('path');
 
+const isDev = process.env.NODE_ENV === 'dev';
+
 const nextConfig = {
   webpack: config => {
     config.plugins = config.plugins || [];
