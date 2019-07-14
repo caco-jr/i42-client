@@ -24,9 +24,9 @@ interface PostsParamsWPAPI {
     | 'title';
   slug?: string;
   categories?: number;
-  categories_exclude?: number;
+  categories_exclude?: number[];
   tags?: number;
-  tags_exclude?: number;
+  tags_exclude?: number[];
 }
 
 const handleParams = params => {

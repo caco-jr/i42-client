@@ -11,8 +11,17 @@ const postResolvers = {
 
       return treatedData;
     },
-    async allPosts(parent, args, context) {
-      const postData = await getPostsWPAPI();
+    async allPosts(
+      parent,
+      { categoriesExclude, limit = 6, page = 1 },
+      context
+    ) {
+      const postData = await getPostsWPAPI({
+        categories_exclude: categoriesExclude,
+        per_page: limit,
+        page
+      });
+
       const treatedData = await postsTransform(postData);
 
       return treatedData;

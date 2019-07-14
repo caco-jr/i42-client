@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './style.scss';
-
 const PostCardLoading = ({ className = '' }) => {
   const componentClassName = 'post-card-loading';
 

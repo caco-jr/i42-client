@@ -7,9 +7,9 @@ import PostCardCompact from '@components/PostCards/Compact';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
 import { Query } from 'react-apollo';
 
-export const allPostsQuery = gql`
-  query allPosts {
-    allPosts {
+const allPostsQuery = gql`
+  query allPosts($categoriesExclude: [Int], $limit: Int) {
+    allPosts(categoriesExclude: $categoriesExclude, limit: $limit) {
       title
       media {
         thumbnail
@@ -23,11 +23,15 @@ export const allPostsQuery = gql`
   }
 `;
 
-const HeroSection = () => {
+const HeroSection = ({
+  categoriesExclude
+}: {
+  categoriesExclude: number[];
+}) => {
   const componentClassName = 'hero-section';
 
   return (
-    <Query query={allPostsQuery}>
+    <Query query={allPostsQuery} variables={{ categoriesExclude, limit: 3 }}>
       {({ loading, data: { allPosts } }) => {
         return (
           <Container>
