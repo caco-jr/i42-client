@@ -37,7 +37,7 @@ export default class MyDocument extends Document<any> {
           <script
             async
             src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.9/pwacompat.min.js"
-            integrity="sha384-ptgwb3/v69WGur7IwSnWOowVxE7hcRB3DG/EiHdejrw2sFNwUHynFbiRMPxc4hdS"
+            integrity="sha384-VcI6S+HIsE80FVM1jgbd6WDFhzKYA0PecD/LcIyMQpT4fMJdijBh0I7Iblaacawc"
             crossOrigin="anonymous"
           />
           {this.props.styleTags}
