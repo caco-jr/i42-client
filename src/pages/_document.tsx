@@ -36,7 +36,7 @@ export default class MyDocument extends Document<any> {
           <link rel="manifest" href="manifest.webmanifest" />
           <script
             async
-            src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.7/pwacompat.min.js"
+            src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.9/pwacompat.min.js"
             integrity="sha384-ptgwb3/v69WGur7IwSnWOowVxE7hcRB3DG/EiHdejrw2sFNwUHynFbiRMPxc4hdS"
             crossOrigin="anonymous"
           />
