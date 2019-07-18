@@ -1,4 +1,5 @@
 const path = require('path');
+const withOffline = require('next-offline');
 
 const isDev = process.env.NODE_ENV === 'dev';
 
@@ -22,7 +23,10 @@ const nextConfig = {
 
     return config;
   },
-  target: 'serverless'
+  target: 'serverless',
+  onDemandEntries: {
+    maxInactiveAge: 1000 * 60 * 60 * 24
+  }
 };
 
-module.exports = nextConfig;
+module.exports = withOffline(nextConfig);
