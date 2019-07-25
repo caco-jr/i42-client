@@ -50,7 +50,12 @@ const PostCardCompactDesktop = ({
       <PostCardCompactDesktopInfo>
         {categories
           ? categories.map((item, index) => (
-              <CategoryLabel id={item.id} name={item.name} key={index} />
+              <CategoryLabel
+                id={item.id}
+                name={item.name}
+                key={index}
+                color={item.color}
+              />
             ))
           : null}
 

@@ -11,4 +11,5 @@ export interface PostCardCompactInterface {
 interface CategoryInterface {
   id: number | string;
   name: string;
+  color: string;
 }

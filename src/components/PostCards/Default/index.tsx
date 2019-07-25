@@ -48,9 +48,10 @@ const PostCard = ({
           {categories
             ? categories.map((category, index) => (
                 <CategoryLabel
+                  key={index}
                   name={category.name}
                   id={category.id}
-                  key={index}
+                  color={category.color}
                 />
               ))
             : null}

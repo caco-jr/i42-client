@@ -18,6 +18,7 @@ const allPostsQuery = gql`
       categories {
         id
         name
+        color
       }
     }
   }
