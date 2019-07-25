@@ -1,0 +1,86 @@
+@import '../../../../assets/styles/base/_all-react.sass';
+
+$component: '.navbar';
+
+$navbar-items: (
+  item1: (
+    left: 5px,
+    width: 65px,
+    color: $cinema
+  ),
+  item2: (
+    left: 82px,
+    width: 53px,
+    color: $series
+  ),
+  item3: (
+    left: 147px,
+    width: 60px,
+    color: $games
+  ),
+  item4: (
+    left: 219px,
+    width: 105px,
+    color: $nave-mainha
+  ),
+  item5: (
+    left: 336px,
+    width: 149px,
+    color: $controle-da-missao
+  )
+);
+
+#{ $component } {
+  position: relative;
+
+  &__item {
+    display: inline-flex;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
+    margin: 0 6px;
+
+    &:last-child {
+      padding-right: 0;
+      margin-right: 0;
+    }
+
+    &--active {
+      font-family: $title-font;
+    }
+  }
+
+  &__line {
+    content: '';
+    width: 10px;
+    height: 2.5px;
+    transform: translateX(0);
+    transition: all 0.3s ease;
+    border-radius: 2.5px;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+  }
+
+  @each $item, $value in $navbar-items {
+    &__item:nth-child(#{ index( ( $navbar-items ), ( $item $value ) ) })#{
+      $component
+      }__item--active
+      ~ &__line {
+      transform: translateX(#{map-get($value, left)});
+      width: map-get($value, width);
+      background-color: map-get($value, color);
+    }
+  }
+
+  @each $item, $value in $navbar-items {
+    &__item:nth-child(#{ index( ( $navbar-items ), ( $item $value ) ) }):hover
+      ~ &__line {
+      transform: translateX(#{map-get($value, left)});
+      width: map-get($value, width);
+      background-color: map-get($value, color);
+    }
+  }
+}

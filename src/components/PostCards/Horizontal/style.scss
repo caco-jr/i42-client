@@ -1,0 +1,29 @@
+@import '../../../assets/styles/all-react';
+
+.c-post-card-horizontal {
+  display: flex;
+
+  a {
+    text-decoration: none;
+  }
+
+  &__right {
+    margin-left: 12px;
+    flex: 1;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-family: $title-font;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+
+  &__date {
+    display: block;
+  }
+
+  &__image {
+    object-fit: cover;
+  }
+}

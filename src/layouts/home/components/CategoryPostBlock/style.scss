@@ -1,0 +1,30 @@
+@import '../../../../assets/styles/base/_all-react.sass';
+
+$component: '.category-post-block';
+
+#{ $component } {
+  position: relative;
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+  }
+
+  & &__button {
+    display: flex;
+    margin: 50px auto 0;
+  }
+
+  @media (max-width: 992px) {
+    #{$component} {
+      &__post {
+        margin-bottom: 20px;
+      }
+
+      &__post:nth-last-of-type(1) {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
