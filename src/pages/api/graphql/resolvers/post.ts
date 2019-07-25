@@ -13,7 +13,7 @@ const postResolvers = {
     },
     allPosts: async (
       parent,
-      { categoriesExclude, limit = 6, page = 1 },
+      { categoriesExclude = [], limit = 6, page = 1 },
       context
     ) => {
       const postData = await getPostsWPAPI({

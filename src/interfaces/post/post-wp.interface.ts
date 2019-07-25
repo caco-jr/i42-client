@@ -288,10 +288,54 @@ interface WpFeaturedmediaACF {
   category_color: string;
 }
 
+export interface TermACF {
+  category_color: string;
+}
+
+export interface TermSelf {
+  href: string;
+}
+
+export interface TermCollection {
+  href: string;
+}
+
+export interface TermAbout {
+  href: string;
+}
+
+export interface TermPostType {
+  href: string;
+}
+
+export interface TermCury {
+  name: string;
+  href: string;
+  templated: boolean;
+}
+
+export interface TermLink {
+  self: TermSelf[];
+  collection: TermCollection[];
+  about: TermAbout[];
+  ['wp: post_type']: TermPostType[];
+  curies: TermCury[];
+}
+
+export interface TermPost {
+  id: number;
+  link: string;
+  name: string;
+  slug: string;
+  taxonomy: string;
+  acf?: TermACF;
+  _links: TermLink;
+}
+
 interface _embedded {
   author: Author[];
   ['wp:featuredmedia']: WpFeaturedmedia[];
-  ['wp:term']: any[][];
+  ['wp:term']: TermPost[][];
 }
 
 export interface PostWPInterface {
@@ -320,7 +364,7 @@ export interface PostWPInterface {
   tags: number[];
   jetpack_featured_media_url: string;
   jetpack_publicize_connections: any[];
-  acf: Acf;
+  acf?: Acf;
   jetpack_shortlink: string;
   _links: _link;
   _embedded: _embedded;

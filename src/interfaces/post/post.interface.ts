@@ -1,4 +1,4 @@
-export interface PostInterface {
+export interface PostAPIInterface {
   id: number;
   title: string;
   slug: string;
@@ -6,40 +6,55 @@ export interface PostInterface {
   date_modified: string;
   content: string;
   excerpt: string;
-  media: MediaPost;
-  author: AuthorPost;
-  tags: [TermPost];
-  categories: [CategoryPost];
-  acf: ACFPost;
+  media: MediaPostAPIInterface;
+  author: AuthorPostAPIInterface;
+  tags: TermPostAPIInterface[];
+  categories: CategoryPostAPIInterface[];
+  acf?: PostACFAPIInterface;
 }
 
-interface MediaPost {
+interface MediaPostAPIInterface {
   thumbnail: string;
 }
 
-interface AuthorPost {
+interface AuthorPostAPIInterface {
   id: number;
   name: string;
   avatar_url: string;
 }
 
-interface TermPost {
+export interface TermPostAPIInterface {
   id: number;
   name: string;
   slug: string;
 }
 
-interface CategoryPost {
+export interface CategoryPostAPIInterface {
   id: number;
   name: string;
   slug: string;
   color: string;
 }
 
-interface ACFPost {
-  subtitle: string;
-  has_rating: boolean;
-  rating: string;
-  has_spoiler: boolean;
-  is_podcast_post: boolean;
+export interface PostACFAPIInterface {
+  subtitle?: string;
+  has_rating?: boolean;
+  rating?: string;
+  has_spoiler?: boolean;
+  is_podcast_post?: boolean;
+  episode_participants?: ACFEpisodeParticipantsInterface[];
+}
+
+interface ACFEpisodeParticipantsInterface {
+  ID: number;
+  display_name: string;
+  nickname: string;
+  user_avatar: string;
+  user_description: string;
+  user_email: string;
+  user_firstname: string;
+  user_lastname: string;
+  user_nicename: string;
+  user_registered: string;
+  user_url: string;
 }

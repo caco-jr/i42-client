@@ -1,60 +1,45 @@
 import { PostWPInterface } from '@interfaces/post/post-wp.interface';
+import {
+  PostAPIInterface,
+  PostACFAPIInterface,
+  TermPostAPIInterface,
+  CategoryPostAPIInterface
+} from '@interfaces/post/post.interface';
 
-interface MediaPostInterface {
-  thumbnail: string;
-}
+const handleACF = ({
+  subtitle = '',
+  has_rating = false,
+  rating = '',
+  has_spoiler = false,
+  is_podcast_post = false,
+  episode_participants = []
+}): PostACFAPIInterface => ({
+  subtitle,
+  has_rating,
+  rating,
+  has_spoiler,
+  is_podcast_post,
+  episode_participants
+});
 
-interface AuthorPostInterface {
-  id: number;
-  name: string;
-  avatar_url: string;
-}
+const handleTags = (tags): TermPostAPIInterface[] =>
+  tags.map(tag => ({
+    id: tag.id,
+    name: tag.name,
+    slug: tag.slug
+  }));
 
-interface TermPostInterface {
-  id: number;
-  name: string;
-  slug: string;
-}
+const handleCategories = (categories): CategoryPostAPIInterface[] =>
+  categories.map(category => ({
+    id: category.id,
+    name: category.name,
+    slug: category.slug,
+    color: category.acf.category_color
+  }));
 
-export interface PostACFInterface {
-  subtitle?: string;
-  has_rating?: boolean;
-  rating?: string;
-  has_spoiler?: boolean;
-  is_podcast_post?: boolean;
-  episode_participants?: ACFEpisodeParticipantsInterface[];
-}
-
-export interface ACFEpisodeParticipantsInterface {
-  ID: number;
-  display_name: string;
-  nickname: string;
-  user_avatar: string;
-  user_description: string;
-  user_email: string;
-  user_firstname: string;
-  user_lastname: string;
-  user_nicename: string;
-  user_registered: string;
-  user_url: string;
-}
-
-interface PostInterface {
-  id: number;
-  title: string;
-  slug: string;
-  date: string;
-  date_modified: string;
-  content: string;
-  excerpt: string;
-  media: MediaPostInterface;
-  author: AuthorPostInterface;
-  tags: TermPostInterface[];
-  categories: TermPostInterface[];
-  acf: PostACFInterface;
-}
-
-export const postsTransform = (posts: PostWPInterface[]): PostInterface[] => {
+export const postsTransform = (
+  posts: PostWPInterface[]
+): PostAPIInterface[] => {
   return posts.map(post => {
     const {
       id,
@@ -75,9 +60,7 @@ export const postsTransform = (posts: PostWPInterface[]): PostInterface[] => {
       date_modified: modified,
       slug,
       title: title.rendered,
-      acf: {
-        subtitle: acf.subtitle || ''
-      },
+      acf: handleACF(acf),
       content: content.rendered,
       excerpt: excerpt.rendered,
       media: {
@@ -88,17 +71,8 @@ export const postsTransform = (posts: PostWPInterface[]): PostInterface[] => {
         name: _embedded.author[0].name,
         avatar_url: _embedded.author[0].avatar_urls[96]
       },
-      tags: _embedded['wp:term'][1].map(tag => ({
-        id: tag.id,
-        name: tag.name,
-        slug: tag.slug
-      })),
-      categories: _embedded['wp:term'][0].map(category => ({
-        id: category.id,
-        name: category.name,
-        slug: category.slug,
-        color: category.acf.category_color
-      }))
+      tags: handleTags(_embedded['wp:term'][1]),
+      categories: handleCategories(_embedded['wp:term'][0])
     };
   });
 };
