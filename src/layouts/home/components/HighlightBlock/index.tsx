@@ -19,6 +19,7 @@ const postsByCategoryQuery = gql`
       categories {
         id
         name
+        color
       }
     }
   }
