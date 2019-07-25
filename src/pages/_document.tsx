@@ -32,6 +32,7 @@ export default class MyDocument extends Document<any> {
             rel="stylesheet"
             href="https://cdn.rawgit.com/filipelinhares/ress/master/dist/ress.min.css"
           />
+          <link rel="stylesheet" href="/static/styles/FontFamily/style.css" />
           <link rel="manifest" href="/static/manifest/manifest.json" />
           <link rel="manifest" href="manifest.webmanifest" />
           <script

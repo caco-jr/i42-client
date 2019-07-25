@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Mask = styled.div`
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   position: absolute;
   top: 0;
   right: 0;

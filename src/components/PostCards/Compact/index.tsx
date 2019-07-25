@@ -16,7 +16,7 @@ const PostCardCompact = ({
 }: PostCardCompactInterface) => {
   return (
     <>
-      <Visible lg xl>
+      <Visible md lg xl>
         <PostCardCompactDesktop
           className={`${className}`}
           image={image}
@@ -28,7 +28,7 @@ const PostCardCompact = ({
         />
       </Visible>
 
-      <Hidden lg xl>
+      <Hidden md lg xl>
         <PostCardCompactMobile
           className={`${className}`}
           image={image}

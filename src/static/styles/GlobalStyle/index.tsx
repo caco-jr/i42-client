@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 :root,
-[data-theme='default'] {
+[data-theme="default"] {
   // --- Base Colors
   --light-grey: #f4f4f4;
   --grey: #bababa;
@@ -30,6 +30,15 @@ export const GlobalStyle = createGlobalStyle`
   --background-color: var(--darker-blue);
   --text-color: #fff;
   // -------------------------
+  // --- Font
+  --primary-font: 'Avenir LT Std 45 Book', sans-serif;
+  --primary-font-medium: 'Avenir LT Std 65 Medium', sans-serif;
+  --primary-font-bold: 'Avenir LT Std 85 Heavy', sans-serif;
+  --primary-font-black: 'Avenir LT Std 95 Black', sans-serif;
+
+  --title-font-family: var(--primary-font-black);
+  --text-font-family: var(--primary-font);
+  // -------------------------
 }
 
 [data-theme] {
@@ -37,8 +46,20 @@ export const GlobalStyle = createGlobalStyle`
   color: var(--text-color);
 }
 
-[data-theme='light'] {
+[data-theme="light"] {
   --background-color: #fff;
   --text-color: #111;
+}
+
+* {
+  font-family: var(--primary-font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  border-radius: var(--border-radius);
+  height: auto;
+  max-width: 100%;
 }
 `;

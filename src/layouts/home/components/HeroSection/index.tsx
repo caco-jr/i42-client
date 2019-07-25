@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container } from 'react-grid-system';
 import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
 
 import { HeroSectionWrapper } from './hero-section.style';
 import PostCardCompact from '@components/PostCards/Compact';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
-import { Query } from 'react-apollo';
 
 const allPostsQuery = gql`
   query allPosts($categoriesExclude: [Int], $limit: Int) {
@@ -39,7 +39,7 @@ const HeroSection = ({
               {!loading
                 ? allPosts.map((post, index) => {
                     const width = index === 0 ? 735 : 367;
-                    const height = index === 0 ? 495 : 230;
+                    const height = index === 0 ? 495 : 300;
 
                     return (
                       <PostCardCompact
