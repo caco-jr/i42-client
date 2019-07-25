@@ -29,6 +29,7 @@ export const GlobalStyle = createGlobalStyle`
   // --- Others
   --background-color: var(--darker-blue);
   --text-color: #fff;
+  --title-color: #fff;
   // -------------------------
   // --- Font
   --primary-font: 'Avenir LT Std 45 Book', sans-serif;
@@ -49,6 +50,7 @@ export const GlobalStyle = createGlobalStyle`
 [data-theme="light"] {
   --background-color: #fff;
   --text-color: #111;
+  --title-color: #111;
 }
 
 * {
