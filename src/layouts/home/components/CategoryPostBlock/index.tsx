@@ -8,6 +8,8 @@ import PostCardLoading from '@components/PostCards/Default/Loading';
 import { getCategoryURL } from '@helpers/urls';
 import Button from '@components/Button';
 import { Query } from 'react-apollo';
+import { PostCardList } from '@components/PostCards/List/index.style';
+import { CategoryPostBlockWrapper } from './index.style';
 
 const postsByCategoryQuery = gql`
   query postsByCategory($ID: Int!, $limit: Int!) {
@@ -39,10 +41,10 @@ const CategoryPostBlock = ({
       variables={{ ID: categoryID, limit: 3 }}
     >
       {({ loading, data: { postsByCategory } }) => (
-        <section className={componentClassName}>
+        <CategoryPostBlockWrapper>
           <h2 className={`${componentClassName}__title`}>{sectionTitle}</h2>
 
-          <section className={`${componentClassName}__container`}>
+          <PostCardList>
             {!loading
               ? postsByCategory.map((post, index) => {
                   return (
@@ -60,14 +62,14 @@ const CategoryPostBlock = ({
               : [...Array(3)].map((item, index) => (
                   <PostCardLoading key={index} />
                 ))}
-          </section>
+          </PostCardList>
 
           <Link href={getCategoryURL(categorySlug)}>
             <a className={`${componentClassName}__button`}>
               Mais {sectionTitle}
             </a>
           </Link>
-        </section>
+        </CategoryPostBlockWrapper>
       )}
     </Query>
   );
