@@ -25,6 +25,7 @@ export const PostCardHorizontalTitle = styled.h3`
 
 export const PostCardHorizontalDate = styled.span`
   display: block;
+  color: var(--text-color);
 `;
 
 export const PostCardHorizontalImage = styled.img`

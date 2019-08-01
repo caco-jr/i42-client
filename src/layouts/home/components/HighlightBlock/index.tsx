@@ -20,6 +20,7 @@ const postsByCategoryQuery = gql`
       media {
         thumbnail
       }
+      date_modified
       slug
       categories {
         id
@@ -66,7 +67,7 @@ const HighlightBlock = (props: HighlightBlockInterface) => {
                         image={post.media.thumbnail}
                         title={post.title}
                         slug={post.slug}
-                        date={post.date}
+                        date={post.date_modified}
                       />
                     );
                   }

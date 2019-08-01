@@ -32,13 +32,13 @@ export const GlobalStyle = createGlobalStyle`
   --title-color: #fff;
   // -------------------------
   // --- Font
-  --primary-font: 'Avenir LT Std 45 Book', sans-serif;
-  --primary-font-medium: 'Avenir LT Std 65 Medium', sans-serif;
-  --primary-font-bold: 'Avenir LT Std 85 Heavy', sans-serif;
-  --primary-font-black: 'Avenir LT Std 95 Black', sans-serif;
+  --primary-font-family: 'Avenir LT Std 45 Book', sans-serif;
+  --primary-font-family-medium: 'Avenir LT Std 65 Medium', sans-serif;
+  --primary-font-family-bold: 'Avenir LT Std 85 Heavy', sans-serif;
+  --primary-font-family-black: 'Avenir LT Std 95 Black', sans-serif;
 
-  --title-font-family: var(--primary-font-black);
-  --text-font-family: var(--primary-font);
+  --title-font-family: var(--primary-font-family-black);
+  --text-font-family: var(--primary-font-family);
   // -------------------------
 }
 
