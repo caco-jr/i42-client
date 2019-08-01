@@ -7,6 +7,7 @@ import HeroSection from './components/HeroSection';
 import CategoryPostBlock from './components/CategoryPostBlock';
 import HighlightBlock from './components/HighlightBlock';
 import { HomeBackground } from './index.style';
+import { PostCardList } from '@components/PostCards/List/index.style';
 
 const Home = () => {
   return (
@@ -29,9 +30,14 @@ const Home = () => {
               sectionTitle="Reviews"
             />
 
-            <HighlightBlock sectionTitle="Nave Mainha" categoryID={3} />
-            <HighlightBlock sectionTitle="Games" categoryID={11} />
-            <HighlightBlock sectionTitle="Controle da Missão" categoryID={1} />
+            <PostCardList>
+              <HighlightBlock sectionTitle="Nave Mainha" categoryID={3} />
+              <HighlightBlock sectionTitle="Games" categoryID={11} />
+              <HighlightBlock
+                sectionTitle="Controle da Missão"
+                categoryID={1}
+              />
+            </PostCardList>
           </HomeBackground>
         </Container>
       </BodyBackground>

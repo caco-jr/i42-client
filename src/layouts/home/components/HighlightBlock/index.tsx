@@ -7,6 +7,11 @@ import PostCardCompact from '@components/PostCards/Compact';
 import PostCardHorizontal from '@components/PostCards/Horizontal';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
 import PostCardHorizontalLoading from '@components/PostCards/Horizontal/Loading';
+import SectionTitle from '@components/SectionTitle';
+import {
+  HighlightBlockWrapper,
+  HighlightBlockPostsContainer
+} from './index.style';
 
 const postsByCategoryQuery = gql`
   query postsByCategory($ID: Int!, $limit: Int) {
@@ -36,10 +41,10 @@ const HighlightBlock = (props: HighlightBlockInterface) => {
       variables={{ ID: categoryID, limit: 3 }}
     >
       {({ loading, data: { postsByCategory } }) => (
-        <section className={componentClassName}>
-          <h2 className={`${componentClassName}__title`}>{sectionTitle}</h2>
+        <HighlightBlockWrapper>
+          <SectionTitle>{sectionTitle}</SectionTitle>
 
-          <section className={`${componentClassName}__posts-container`}>
+          <HighlightBlockPostsContainer>
             {!loading
               ? postsByCategory.map((post, index) => {
                   if (index === 0) {
@@ -83,8 +88,8 @@ const HighlightBlock = (props: HighlightBlockInterface) => {
                     );
                   }
                 })}
-          </section>
-        </section>
+          </HighlightBlockPostsContainer>
+        </HighlightBlockWrapper>
       )}
     </Query>
   );
