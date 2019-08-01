@@ -16,14 +16,14 @@ export const GlobalStyle = createGlobalStyle`
   --dark-purple: #201a41;
   // -------------------------
   // --- Brand colors
-  --primary-color: var(--color-green);
+  --primary-color: var(--green);
   --secondary-color: #6b4dc4;
   // -------------------------
   // --- Status color
-  --error-color: var(--color-pink);
+  --error-color: var(--pink);
   // -------------------------
   // --- Border
-  --border-color: var(--color-grey);
+  --border-color: var(--grey);
   --border-radius: 5px;
   // -------------------------
   // --- Others

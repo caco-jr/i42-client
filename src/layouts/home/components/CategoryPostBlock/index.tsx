@@ -66,9 +66,7 @@ const CategoryPostBlock = ({
           </PostCardList>
 
           <Link href={getCategoryURL(categorySlug)}>
-            <a className={`${componentClassName}__button`}>
-              Mais {sectionTitle}
-            </a>
+            <Button styleType="outline">Mais {sectionTitle}</Button>
           </Link>
         </CategoryPostBlockWrapper>
       )}
