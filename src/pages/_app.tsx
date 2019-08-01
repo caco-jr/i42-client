@@ -1,12 +1,12 @@
 import React from 'react';
 import App, { Container, AppInitialProps } from 'next/app';
 import DefaultAppIProps from 'next/app';
-import { WithRouterProps } from 'next/dist/client/with-router';
 import { ApolloProvider } from 'react-apollo';
 import withApolloClient from '@lib/with-apollo-client';
+import { NextRouter } from 'next/router';
 
 export interface AppProps extends AppInitialProps {
-  router: WithRouterProps;
+  router: NextRouter;
 }
 
 interface IProps {
