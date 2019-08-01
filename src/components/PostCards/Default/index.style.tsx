@@ -53,4 +53,5 @@ export const PostCardContent = styled.section`
   -webkit-box-orient: vertical;
   overflow: hidden;
   height: 68px;
+  color: var(--text-color);
 `;

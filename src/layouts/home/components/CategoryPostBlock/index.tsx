@@ -16,6 +16,7 @@ const postsByCategoryQuery = gql`
   query postsByCategory($ID: Int!, $limit: Int!) {
     postsByCategory(ID: $ID, limit: $limit) {
       title
+      excerpt
       media {
         thumbnail
       }
