@@ -70,9 +70,9 @@ const PostCard = ({
         </Link>
 
         {content ? (
-          <PostCardContent>
-            <p>{decode(content)} </p>
-          </PostCardContent>
+          <PostCardContent
+            dangerouslySetInnerHTML={{ __html: decode(content) }}
+          />
         ) : null}
       </PostCardBody>
     </PostCardWrapper>
