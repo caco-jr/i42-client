@@ -10,6 +10,7 @@ import Button from '@components/Button';
 import { Query } from 'react-apollo';
 import { PostCardList } from '@components/PostCards/List/index.style';
 import { CategoryPostBlockWrapper } from './index.style';
+import SectionTitle from '@components/SectionTitle';
 
 const postsByCategoryQuery = gql`
   query postsByCategory($ID: Int!, $limit: Int!) {
@@ -42,7 +43,7 @@ const CategoryPostBlock = ({
     >
       {({ loading, data: { postsByCategory } }) => (
         <CategoryPostBlockWrapper>
-          <h2 className={`${componentClassName}__title`}>{sectionTitle}</h2>
+          <SectionTitle>{sectionTitle}</SectionTitle>
 
           <PostCardList>
             {!loading
