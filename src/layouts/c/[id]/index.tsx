@@ -6,7 +6,7 @@ import BodyBackground from '@static/styles/BodyBackground';
 import Header from '@components/Header';
 import { CategoryPageWrapper } from './index.style';
 import CategoryPagePosts from './components/Posts';
-import { getCategoryIDBySlug } from '@helpers/categories';
+import { getCategoryIDBySlug } from '@helpers/category';
 
 interface Props extends AppProps {}
 

@@ -1,5 +1,5 @@
 import { getPostsWPAPI } from '@services/wp-api';
-import { postsTransform } from '@helpers/api';
+import { postsTransform } from '@helpers/post/api';
 
 const postResolvers = {
   Query: {
