@@ -15,7 +15,7 @@ const CategoryLabel = ({
   color: string;
 }) => {
   return (
-    <Link href={getCategoryURL(`${id}`)}>
+    <Link {...getCategoryURL(`${id}`)}>
       <CategoryLabelWrapper backgroundColor={color}>
         {name}
       </CategoryLabelWrapper>

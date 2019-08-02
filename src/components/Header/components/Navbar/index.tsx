@@ -26,7 +26,7 @@ const Navbar = (props: NavbarInterface) => {
       {navItems ? (
         <>
           {navItems.map((item: any, index: number) => (
-            <Link href={getCategoryURL(item.slug)} key={index}>
+            <Link {...getCategoryURL(item.slug)} key={index}>
               <a
                 className={
                   isSelectedItem(item.slug)

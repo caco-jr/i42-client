@@ -37,7 +37,7 @@ const PostCardHorizontal = ({
   return (
     <PostCardHorizontalWrapper>
       <PostCardHorizontalLeft>
-        <Link href={link}>
+        <Link {...link}>
           <a className={`${componentClassName}__image-link`}>
             <PostCardHorizontalImage src={imageURL} alt="" />
           </a>
@@ -45,7 +45,7 @@ const PostCardHorizontal = ({
       </PostCardHorizontalLeft>
 
       <PostCardHorizontalRight>
-        <Link href={link}>
+        <Link {...link}>
           <a className={`${componentClassName}__link`}>
             <PostCardHorizontalTitle>
               {handleLimitCharacters(decode(title))}

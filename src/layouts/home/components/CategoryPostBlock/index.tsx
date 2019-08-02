@@ -66,7 +66,7 @@ const CategoryPostBlock = ({
                 ))}
           </PostCardList>
 
-          <Link href={getCategoryURL(categorySlug)}>
+          <Link {...getCategoryURL(categorySlug)}>
             <Button styleType="outline">Mais {sectionTitle}</Button>
           </Link>
         </CategoryPostBlockWrapper>
