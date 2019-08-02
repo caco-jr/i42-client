@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { ScreenClassProvider, Container, Row, Col } from 'react-grid-system';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
@@ -10,12 +10,15 @@ import { AppProps } from '@pages/_app';
 import PostScreenHeader from './components/Header';
 import PostContent from './components/Content';
 import PostAuthor from './components/Author';
+import EpisodeParticipants from './components/EpisodeParticipants';
+import PostScreenPodcastHeader from './components/PodcastHeader';
 
 interface Props extends AppProps {}
 
 const getPost = gql`
   query post($slug: String!) {
     post(slug: $slug) {
+      id
       title
       content
       media {
@@ -24,6 +27,12 @@ const getPost = gql`
       date
       acf {
         subtitle
+        is_podcast_post
+        episode_participants {
+          id
+          avatar
+          display_name
+        }
       }
       author {
         name
@@ -32,6 +41,20 @@ const getPost = gql`
     }
   }
 `;
+
+const handleParticipantsPost = ({ acf, author }): ReactNode => {
+  if (!acf) {
+    return <PostAuthor image={author.avatar_url} name={author.name} />;
+  }
+
+  if (acf.is_podcast_post) {
+    return (
+      <EpisodeParticipants episodeParticipants={acf.episode_participants!} />
+    );
+  } else {
+    return <PostAuthor image={author.avatar_url} name={author.name} />;
+  }
+};
 
 const Layout = ({ router }: Props) => {
   return (
@@ -47,17 +70,25 @@ const Layout = ({ router }: Props) => {
                   return <h1>Olá</h1>;
                 } else {
                   console.log(post);
-                  const { title, acf, media, date, content, author } = post;
+                  const { title, acf, media, date, content, author, id } = post;
 
                   return (
                     <>
-                      <PostScreenHeader
-                        title={title}
-                        subtitle={acf.subtitle}
-                        image={media.thumbnail}
-                        date={date}
-                        acf={acf}
-                      />
+                      {acf && acf.is_podcast_post ? (
+                        <PostScreenPodcastHeader
+                          title={title}
+                          id={id}
+                          image="https://i0.wp.com/imperio42.com.br/wp-content/uploads/2019/04/surprise_marvel_releases_a_new_full_trailer_and_poster_for_avengers_endgame_social.jpg?fit=1310%2C670&#038;ssl=1"
+                        />
+                      ) : (
+                        <PostScreenHeader
+                          title={title}
+                          subtitle={acf.subtitle}
+                          image={media.thumbnail}
+                          date={date}
+                          acf={acf}
+                        />
+                      )}
 
                       <Row>
                         <Col lg={8}>
@@ -65,10 +96,10 @@ const Layout = ({ router }: Props) => {
                         </Col>
 
                         <Col lg={4}>
-                          <PostAuthor
-                            name={author.name}
-                            image={author.avatar_url}
-                          />
+                          {handleParticipantsPost({
+                            acf,
+                            author
+                          })}
                         </Col>
                       </Row>
                     </>
