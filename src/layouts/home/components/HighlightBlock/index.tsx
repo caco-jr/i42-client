@@ -23,7 +23,7 @@ const postsByCategoryQuery = gql`
       date_modified
       slug
       categories {
-        id
+        slug
         name
         color
       }

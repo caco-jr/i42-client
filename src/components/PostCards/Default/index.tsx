@@ -52,7 +52,7 @@ const PostCard = ({
                 <CategoryLabel
                   key={index}
                   name={category.name}
-                  id={category.id}
+                  slug={category.slug}
                   color={category.color}
                 />
               ))

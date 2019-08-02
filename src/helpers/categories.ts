@@ -16,5 +16,5 @@ const CATEGORIES = [
   { id: 1903, slug: 'series' }
 ];
 
-export const getCategoryIDBySlug = (slug: string): number =>
+export const getCategoryIDBySlug = (slug: string | string[]): number =>
   CATEGORIES.find(category => category.slug === slug).id;

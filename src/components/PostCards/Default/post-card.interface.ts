@@ -8,7 +8,7 @@ export interface PostCardInterface {
 }
 
 interface CategoryInterface {
-  id: number | string;
+  slug: string;
   name: string;
   color: string;
 }

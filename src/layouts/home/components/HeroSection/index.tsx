@@ -16,7 +16,7 @@ const allPostsQuery = gql`
       }
       slug
       categories {
-        id
+        slug
         name
         color
       }

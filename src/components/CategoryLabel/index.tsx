@@ -7,15 +7,15 @@ import { getCategoryURL } from '@helpers/urls';
 
 const CategoryLabel = ({
   name,
-  id,
+  slug,
   color
 }: {
   name: string;
-  id: number | string;
+  slug: string;
   color: string;
 }) => {
   return (
-    <Link {...getCategoryURL(`${id}`)}>
+    <Link {...getCategoryURL(`${slug}`)}>
       <CategoryLabelWrapper backgroundColor={color}>
         {name}
       </CategoryLabelWrapper>
