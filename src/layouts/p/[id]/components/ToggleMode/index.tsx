@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import Button from '@components/Button';
 import SvgLoader from '@components/SvgLoader';
 import { Query, Mutation } from 'react-apollo';
+import { PostPageToggleModeWrapper } from './index.style';
 
 const GET_COLOR_MODE = gql`
   {
@@ -38,18 +39,23 @@ const PostPageToggleMode = () => (
           };
 
           return (
-            <Button
-              type="button"
-              className={`${componentClassName} ${componentClassName}--${
-                configuration.colorMode
-              }`}
-              styleType="basic"
-              onClick={toggleMode}
-            >
-              <span> Modo noturno {configuration.colorMode} </span>
+            <PostPageToggleModeWrapper>
+              <Button
+                type="button"
+                className={`${componentClassName} ${componentClassName}--${
+                  configuration.colorMode
+                }`}
+                styleType="basic"
+                onClick={toggleMode}
+              >
+                <span> Modo noturno </span>
 
-              <SvgLoader name="sun" className={`${componentClassName}__icon`} />
-            </Button>
+                <SvgLoader
+                  name="sun"
+                  className={`${componentClassName}__icon`}
+                />
+              </Button>
+            </PostPageToggleModeWrapper>
           );
         }}
       </Mutation>
