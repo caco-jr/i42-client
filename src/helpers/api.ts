@@ -1,4 +1,7 @@
-import { PostWPInterface } from '@interfaces/post/post-wp.interface';
+import {
+  PostWPInterface,
+  ACFEpisodeParticipantsWPAPIInterface
+} from '@interfaces/post/post-wp.interface';
 import {
   PostAPIInterface,
   PostACFAPIInterface,
@@ -12,14 +15,21 @@ const handleACF = ({
   rating = '',
   has_spoiler = false,
   is_podcast_post = false,
-  episode_participants = []
+  episode_participants = [] as ACFEpisodeParticipantsWPAPIInterface[]
 }): PostACFAPIInterface => ({
   subtitle,
   has_rating,
   rating,
   has_spoiler,
   is_podcast_post,
-  episode_participants
+  episode_participants: episode_participants.map(participant => ({
+    id: participant.ID,
+    first_name: participant.user_firstname,
+    last_name: participant.user_lastname,
+    display_name: participant.display_name,
+    description: participant.user_description,
+    avatar: participant.user_avatar
+  }))
 });
 
 const handleTags = (tags): TermPostAPIInterface[] =>

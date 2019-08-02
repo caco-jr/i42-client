@@ -51,6 +51,16 @@ const postSchema = gql`
     rating: String
     has_spoiler: Boolean
     is_podcast_post: Boolean
+    episode_participants: [EpisodeParticipantsACF]
+  }
+
+  type EpisodeParticipantsACF {
+    id: Int
+    first_name: String
+    last_name: String
+    display_name: String
+    description: String
+    avatar: String
   }
 `;
 

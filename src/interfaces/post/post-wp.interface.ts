@@ -27,10 +27,10 @@ interface Acf {
   rating?: string;
   has_spoiler?: boolean;
   is_podcast_post?: boolean;
-  episode_participants?: ACFEpisodeParticipantsInterface[];
+  episode_participants?: ACFEpisodeParticipantsWPAPIInterface[];
 }
 
-export interface ACFEpisodeParticipantsInterface {
+export interface ACFEpisodeParticipantsWPAPIInterface {
   ID: number;
   display_name: string;
   nickname: string;

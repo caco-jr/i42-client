@@ -1,5 +1,5 @@
-import { ACFEpisodeParticipantsInterface } from '@interfaces/post/post-wp.interface';
+import { ACFEpisodeParticipantsAPIInterface } from '@interfaces/post/post.interface';
 
 export interface EpisodeParticipantsInterface {
-  episodeParticipants: ACFEpisodeParticipantsInterface[];
+  episodeParticipants: ACFEpisodeParticipantsAPIInterface[];
 }

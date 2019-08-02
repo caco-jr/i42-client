@@ -16,8 +16,8 @@ const EpisodeParticipants = ({
       <EpisodeParticipantsTitle>Participantes</EpisodeParticipantsTitle>
 
       {episodeParticipants.map(item => (
-        <EpisodeParticipantsPerson key={item.ID}>
-          <span dangerouslySetInnerHTML={{ __html: item.user_avatar }} />
+        <EpisodeParticipantsPerson key={item.id}>
+          <span dangerouslySetInnerHTML={{ __html: item.avatar }} />
 
           <EpisodeParticipantsName>{item.display_name}</EpisodeParticipantsName>
         </EpisodeParticipantsPerson>

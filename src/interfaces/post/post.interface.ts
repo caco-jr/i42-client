@@ -42,19 +42,14 @@ export interface PostACFAPIInterface {
   rating?: string;
   has_spoiler?: boolean;
   is_podcast_post?: boolean;
-  episode_participants?: ACFEpisodeParticipantsInterface[];
+  episode_participants?: ACFEpisodeParticipantsAPIInterface[];
 }
 
-interface ACFEpisodeParticipantsInterface {
-  ID: number;
+export interface ACFEpisodeParticipantsAPIInterface {
+  id: number;
+  first_name: string;
+  last_name: string;
   display_name: string;
-  nickname: string;
-  user_avatar: string;
-  user_description: string;
-  user_email: string;
-  user_firstname: string;
-  user_lastname: string;
-  user_nicename: string;
-  user_registered: string;
-  user_url: string;
+  description: string;
+  avatar: string;
 }
