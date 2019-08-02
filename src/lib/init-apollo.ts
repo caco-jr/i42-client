@@ -15,7 +15,41 @@ function create(initialState) {
       // Use fetch() polyfill on the server
       fetch: !isBrowser && fetch
     }),
-    cache: new InMemoryCache().restore(initialState || {})
+    cache: new InMemoryCache().restore(initialState || {}),
+    typeDefs: `
+      type Configuration {
+        colorMode: String
+      }
+
+      type Query {
+        configuration: Configuration
+      }
+
+      type Mutation {
+        setConfiguration( colorMode: String )
+      }
+    `,
+    resolvers: {
+      Query: {
+        configuration: () => ({ __typename: 'ColorMode', colorMode: 'dark' })
+      },
+      Mutation: {
+        setConfiguration: async (
+          parent,
+          { colorMode },
+          { cache, getCacheKey }
+        ) => {
+          await cache.writeData({
+            data: {
+              configuration: {
+                colorMode,
+                __typename: 'ColorMode'
+              }
+            }
+          });
+        }
+      }
+    }
   });
 }
 

@@ -11,12 +11,6 @@ const Layout = ({  }: Props) => {
     <ScreenClassProvider>
       <BodyBackground>
         <Header />
-
-        <Container>
-          <span style={{ color: 'var(--text-color)' }}>
-            Hello World from __PATH__
-          </span>
-        </Container>
       </BodyBackground>
     </ScreenClassProvider>
   );
