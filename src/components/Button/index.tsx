@@ -14,7 +14,7 @@ const BaseButton = css`
   border-radius: 18.4px;
   background-color: var(--primary-color);
   padding: 8px 15px;
-  color: #fff;
+  color: var(--text-color);
   font-size: 16px;
   font-family: var(--title-font-family);
 
@@ -25,7 +25,7 @@ const BaseButton = css`
   &:hover {
     transition: 0.2s all ease-in-out;
     text-decoration: none;
-    color: #fff;
+    color: var(--text-color);
   }
 `;
 
@@ -63,7 +63,7 @@ const OutlineButton = css`
   }
 
   &:hover {
-    color: #fff;
+    color: var(--text-color);
 
     &:before {
       left: 0;
