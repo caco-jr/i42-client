@@ -7,10 +7,6 @@ import Layout from '@layouts/p/[id]';
 
 interface InitialProps {}
 
-type Query = {
-  p_id: string;
-};
-
 const getInitialProps = async ({
 
 }: NextPageContext & AppInitialProps): Promise<InitialProps> => {

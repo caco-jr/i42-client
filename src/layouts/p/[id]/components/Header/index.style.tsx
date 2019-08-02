@@ -16,7 +16,7 @@ export const PostScreenHeaderWrapper = styled.section`
 export const PostScreenHeaderLeftColumn = styled.section``;
 
 export const PostScreenHeaderRightColumn = styled.section`
-  display: inline-flex;
+  display: flex;
   flex-flow: column;
   align-items: flex-end;
 
