@@ -3,6 +3,7 @@ import { ScreenClassProvider, Container } from 'react-grid-system';
 
 import BodyBackground from '@static/styles/BodyBackground';
 import Header from '@components/Header';
+import { CategoryPageWrapper } from './index.style';
 
 interface Props {}
 
@@ -13,9 +14,11 @@ const Layout = ({  }: Props) => {
         <Header />
 
         <Container>
-          <span style={{ color: 'var(--text-color)' }}>
-            Hello World from c/[id]
-          </span>
+          <CategoryPageWrapper>
+            <span style={{ color: 'var(--text-color)' }}>
+              Hello World from c/[id]
+            </span>
+          </CategoryPageWrapper>
         </Container>
       </BodyBackground>
     </ScreenClassProvider>
