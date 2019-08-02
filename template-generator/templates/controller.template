@@ -19,7 +19,7 @@ const PageContext = React.createContext<AppProps & InitialProps>({} as any)
 
 const Page = (pageProps: AppProps & InitialProps) => (
   <PageContext.Provider value={pageProps}>
-    <Layout />
+    <Layout {...pageProps}/>
   </PageContext.Provider>
 )
 
