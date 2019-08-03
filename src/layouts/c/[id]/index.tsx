@@ -48,6 +48,10 @@ const Layout = ({ router }: Props) => {
               variables={{ ID: categoryID, limit: 10 }}
             >
               {({ loading, data: { postsByCategory } }) => {
+                if (loading) {
+                  return <h2>Carregando</h2>;
+                }
+
                 const firstPost = postsByCategory[0];
                 const othersPost = postsByCategory.slice(1);
 
