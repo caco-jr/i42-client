@@ -31,7 +31,10 @@ function create(initialState) {
     `,
     resolvers: {
       Query: {
-        configuration: () => ({ __typename: 'ColorMode', colorMode: 'dark' })
+        configuration: () => ({
+          __typename: 'Configuration',
+          colorMode: 'dark'
+        })
       },
       Mutation: {
         setConfiguration: async (
@@ -43,7 +46,7 @@ function create(initialState) {
             data: {
               configuration: {
                 colorMode,
-                __typename: 'ColorMode'
+                __typename: 'Configuration'
               }
             }
           });

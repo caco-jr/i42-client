@@ -13,11 +13,15 @@ const GET_COLOR_MODE = gql`
 
 const PostPageBase = ({ children }) => (
   <Query query={GET_COLOR_MODE}>
-    {({ data: { configuration } }) => (
-      <PostPageBaseWrapper data-theme={configuration.colorMode}>
-        {children}
-      </PostPageBaseWrapper>
-    )}
+    {({ data: { configuration } }) => {
+      const colorTheme = configuration ? configuration.colorMode : 'dark';
+
+      return (
+        <PostPageBaseWrapper data-theme={colorTheme}>
+          {children}
+        </PostPageBaseWrapper>
+      );
+    }}
   </Query>
 );
 
