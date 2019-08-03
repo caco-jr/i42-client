@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const CategoryPageInfoWrapper = styled.section`
   margin-bottom: 55px;
+  font-size: 18px;
+  line-height: 1.33;
 `;
 
 export const CategoryPageInfoTitle = styled.h1`
