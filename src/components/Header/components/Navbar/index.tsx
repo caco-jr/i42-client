@@ -19,7 +19,6 @@ const menuQuery = gql`
 
 const Navbar = (props: NavbarInterface) => {
   const { id = '' } = props.router.query;
-  const componentClassName = 'navbar';
   const isSelectedItem = (menuItem: string): boolean => id === menuItem;
 
   return (
