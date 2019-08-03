@@ -19,6 +19,7 @@ const menuQuery = gql`
 
 const Navbar = (props: NavbarInterface) => {
   const { id = '' } = props.router.query;
+  const componentClassName = 'navbar';
   const isSelectedItem = (menuItem: string): boolean => id === menuItem;
 
   return (
@@ -31,7 +32,9 @@ const Navbar = (props: NavbarInterface) => {
 
           return menu.map((item, index) => (
             <Link {...getCategoryURL(item.slug)} key={index}>
-              <NavbarItem active={isSelectedItem(item.slug)}>
+              <NavbarItem
+                className={isSelectedItem(item.slug) ? `is-active` : ``}
+              >
                 {item.title}
               </NavbarItem>
             </Link>
