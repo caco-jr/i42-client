@@ -4,11 +4,13 @@ import { ScreenClassProvider, Container } from 'react-grid-system';
 import { AppProps } from '@pages/_app';
 import BodyBackground from '@static/styles/BodyBackground';
 import Header from '@components/Header';
-import { SearchPageWrapper } from './index.style';
+import { SearchPageWrapper, SearchPageTitle } from './index.style';
 
 interface Props extends AppProps {}
 
 const Layout = ({ router }: Props) => {
+  const { q } = router.query;
+
   return (
     <ScreenClassProvider>
       <BodyBackground>
@@ -16,9 +18,9 @@ const Layout = ({ router }: Props) => {
 
         <Container>
           <SearchPageWrapper>
-            <span style={{ color: 'var(--text-color)' }}>
-              Hello World from busca
-            </span>
+            <SearchPageTitle>
+              Resultados para sua busca <span>{q}</span>
+            </SearchPageTitle>
           </SearchPageWrapper>
         </Container>
       </BodyBackground>
