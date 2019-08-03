@@ -36,8 +36,12 @@ const postResolvers = {
 
       return treatedData;
     },
-    searchPosts: async (parent, { term }, context) => {
-      const postData = await getPostsWPAPI({ search: term });
+    searchPosts: async (parent, { term, limit = 9, page = 1 }, context) => {
+      const postData = await getPostsWPAPI({
+        search: term,
+        per_page: limit,
+        page
+      });
 
       const treatedData = await postsTransform(postData);
 

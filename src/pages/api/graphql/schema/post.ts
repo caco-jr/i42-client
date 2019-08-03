@@ -5,7 +5,7 @@ const postSchema = gql`
     post(slug: String!): Post!
     allPosts(categoriesExclude: [Int], limit: Int, page: Int): [Post!]!
     postsByCategory(ID: Int!, limit: Int, page: Int): [Post!]!
-    searchPosts(term: String!): [Post!]!
+    searchPosts(term: String!, limit: Int, page: Int): [Post!]!
   }
 
   type Post {
