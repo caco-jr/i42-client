@@ -1,13 +1,33 @@
 import React from 'react';
 import { ScreenClassProvider, Container } from 'react-grid-system';
-import { AppProps } from '@pages/_app';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
 
+import { AppProps } from '@pages/_app';
 import BodyBackground from '@static/styles/BodyBackground';
 import Header from '@components/Header';
 import { CategoryPageWrapper } from './index.style';
 import CategoryPagePosts from './components/Posts';
 import { getCategoryIDBySlug } from '@helpers/category';
 import CategoryPageInfo from './components/Info';
+
+const postsByCategoryQuery = gql`
+  query postsByCategory($ID: Int!, $limit: Int!) {
+    postsByCategory(ID: $ID, limit: $limit) {
+      title
+      excerpt
+      media {
+        thumbnail
+      }
+      slug
+      categories {
+        slug
+        name
+        color
+      }
+    }
+  }
+`;
 
 interface Props extends AppProps {}
 
@@ -23,9 +43,26 @@ const Layout = ({ router }: Props) => {
 
         <Container>
           <CategoryPageWrapper>
-            <CategoryPageInfo categorySlug={categorySlug} />
+            <Query
+              query={postsByCategoryQuery}
+              variables={{ ID: categoryID, limit: 10 }}
+            >
+              {({ loading, data: { postsByCategory } }) => {
+                const firstPost = postsByCategory[0];
+                const othersPost = postsByCategory.slice(1);
 
-            <CategoryPagePosts categoryID={categoryID} />
+                return (
+                  <>
+                    <CategoryPageInfo
+                      categorySlug={categorySlug}
+                      post={firstPost}
+                    />
+
+                    <CategoryPagePosts posts={othersPost} />
+                  </>
+                );
+              }}
+            </Query>
           </CategoryPageWrapper>
         </Container>
       </BodyBackground>

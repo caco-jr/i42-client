@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const CategoryPageInfoWrapper = styled.section`
+  margin-bottom: 55px;
+`;
+
 export const CategoryPageInfoTitle = styled.h1`
   color: var(--title-color);
   font-size: 48px;
