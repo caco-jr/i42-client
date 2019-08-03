@@ -35,6 +35,13 @@ const postResolvers = {
       const treatedData = await postsTransform(postData);
 
       return treatedData;
+    },
+    searchPosts: async (parent, { term }, context) => {
+      const postData = await getPostsWPAPI({ search: term });
+
+      const treatedData = await postsTransform(postData);
+
+      return treatedData;
     }
   }
 };
