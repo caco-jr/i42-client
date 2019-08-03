@@ -5,6 +5,7 @@ import { AppProps } from '@pages/_app';
 import BodyBackground from '@static/styles/BodyBackground';
 import Header from '@components/Header';
 import { SearchPageWrapper, SearchPageTitle } from './index.style';
+import SearchPagePosts from './components/Posts';
 
 interface Props extends AppProps {}
 
@@ -21,6 +22,8 @@ const Layout = ({ router }: Props) => {
             <SearchPageTitle>
               Resultados para sua busca <span>{q}</span>
             </SearchPageTitle>
+
+            <SearchPagePosts term={q} />
           </SearchPageWrapper>
         </Container>
       </BodyBackground>
