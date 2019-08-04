@@ -32,6 +32,7 @@ const Navbar = (props: NavbarInterface) => {
           return menu.map((item, index) => (
             <Link {...getCategoryURL(item.slug)} key={index}>
               <NavbarItem
+                href={getCategoryURL(item.slug).as}
                 className={isSelectedItem(item.slug) ? `is-active` : ``}
               >
                 {item.title}

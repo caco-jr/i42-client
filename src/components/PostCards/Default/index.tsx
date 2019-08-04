@@ -41,7 +41,7 @@ const PostCard = ({
     <PostCardWrapper>
       <PostCardHeader>
         <Link {...link}>
-          <PostCardImageLink>
+          <PostCardImageLink href={link.as}>
             <PostCardImage src={imageURL} alt="" />
           </PostCardImageLink>
         </Link>
@@ -62,7 +62,7 @@ const PostCard = ({
 
       <PostCardBody>
         <Link {...link}>
-          <PostCardLink>
+          <PostCardLink href={link.as}>
             <PostCardTitle>
               {handleLimitCharacters(decode(title))}
             </PostCardTitle>

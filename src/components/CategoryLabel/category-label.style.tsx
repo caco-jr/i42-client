@@ -19,5 +19,4 @@ export const CategoryLabelWrapper = styled.a<Props>`
   font-size: 13.5px;
   font-family: var(--title-font-family);
   line-height: normal;
-  cursor: pointer;
 `;

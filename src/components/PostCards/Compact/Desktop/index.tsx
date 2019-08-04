@@ -60,7 +60,7 @@ const PostCardCompactDesktop = ({
           : null}
 
         <Link {...link}>
-          <PostCardCompactDesktopTitle>
+          <PostCardCompactDesktopTitle href={link.as}>
             {handleLimitCharacters(decode(title))}
           </PostCardCompactDesktopTitle>
         </Link>
