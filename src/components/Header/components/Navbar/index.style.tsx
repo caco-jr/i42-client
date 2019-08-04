@@ -37,11 +37,6 @@ export const NavbarItem = styled.a`
   padding: 5px;
   margin: 0 6px;
 
-  &:last-of-type {
-    padding-right: 0;
-    margin-right: 0;
-  }
-
   &.is-active {
     font-family: var(--title-font-family);
   }
@@ -50,7 +45,7 @@ export const NavbarItem = styled.a`
 export const NavbarLine = styled.span`
   content: '';
   width: 10px;
-  height: 2.5px;
+  height: 1.5px;
   transform: translateX(0);
   transition: all 0.3s ease;
   border-radius: 2.5px;
