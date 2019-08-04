@@ -26,6 +26,11 @@ export const PostContentWrapper = styled.section`
     margin: 15px auto;
   }
 
+  ul {
+    padding: 0 20px;
+    line-height: 1.5;
+  }
+
   iframe,
   .aligncenter {
     display: block;
