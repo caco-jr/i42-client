@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { withRouter } from 'next/router';
 
+import { SearchWrapper } from './index.style';
 import { SearchInterface } from './search.interface';
 import Button from '@components/Button';
 import SvgLoader from '@components/SvgLoader';
 import Input from '@components/Input';
 
-const Search = (props: SearchInterface) => {
+const Search = ({ router }: SearchInterface) => {
   const componentClassName = 'c-search';
   const [input, setInput] = useState('');
 
@@ -21,14 +22,12 @@ const Search = (props: SearchInterface) => {
     event.preventDefault();
 
     if (input) {
-      // props.history.push(`/search?s=${input}`);
-
-      setInput('');
+      router.push(`/busca?q=${input}`);
     }
   };
 
   return (
-    <form className={componentClassName} onSubmit={handleSubmit}>
+    <SearchWrapper onSubmit={handleSubmit}>
       <Button
         type="submit"
         styleType="basic"
@@ -47,7 +46,7 @@ const Search = (props: SearchInterface) => {
         isValid={true}
         errorMessage=""
       />
-    </form>
+    </SearchWrapper>
   );
 };
 
