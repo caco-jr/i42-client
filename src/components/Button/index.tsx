@@ -40,7 +40,7 @@ const ConfirmButton = css`
 
 const BasicButton = css`
   background-color: transparent;
-  color: color(dark, text);
+  color: var(--text-color);
 `;
 
 const OutlineButton = css`
