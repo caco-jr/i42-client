@@ -17,7 +17,7 @@ const Header = () => {
 
       <Container style={{ width: '100%' }}>
         <Row>
-          <Col sm={3}>
+          <Col sm={2}>
             <Link href="/">
               <a className={`${componentClassName}__logo`}>
                 <SvgLoader
@@ -28,7 +28,7 @@ const Header = () => {
             </Link>
           </Col>
 
-          <Col sm={9}>
+          <Col sm={10}>
             <HeaderRightColumn>
               <Navbar />
               <Search />
