@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface Props {
   styleType?: 'confirm' | 'outline' | 'basic';
+  href?: string;
 }
 
 const BaseButton = css`
@@ -18,6 +19,7 @@ const BaseButton = css`
   color: var(--text-color);
   font-size: 16px;
   font-family: var(--title-font-family);
+  text-decoration: none;
 
   &:focus {
     outline: none;
