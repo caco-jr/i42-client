@@ -5,13 +5,14 @@ interface Props {
 }
 
 const BaseButton = css`
+  --button-border-radius: 18.4px;
   position: relative;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   border: 1.5px solid transparent;
-  border-radius: 18.4px;
+  border-radius: var(--button-border-radius);
   background-color: var(--primary-color);
   padding: 8px 15px;
   color: var(--text-color);
@@ -50,7 +51,7 @@ const OutlineButton = css`
 
   &::before {
     content: '';
-    border-radius: 13px;
+    border-radius: calc(var(--button-border-radius) - 4px);
     opacity: 0;
     background-color: var(--primary-color);
     z-index: -2;
