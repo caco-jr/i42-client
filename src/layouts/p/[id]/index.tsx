@@ -12,6 +12,7 @@ import PostContent from './components/Content';
 import PostAuthor from './components/Author';
 import EpisodeParticipants from './components/EpisodeParticipants';
 import PostScreenPodcastHeader from './components/PodcastHeader';
+import PostRelatedContent from './components/RelatedContent';
 
 interface Props extends AppProps {}
 
@@ -37,6 +38,12 @@ const getPost = gql`
       author {
         name
         avatar_url
+      }
+      tags {
+        name
+      }
+      categories {
+        name
       }
     }
   }
@@ -70,8 +77,17 @@ const Layout = ({ router }: Props) => {
                   return <h1>Carregando...</h1>;
                 }
 
-                console.log(post);
-                const { title, acf, media, date, content, author, id } = post;
+                const {
+                  title,
+                  acf,
+                  media,
+                  date,
+                  content,
+                  author,
+                  id,
+                  tags,
+                  categories
+                } = post;
 
                 return (
                   <>
@@ -103,6 +119,11 @@ const Layout = ({ router }: Props) => {
                         })}
                       </Col>
                     </Row>
+
+                    <PostRelatedContent
+                      tags={tags.map(item => item.name)}
+                      categories={categories.map(item => item.name)}
+                    />
                   </>
                 );
               }}
