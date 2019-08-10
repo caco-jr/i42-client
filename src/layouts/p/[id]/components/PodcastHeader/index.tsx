@@ -14,11 +14,12 @@ import Mask from '@static/styles/Mask';
 const PostScreenPodcastHeader = ({
   id,
   title,
-  image
+  image,
+  attributes
 }: PostScreenPodcastHeaderInterface) => {
   const componentClassName = 'post-screen-podcast-header';
 
-  const handlePodcastPlay = () => console.log(`Tocar o post: ${id}`);
+  const handlePodcastPlay = () => console.log(`Atributos: ${attributes}`);
 
   return (
     <PostScreenPodcastHeaderWrapper>

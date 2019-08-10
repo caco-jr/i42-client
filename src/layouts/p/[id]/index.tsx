@@ -63,6 +63,17 @@ const handleParticipantsPost = ({ acf, author }): ReactNode => {
   }
 };
 
+const handleContent = (content: string): string => {
+  const contentSplitted = content.split(
+    /<iframe (.*?) id=\"blubrryplayer-1\"><\/iframe>/i
+  );
+
+  return contentSplitted.filter((item, index) => index !== 1).join('');
+};
+
+const getPodcastAttributes = (content: string): string =>
+  content.split(/<iframe (.*?) id=\"blubrryplayer-1\"><\/iframe>/i)[1];
+
 const Layout = ({ router }: Props) => {
   return (
     <ScreenClassProvider>
@@ -96,6 +107,7 @@ const Layout = ({ router }: Props) => {
                         title={title}
                         id={id}
                         image="https://i0.wp.com/imperio42.com.br/wp-content/uploads/2019/04/surprise_marvel_releases_a_new_full_trailer_and_poster_for_avengers_endgame_social.jpg?fit=1310%2C670&#038;ssl=1"
+                        attributes={getPodcastAttributes(content)}
                       />
                     ) : (
                       <PostScreenHeader
@@ -109,7 +121,7 @@ const Layout = ({ router }: Props) => {
 
                     <Row>
                       <Col lg={8}>
-                        <PostContent content={content} />
+                        <PostContent content={handleContent(content)} />
                       </Col>
 
                       <Col lg={4}>
