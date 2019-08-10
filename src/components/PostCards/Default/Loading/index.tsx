@@ -16,7 +16,12 @@ const PostCardLoading = ({ className = '' }) => {
 
       <PostCardLoadingBar />
 
-      <PostCardLoadingBar />
+      <PostCardLoadingBar
+        style={{
+          width: '190px',
+          marginTop: '7px'
+        }}
+      />
     </PostCardLoadingWrapper>
   );
 };
