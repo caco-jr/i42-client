@@ -1,19 +1,23 @@
 import React from 'react';
 
+import {
+  PostCardLoadingWrapper,
+  PostCardLoadingHeader,
+  PostCardLoadingHeaderBar,
+  PostCardLoadingBar
+} from './index.style';
+
 const PostCardLoading = ({ className = '' }) => {
-  const componentClassName = 'post-card-loading';
-
   return (
-    <section className={`${componentClassName} ${className}`}>
-      <section className={`${componentClassName}__header`}>
-        <span className={`${componentClassName}__header-bar`} />
-      </section>
+    <PostCardLoadingWrapper className={className}>
+      <PostCardLoadingHeader>
+        <PostCardLoadingHeaderBar />
+      </PostCardLoadingHeader>
 
-      <span className={`${componentClassName}__bar`} />
-      <span
-        className={`${componentClassName}__bar ${componentClassName}__bar--bottom`}
-      />
-    </section>
+      <PostCardLoadingBar />
+
+      <PostCardLoadingBar />
+    </PostCardLoadingWrapper>
   );
 };
 
