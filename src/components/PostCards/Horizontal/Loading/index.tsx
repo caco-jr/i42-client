@@ -1,26 +1,35 @@
 import React from 'react';
 
+import {
+  PostCardHorizontalLoadingWrapper,
+  PostCardHorizontalLoadingLeft,
+  PostCardHorizontalLoadingRight,
+  PostCardHorizontalLoadingImage,
+  PostCardHorizontalLoadingBar
+} from './index.style';
+
 const PostCardHorizontalLoading = ({
   className = ''
 }: {
   className?: string;
 }) => {
-  const componentClassName = 'post-card-horizontal-loading';
-
   return (
-    <section className={`${componentClassName} ${className}`}>
-      <section className={`${componentClassName}__left`}>
-        <span className={`${componentClassName}__image`} />
-      </section>
+    <PostCardHorizontalLoadingWrapper className={className}>
+      <PostCardHorizontalLoadingLeft>
+        <PostCardHorizontalLoadingImage />
+      </PostCardHorizontalLoadingLeft>
 
-      <section className={`${componentClassName}__right`}>
-        <span className={`${componentClassName}__bar`} />
+      <PostCardHorizontalLoadingRight>
+        <PostCardHorizontalLoadingBar />
 
-        <span
-          className={`${componentClassName}__bar ${componentClassName}__bar--bottom`}
+        <PostCardHorizontalLoadingBar
+          style={{
+            width: 'calc(100% - 60px)',
+            marginTop: '7px'
+          }}
         />
-      </section>
-    </section>
+      </PostCardHorizontalLoadingRight>
+    </PostCardHorizontalLoadingWrapper>
   );
 };
 
