@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScreenClassProvider, Container } from 'react-grid-system';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
@@ -33,6 +33,8 @@ const postsByCategoryQuery = gql`
 interface Props extends AppProps {}
 
 const Layout = ({ router }: Props) => {
+  const [posts, setPosts] = useState([]);
+
   const { id, page } = router.query;
 
   const categoryID = getCategoryIDBySlug(id);
@@ -52,6 +54,12 @@ const Layout = ({ router }: Props) => {
 
         <Container>
           <CategoryPageWrapper>
+            <CategoryPageInfo
+              categorySlug={categorySlug}
+              post={posts[0]}
+              page={categoryPage}
+            />
+
             <Query
               query={postsByCategoryQuery}
               variables={{
@@ -65,19 +73,15 @@ const Layout = ({ router }: Props) => {
                   return <h2>Carregando</h2>;
                 }
 
-                const firstPost = postsByCategory[0];
+                setPosts(postsByCategory);
+
                 const othersPost = postsByCategory.slice(1);
-                const posts = categoryPage === 1 ? othersPost : postsByCategory;
+                const categoryPosts =
+                  categoryPage === 1 ? othersPost : postsByCategory;
 
                 return (
                   <>
-                    <CategoryPageInfo
-                      categorySlug={categorySlug}
-                      post={firstPost}
-                      page={categoryPage}
-                    />
-
-                    <CategoryPagePosts posts={posts} />
+                    <CategoryPagePosts posts={categoryPosts} />
 
                     <CategoryPagePagination
                       actualPage={categoryPage}

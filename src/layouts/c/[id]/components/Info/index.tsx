@@ -11,6 +11,7 @@ import {
 } from './index.style';
 import { PostAPIInterface } from '@interfaces/post/post.interface';
 import PostCardCompact from '@components/PostCards/Compact';
+import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
 
 const splitDescription = (description: string): string[] =>
   description.split(/<h1>(.*?)<\/h1>/i);
@@ -69,12 +70,16 @@ const Render = ({
 
           <Col lg={8}>
             <CategoryPageInfoPostCardWrapper>
-              <PostCardCompact
-                image={post.media.thumbnail}
-                title={post.title}
-                slug={post.slug}
-                categories={post.categories}
-              />
+              {post ? (
+                <PostCardCompact
+                  image={post.media.thumbnail}
+                  title={post.title}
+                  slug={post.slug}
+                  categories={post.categories}
+                />
+              ) : (
+                <PostCardCompactLoading />
+              )}
             </CategoryPageInfoPostCardWrapper>
           </Col>
         </Row>
