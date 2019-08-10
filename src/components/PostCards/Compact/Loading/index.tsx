@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+  PostCardCompactLoadingWrapper,
+  PostCardCompactLoadingBar
+} from './index.style';
 
 const PostCardCompactLoading = ({
   className = '',
@@ -9,21 +13,24 @@ const PostCardCompactLoading = ({
   height?: number | string;
   width?: number | string;
 }) => {
-  const componentClassName = 'post-card-compact-loading';
-
   return (
-    <section
-      className={`${componentClassName} ${className}`}
+    <PostCardCompactLoadingWrapper
+      className={className}
       style={{
         width,
         height
       }}
     >
-      <span className={`${componentClassName}__bar`} />
-      <span
-        className={`${componentClassName}__bar ${componentClassName}__bar--bottom`}
+      <PostCardCompactLoadingBar />
+
+      <PostCardCompactLoadingBar
+        style={{
+          height: '21px',
+          marginTop: '15px',
+          width: 'calc(100% - 30px)'
+        }}
       />
-    </section>
+    </PostCardCompactLoadingWrapper>
   );
 };
 

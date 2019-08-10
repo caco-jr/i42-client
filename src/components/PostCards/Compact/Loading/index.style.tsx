@@ -1,9 +1,18 @@
-@import '../../../../assets/styles/all-react';
+import styled, { keyframes } from 'styled-components';
 
-.post-card-compact-loading {
+const loaderAnimate = keyframes`
+    0% {
+        transform: translate3d(-100%, 0, 0);
+    }
+    100% {
+        transform: translate3d(100%, 0, 0);
+    }
+`;
+
+export const PostCardCompactLoadingWrapper = styled.section`
   display: flex;
-  background-color: $purple-color;
-  border-radius: $border-radius;
+  background-color: var(--purple);
+  border-radius: var(--border-radius);
   justify-content: flex-end;
   padding: 30px;
   flex-flow: column;
@@ -11,19 +20,6 @@
   overflow: hidden;
   max-width: 100%;
   min-height: 200px;
-
-  &__bar {
-    width: 77px;
-    height: 32.3px;
-    border-radius: 18.4px;
-    background-color: #201a41;
-
-    &--bottom {
-      height: 21px;
-      margin-top: 15px;
-      width: calc(100% - 30px);
-    }
-  }
 
   &:after {
     content: '';
@@ -35,7 +31,7 @@
     left: 0;
     animation-duration: 0.9s;
     animation-iteration-count: infinite;
-    animation-name: loader-animate;
+    animation-name: ${loaderAnimate};
     animation-timing-function: linear;
     background: linear-gradient(
       to right,
@@ -44,4 +40,11 @@
       rgba(42, 35, 86, 0) 81%
     );
   }
-}
+`;
+
+export const PostCardCompactLoadingBar = styled.span`
+  width: 77px;
+  height: 32.3px;
+  border-radius: 18.4px;
+  background-color: #201a41;
+`;
