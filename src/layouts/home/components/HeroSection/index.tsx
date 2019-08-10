@@ -55,12 +55,17 @@ const HeroSection = ({
                       />
                     );
                   })
-                : [...Array(3)].map((item, index) => (
-                    <PostCardCompactLoading
-                      key={index}
-                      className={`${componentClassName}__post ${componentClassName}__post-loading`}
-                    />
-                  ))}
+                : [...Array(3)].map((item, index) => {
+                    const height = index === 0 ? 495 : '100%';
+
+                    return (
+                      <PostCardCompactLoading
+                        key={index}
+                        height={height}
+                        className={`${componentClassName}__post ${componentClassName}__post-loading`}
+                      />
+                    );
+                  })}
             </HeroSectionWrapper>
           </Container>
         );

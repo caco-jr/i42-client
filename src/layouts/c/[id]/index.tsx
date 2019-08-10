@@ -11,6 +11,8 @@ import CategoryPagePosts from './components/Posts';
 import { getCategoryIDBySlug } from '@helpers/category';
 import CategoryPageInfo from './components/Info';
 import CategoryPagePagination from './components/Pagination';
+import { PostCardList } from '@components/PostCards/List/index.style';
+import PostCardCompactLoading from '@components/PostCards/Compact/Loading/index';
 
 const postsByCategoryQuery = gql`
   query postsByCategory($ID: Int!, $limit: Int!, $page: Int) {
@@ -70,7 +72,15 @@ const Layout = ({ router }: Props) => {
             >
               {({ loading, data: { postsByCategory } }) => {
                 if (loading) {
-                  return <h2>Carregando</h2>;
+                  return (
+                    <Container>
+                      <PostCardList>
+                        {[...Array(9)].map((item, index) => (
+                          <PostCardCompactLoading key={index} />
+                        ))}
+                      </PostCardList>
+                    </Container>
+                  );
                 }
 
                 setPosts(postsByCategory);
