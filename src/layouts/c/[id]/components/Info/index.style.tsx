@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const CategoryPageInfoWrapper = styled.section`
-  margin-bottom: 55px;
   font-size: 18px;
   line-height: 1.33;
 `;
@@ -30,4 +29,8 @@ export const CategoryPageInfoDescription = styled.section`
     line-height: 1.33;
     font-size: 18px;
   }
+`;
+
+export const CategoryPageInfoPostCardWrapper = styled.section`
+  margin-bottom: 55px;
 `;

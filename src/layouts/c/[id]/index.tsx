@@ -10,10 +10,11 @@ import { CategoryPageWrapper } from './index.style';
 import CategoryPagePosts from './components/Posts';
 import { getCategoryIDBySlug } from '@helpers/category';
 import CategoryPageInfo from './components/Info';
+import CategoryPagePagination from './components/Pagination';
 
 const postsByCategoryQuery = gql`
-  query postsByCategory($ID: Int!, $limit: Int!) {
-    postsByCategory(ID: $ID, limit: $limit) {
+  query postsByCategory($ID: Int!, $limit: Int!, $page: Int) {
+    postsByCategory(ID: $ID, limit: $limit, page: $page) {
       title
       excerpt
       media {
@@ -32,9 +33,17 @@ const postsByCategoryQuery = gql`
 interface Props extends AppProps {}
 
 const Layout = ({ router }: Props) => {
-  const { id } = router.query;
+  const { id, page } = router.query;
+
   const categoryID = getCategoryIDBySlug(id);
-  const categorySlug = id;
+  const categorySlug = Array.isArray(id) ? id[0] : id;
+  const categoryPage = page
+    ? Array.isArray(page)
+      ? parseInt(page[0])
+      : parseInt(page)
+    : 1;
+
+  const limitPerPage = categoryPage === 1 ? 10 : 9;
 
   return (
     <ScreenClassProvider>
@@ -45,7 +54,11 @@ const Layout = ({ router }: Props) => {
           <CategoryPageWrapper>
             <Query
               query={postsByCategoryQuery}
-              variables={{ ID: categoryID, limit: 10 }}
+              variables={{
+                ID: categoryID,
+                limit: limitPerPage,
+                page: categoryPage
+              }}
             >
               {({ loading, data: { postsByCategory } }) => {
                 if (loading) {
@@ -54,15 +67,22 @@ const Layout = ({ router }: Props) => {
 
                 const firstPost = postsByCategory[0];
                 const othersPost = postsByCategory.slice(1);
+                const posts = categoryPage === 1 ? othersPost : postsByCategory;
 
                 return (
                   <>
                     <CategoryPageInfo
                       categorySlug={categorySlug}
                       post={firstPost}
+                      page={categoryPage}
                     />
 
-                    <CategoryPagePosts posts={othersPost} />
+                    <CategoryPagePosts posts={posts} />
+
+                    <CategoryPagePagination
+                      actualPage={categoryPage}
+                      category={categorySlug}
+                    />
                   </>
                 );
               }}
