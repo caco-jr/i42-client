@@ -71,8 +71,15 @@ const handleContent = (content: string): string => {
   return contentSplitted.filter((item, index) => index !== 1).join('');
 };
 
-const getPodcastAttributes = (content: string): string =>
-  content.split(/<iframe (.*?) id=\"blubrryplayer-1\"><\/iframe>/i)[1];
+const getPodcastAttributes = (content: string): { src: string } => {
+  const contentSplitted = content.split(
+    /<iframe (.*?) id=\"blubrryplayer-1\"><\/iframe>/i
+  )[1];
+
+  const src = JSON.parse(contentSplitted.split(/\s+/g)[0].match(/"(.*?)"/)[0]);
+
+  return { src };
+};
 
 const Layout = ({ router }: Props) => {
   return (
@@ -107,7 +114,7 @@ const Layout = ({ router }: Props) => {
                         title={title}
                         id={id}
                         image="https://i0.wp.com/imperio42.com.br/wp-content/uploads/2019/04/surprise_marvel_releases_a_new_full_trailer_and_poster_for_avengers_endgame_social.jpg?fit=1310%2C670&#038;ssl=1"
-                        attributes={getPodcastAttributes(content)}
+                        podcastSrc={getPodcastAttributes(content).src}
                       />
                     ) : (
                       <PostScreenHeader

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Visible, Hidden } from 'react-grid-system';
+import gql from 'graphql-tag';
 
 import { PostScreenPodcastHeaderInterface } from './post-screen-podcast-header.interface';
 import SvgLoader from '@components/SvgLoader';
@@ -10,16 +11,21 @@ import {
   PostScreenPodcastHeaderPlay
 } from './index.style';
 import Mask from '@static/styles/Mask';
+import { Mutation } from 'react-apollo';
+
+const SET_PODCAST_ATTRIBUTE = gql`
+  mutation SetPodcastAttribute($src: String) {
+    setPodcastAttribute(src: $src) @client
+  }
+`;
 
 const PostScreenPodcastHeader = ({
   id,
   title,
   image,
-  attributes
+  podcastSrc
 }: PostScreenPodcastHeaderInterface) => {
   const componentClassName = 'post-screen-podcast-header';
-
-  const handlePodcastPlay = () => console.log(`Atributos: ${attributes}`);
 
   return (
     <PostScreenPodcastHeaderWrapper>
@@ -38,9 +44,21 @@ const PostScreenPodcastHeader = ({
           <PostScreenPodcastHeaderTitle>{title}</PostScreenPodcastHeaderTitle>
         </Visible>
 
-        <PostScreenPodcastHeaderPlay type="button" onClick={handlePodcastPlay}>
-          <SvgLoader className={`${componentClassName}__icon`} name="play" />
-        </PostScreenPodcastHeaderPlay>
+        <Mutation mutation={SET_PODCAST_ATTRIBUTE}>
+          {setPodcastAttribute => (
+            <PostScreenPodcastHeaderPlay
+              type="button"
+              onClick={() =>
+                setPodcastAttribute({ variables: { src: podcastSrc } })
+              }
+            >
+              <SvgLoader
+                className={`${componentClassName}__icon`}
+                name="play"
+              />
+            </PostScreenPodcastHeaderPlay>
+          )}
+        </Mutation>
       </PostScreenPodcastHeaderBox>
     </PostScreenPodcastHeaderWrapper>
   );

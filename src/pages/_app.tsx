@@ -4,6 +4,7 @@ import DefaultAppIProps from 'next/app';
 import { ApolloProvider } from 'react-apollo';
 import withApolloClient from '@lib/with-apollo-client';
 import { NextRouter } from 'next/router';
+import PodcastPlayer from '@components/PodcastPlayer';
 
 export interface AppProps extends AppInitialProps {
   router: NextRouter;
@@ -35,6 +36,8 @@ class MyApp extends App<DefaultAppIProps & AppProps & IProps> {
       <Container>
         <ApolloProvider client={apolloClient}>
           <Component {...pageProps} {...otherProps} />
+
+          <PodcastPlayer />
         </ApolloProvider>
       </Container>
     );

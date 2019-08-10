@@ -21,12 +21,18 @@ function create(initialState) {
         colorMode: String
       }
 
+      type PodcastPlayer {
+        src: String
+      }
+
       type Query {
         configuration: Configuration
+        podcast: PodcastPlayer
       }
 
       type Mutation {
         setConfiguration( colorMode: String )
+        setPodcastAttribute( src: String )
       }
     `,
     resolvers: {
@@ -34,6 +40,10 @@ function create(initialState) {
         configuration: () => ({
           __typename: 'Configuration',
           colorMode: 'dark'
+        }),
+        podcast: () => ({
+          __typename: 'PodcastPlayer',
+          src: ''
         })
       },
       Mutation: {
@@ -47,6 +57,20 @@ function create(initialState) {
               configuration: {
                 colorMode,
                 __typename: 'Configuration'
+              }
+            }
+          });
+        },
+        setPodcastAttribute: async (
+          parent,
+          { src },
+          { cache, getCacheKey }
+        ) => {
+          await cache.writeData({
+            data: {
+              podcast: {
+                src,
+                __typename: 'PodcastPlayer'
               }
             }
           });
