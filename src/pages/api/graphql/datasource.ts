@@ -38,6 +38,17 @@ export class WpAPI extends RESTDataSource {
     this.baseURL = _baseAPI;
   }
 
+  async didReceiveResponse(response) {
+    const headersTotal = response.headers.get('x-wp-total');
+    const headersTotalPages = response.headers.get('x-wp-totalpages');
+
+    const body = await response.json();
+
+    console.log(`Total: ${headersTotal} | Páginas: ${headersTotalPages}`);
+
+    return body;
+  }
+
   handleParams = params => {
     if (!params) {
       return null;
