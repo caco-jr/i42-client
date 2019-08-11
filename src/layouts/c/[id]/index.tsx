@@ -17,6 +17,7 @@ import PostCardCompactLoading from '@components/PostCards/Compact/Loading/index'
 const postsByCategoryQuery = gql`
   query postsByCategory($ID: Int!, $limit: Int!, $page: Int) {
     postsByCategory(ID: $ID, limit: $limit, page: $page) {
+      totalPages
       posts {
         title
         excerpt
@@ -98,6 +99,7 @@ const Layout = ({ router }: Props) => {
                     <CategoryPagePagination
                       actualPage={categoryPage}
                       category={categorySlug}
+                      totalPages={postsByCategory.totalPages}
                     />
                   </>
                 );
