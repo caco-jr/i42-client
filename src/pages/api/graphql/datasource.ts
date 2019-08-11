@@ -31,8 +31,8 @@ export class WpAPI extends RESTDataSource {
   _wpAPI = `/wp/v2`;
   _customAPI = `/better-rest-endpoints/v1`;
 
-  _headersTotal = 1;
-  _headersTotalPages = 1;
+  _totalCount = 1;
+  _totalPages = 1;
 
   constructor() {
     super();
@@ -46,8 +46,8 @@ export class WpAPI extends RESTDataSource {
 
     const body = await response.json();
 
-    this._headersTotal = headersTotal;
-    this._headersTotalPages = headersTotalPages;
+    this._totalCount = headersTotal;
+    this._totalPages = headersTotalPages;
 
     return body;
   }
@@ -80,11 +80,11 @@ export class WpAPI extends RESTDataSource {
 
     const treatedData = await postsTransform(result);
 
-    console.log(
-      `Total: ${this._headersTotal} | Páginas: ${this._headersTotalPages}`
-    );
-
-    return treatedData;
+    return {
+      posts: treatedData,
+      totalCount: this._totalCount,
+      totalPages: this._totalPages
+    };
   }
 
   async getCategoryInfoWPAPI(params?: PostsParamsWPAPI) {

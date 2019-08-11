@@ -1,12 +1,9 @@
 const postResolvers = {
   Query: {
-    post: async (parent, { slug }, { dataSources }) => {
-      const result = await dataSources.wpAPI.getPostsWPAPI({
+    post: async (parent, { slug }, { dataSources }) =>
+      dataSources.wpAPI.getPostsWPAPI({
         slug
-      });
-
-      return result[0];
-    },
+      }),
     allPosts: async (
       parent,
       { categoriesExclude = [], limit = 6, page = 1 },
