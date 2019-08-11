@@ -26,16 +26,18 @@ interface PostsParamsWPAPI {
   tags_exclude?: number[];
 }
 
-const _baseAPI = 'https://imperio42.com.br/wp-json';
-
-const _wpAPI = `/wp/v2`;
-const _customAPI = `/better-rest-endpoints/v1`;
-
 export class WpAPI extends RESTDataSource {
+  _baseAPI = 'https://imperio42.com.br/wp-json';
+  _wpAPI = `/wp/v2`;
+  _customAPI = `/better-rest-endpoints/v1`;
+
+  _headersTotal = 1;
+  _headersTotalPages = 1;
+
   constructor() {
     super();
 
-    this.baseURL = _baseAPI;
+    this.baseURL = this._baseAPI;
   }
 
   async didReceiveResponse(response) {
@@ -44,7 +46,8 @@ export class WpAPI extends RESTDataSource {
 
     const body = await response.json();
 
-    console.log(`Total: ${headersTotal} | Páginas: ${headersTotalPages}`);
+    this._headersTotal = headersTotal;
+    this._headersTotalPages = headersTotalPages;
 
     return body;
   }
@@ -58,14 +61,14 @@ export class WpAPI extends RESTDataSource {
   };
 
   async getMenuWPAPI(menuSlug: string) {
-    return this.get(`${_customAPI}/menus/${menuSlug}`, null, {
+    return this.get(`${this._customAPI}/menus/${menuSlug}`, null, {
       cacheOptions: { ttl: 60 * 60 * 24 * 90 }
     });
   }
 
   async getPostsWPAPI(params?: PostsParamsWPAPI) {
     const result = await this.get(
-      `${_wpAPI}/posts`,
+      `${this._wpAPI}/posts`,
       this.handleParams({
         ...params,
         _embed: true
@@ -77,12 +80,16 @@ export class WpAPI extends RESTDataSource {
 
     const treatedData = await postsTransform(result);
 
+    console.log(
+      `Total: ${this._headersTotal} | Páginas: ${this._headersTotalPages}`
+    );
+
     return treatedData;
   }
 
   async getCategoryInfoWPAPI(params?: PostsParamsWPAPI) {
     const result = await this.get(
-      `${_wpAPI}/categories`,
+      `${this._wpAPI}/categories`,
       this.handleParams(params),
       {
         cacheOptions: { ttl: 60 * 60 * 24 * 30 }
