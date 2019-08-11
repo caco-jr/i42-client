@@ -15,16 +15,18 @@ import SectionTitle from '@components/SectionTitle';
 const postsByCategoryQuery = gql`
   query postsByCategory($ID: Int!, $limit: Int!) {
     postsByCategory(ID: $ID, limit: $limit) {
-      title
-      excerpt
-      media {
-        thumbnail
-      }
-      slug
-      categories {
+      posts {
+        title
+        excerpt
+        media {
+          thumbnail
+        }
         slug
-        name
-        color
+        categories {
+          slug
+          name
+          color
+        }
       }
     }
   }
@@ -48,10 +50,9 @@ const CategoryPostBlock = ({
 
           <PostCardList>
             {!loading
-              ? postsByCategory.map((post, index) => {
+              ? postsByCategory.posts.map((post, index) => {
                   return (
                     <PostCard
-                      className={`${componentClassName}__post ${componentClassName}__post--${index}`}
                       key={index}
                       image={post.media.thumbnail}
                       title={post.title}

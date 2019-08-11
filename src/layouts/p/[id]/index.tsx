@@ -19,31 +19,33 @@ interface Props extends AppProps {}
 const getPost = gql`
   query post($slug: String!) {
     post(slug: $slug) {
-      id
-      title
-      content
-      media {
-        thumbnail
-      }
-      date
-      acf {
-        subtitle
-        is_podcast_post
-        episode_participants {
-          id
-          avatar
-          display_name
+      posts {
+        id
+        title
+        content
+        media {
+          thumbnail
         }
-      }
-      author {
-        name
-        avatar_url
-      }
-      tags {
-        name
-      }
-      categories {
-        name
+        date
+        acf {
+          subtitle
+          is_podcast_post
+          episode_participants {
+            id
+            avatar
+            display_name
+          }
+        }
+        author {
+          name
+          avatar_url
+        }
+        tags {
+          name
+        }
+        categories {
+          name
+        }
       }
     }
   }
@@ -105,7 +107,7 @@ const Layout = ({ router }: Props) => {
                   id,
                   tags,
                   categories
-                } = post;
+                } = post.posts[0];
 
                 return (
                   <>

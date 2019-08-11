@@ -15,16 +15,18 @@ import PostCardLoading from '@components/PostCards/Default/Loading';
 const searchPostsQuery = gql`
   query searchPosts($term: String!, $limit: Int) {
     searchPosts(term: $term, limit: $limit) {
-      title
-      excerpt
-      media {
-        thumbnail
-      }
-      slug
-      categories {
+      posts {
+        title
+        excerpt
+        media {
+          thumbnail
+        }
         slug
-        name
-        color
+        categories {
+          slug
+          name
+          color
+        }
       }
     }
   }
@@ -63,7 +65,7 @@ const PostRelatedContent = ({
 
           return (
             <PostCardList>
-              {searchPosts.map((post, index) => (
+              {searchPosts.posts.map((post, index) => (
                 <PostCard
                   key={index}
                   image={post.media.thumbnail}

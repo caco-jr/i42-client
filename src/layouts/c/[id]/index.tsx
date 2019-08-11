@@ -17,16 +17,18 @@ import PostCardCompactLoading from '@components/PostCards/Compact/Loading/index'
 const postsByCategoryQuery = gql`
   query postsByCategory($ID: Int!, $limit: Int!, $page: Int) {
     postsByCategory(ID: $ID, limit: $limit, page: $page) {
-      title
-      excerpt
-      media {
-        thumbnail
-      }
-      slug
-      categories {
+      posts {
+        title
+        excerpt
+        media {
+          thumbnail
+        }
         slug
-        name
-        color
+        categories {
+          slug
+          name
+          color
+        }
       }
     }
   }
@@ -83,11 +85,11 @@ const Layout = ({ router }: Props) => {
                   );
                 }
 
-                setPosts(postsByCategory);
+                setPosts(postsByCategory.posts);
 
-                const othersPost = postsByCategory.slice(1);
+                const othersPost = postsByCategory.posts.slice(1);
                 const categoryPosts =
-                  categoryPage === 1 ? othersPost : postsByCategory;
+                  categoryPage === 1 ? othersPost : postsByCategory.posts;
 
                 return (
                   <>

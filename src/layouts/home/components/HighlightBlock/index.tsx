@@ -16,16 +16,18 @@ import {
 const postsByCategoryQuery = gql`
   query postsByCategory($ID: Int!, $limit: Int) {
     postsByCategory(ID: $ID, limit: $limit) {
-      title
-      media {
-        thumbnail
-      }
-      date_modified
-      slug
-      categories {
+      posts {
+        title
+        media {
+          thumbnail
+        }
+        date_modified
         slug
-        name
-        color
+        categories {
+          slug
+          name
+          color
+        }
       }
     }
   }
@@ -47,7 +49,7 @@ const HighlightBlock = (props: HighlightBlockInterface) => {
 
           <HighlightBlockPostsContainer>
             {!loading
-              ? postsByCategory.map((post, index) => {
+              ? postsByCategory.posts.map((post, index) => {
                   if (index === 0) {
                     return (
                       <PostCardCompact

@@ -10,15 +10,17 @@ import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
 const allPostsQuery = gql`
   query allPosts($categoriesExclude: [Int], $limit: Int) {
     allPosts(categoriesExclude: $categoriesExclude, limit: $limit) {
-      title
-      media {
-        thumbnail
-      }
-      slug
-      categories {
+      posts {
+        title
+        media {
+          thumbnail
+        }
         slug
-        name
-        color
+        categories {
+          slug
+          name
+          color
+        }
       }
     }
   }
@@ -38,7 +40,7 @@ const HeroSection = ({
           <Container>
             <HeroSectionWrapper>
               {!loading
-                ? allPosts.map((post, index) => {
+                ? allPosts.posts.map((post, index) => {
                     const width = index === 0 ? 735 : 367;
                     const height = index === 0 ? 495 : 300;
 
