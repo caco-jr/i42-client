@@ -1,52 +1,39 @@
-import { getPostsWPAPI } from '@services/wp-api';
-import { postsTransform } from '@helpers/post/api';
-
 const postResolvers = {
   Query: {
-    post: async (parent, { slug }, context) => {
-      const postData = await getPostsWPAPI({
+    post: async (parent, { slug }, { dataSources }) =>
+      dataSources.wpAPI.getPostsWPAPI({
         slug
-      });
-      const treatedData = await postsTransform(postData)[0];
-
-      return treatedData;
-    },
+      })[0],
     allPosts: async (
       parent,
       { categoriesExclude = [], limit = 6, page = 1 },
-      context
-    ) => {
-      const postData = await getPostsWPAPI({
+      { dataSources }
+    ) =>
+      dataSources.wpAPI.getPostsWPAPI({
         categories_exclude: categoriesExclude,
         per_page: limit,
         page
-      });
-
-      const treatedData = await postsTransform(postData);
-
-      return treatedData;
-    },
-    postsByCategory: async (parent, { ID, limit = 6, page = 1 }, context) => {
-      const postData = await getPostsWPAPI({
+      }),
+    postsByCategory: async (
+      parent,
+      { ID, limit = 6, page = 1 },
+      { dataSources }
+    ) =>
+      dataSources.wpAPI.getPostsWPAPI({
         categories: ID,
         per_page: limit,
         page
-      });
-      const treatedData = await postsTransform(postData);
-
-      return treatedData;
-    },
-    searchPosts: async (parent, { term, limit = 6, page = 1 }, context) => {
-      const postData = await getPostsWPAPI({
+      }),
+    searchPosts: async (
+      parent,
+      { term, limit = 6, page = 1 },
+      { dataSources }
+    ) =>
+      dataSources.wpAPI.getPostsWPAPI({
         search: term,
         per_page: limit,
         page
-      });
-
-      const treatedData = await postsTransform(postData);
-
-      return treatedData;
-    }
+      })
   }
 };
 
