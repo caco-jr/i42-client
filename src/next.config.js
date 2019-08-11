@@ -23,10 +23,10 @@ const nextConfig = {
 
     return config;
   },
-  target: 'serverless',
-  onDemandEntries: {
-    maxInactiveAge: 1000 * 60 * 60 * 24
-  }
+  target: 'serverless'
+  // onDemandEntries: {
+  //   maxInactiveAge: 1000 * 60 * 60 * 24
+  // }
 };
 
 module.exports = withOffline(nextConfig);
