@@ -1,55 +1,45 @@
+import { UserAPIInterface } from '@interfaces/user/user.interface';
+import { CategoryAPIInterface } from '@interfaces/category/category.interface';
+
 export interface PostAPIInterface {
   id: number;
   title: string;
   slug: string;
   date: string;
-  date_modified: string;
   content: string;
   excerpt: string;
-  media: MediaPostAPIInterface;
-  author: AuthorPostAPIInterface;
-  tags: TermPostAPIInterface[];
-  categories: CategoryPostAPIInterface[];
-  acf?: PostACFAPIInterface;
+  featuredImage: PostMediaAPIInterface;
+  author: UserAPIInterface;
+  tags: PostTermAPIInterface[];
+  categories: CategoryAPIInterface;
+  extra: PostExtraInterface;
+  review: PostReviewInterface;
+  podcast: PostPodcastInterface;
 }
 
-interface MediaPostAPIInterface {
-  thumbnail: string;
+export interface PostMediaAPIInterface {
+  sourceUrl: string;
+  srcSet: string;
+  sizes: string;
+  altText: string;
 }
 
-interface AuthorPostAPIInterface {
-  id: number;
-  name: string;
-  avatar_url: string;
-}
-
-export interface TermPostAPIInterface {
-  id: number;
-  name: string;
-  slug: string;
-}
-
-export interface CategoryPostAPIInterface {
+export interface PostTermAPIInterface {
   id: number;
   name: string;
   slug: string;
-  color: string;
 }
 
-export interface PostACFAPIInterface {
-  subtitle?: string;
-  has_rating?: boolean;
-  rating?: string;
-  has_spoiler?: boolean;
-  is_podcast_post?: boolean;
-  episode_participants?: ACFEpisodeParticipantsAPIInterface[];
+interface PostExtraInterface {
+  subtitle: string;
 }
 
-export interface ACFEpisodeParticipantsAPIInterface {
-  id: number;
-  first_name: string;
-  last_name: string;
-  display_name: string;
-  description: string;
-  avatar: string;
+export interface PostReviewInterface {
+  hasRating: string;
+  rating: string;
+}
+
+export interface PostPodcastInterface {
+  episodeParticipants: UserAPIInterface[];
+  isPodcastPost: boolean;
 }

@@ -14,19 +14,25 @@ import {
 } from './index.style';
 
 const postsByCategoryQuery = gql`
-  query postsByCategory($ID: Int!, $limit: Int) {
-    postsByCategory(ID: $ID, limit: $limit) {
-      posts {
+  query postsByCategory($categorySlug: String, $limit: Int) {
+    posts(first: $limit, where: { categoryName: $categorySlug }) {
+      nodes {
         title
-        media {
-          thumbnail
+        excerpt
+        date
+        featuredImage {
+          sourceUrl
+          altText
         }
-        date_modified
         slug
         categories {
-          slug
-          name
-          color
+          nodes {
+            slug
+            name
+            extra {
+              categoryColor
+            }
+          }
         }
       }
     }
@@ -36,26 +42,23 @@ const postsByCategoryQuery = gql`
 const HighlightBlock = (props: HighlightBlockInterface) => {
   const componentClassName = 'highlight-block';
 
-  const { categoryID, sectionTitle } = props;
+  const { categorySlug, sectionTitle } = props;
 
   return (
-    <Query
-      query={postsByCategoryQuery}
-      variables={{ ID: categoryID, limit: 3 }}
-    >
-      {({ loading, data: { postsByCategory } }) => (
+    <Query query={postsByCategoryQuery} variables={{ categorySlug, limit: 3 }}>
+      {({ loading, data: { posts } }) => (
         <HighlightBlockWrapper>
           <SectionTitle>{sectionTitle}</SectionTitle>
 
           <HighlightBlockPostsContainer>
             {!loading
-              ? postsByCategory.posts.map((post, index) => {
+              ? posts.nodes.map((post, index) => {
                   if (index === 0) {
                     return (
                       <PostCardCompact
                         key={index}
                         className={`${componentClassName}__post-large`}
-                        image={post.media.thumbnail}
+                        media={post.featuredImage}
                         title={post.title}
                         slug={post.slug}
                         categories={post.categories}
@@ -66,10 +69,10 @@ const HighlightBlock = (props: HighlightBlockInterface) => {
                       <PostCardHorizontal
                         className={`${componentClassName}__post`}
                         key={index}
-                        image={post.media.thumbnail}
+                        media={post.featuredImage}
                         title={post.title}
                         slug={post.slug}
-                        date={post.date_modified}
+                        date={post.date}
                       />
                     );
                   }

@@ -13,19 +13,25 @@ import PostCard from '@components/PostCards/Default';
 import PostCardLoading from '@components/PostCards/Default/Loading';
 
 const searchPostsQuery = gql`
-  query searchPosts($term: String!, $limit: Int) {
-    searchPosts(term: $term, limit: $limit) {
-      posts {
+  query searchPosts($search: String!, $limit: Int) {
+    posts(where: { search: $search }, first: $limit) {
+      nodes {
         title
         excerpt
-        media {
-          thumbnail
+        featuredImage {
+          sourceUrl
+          altText
         }
         slug
         categories {
-          slug
-          name
-          color
+          nodes {
+            slug
+            name
+            name
+            extra {
+              categoryColor
+            }
+          }
         }
       }
     }
@@ -50,9 +56,9 @@ const PostRelatedContent = ({
 
       <Query
         query={searchPostsQuery}
-        variables={{ term: itemSelected, limit: 3 }}
+        variables={{ search: itemSelected, limit: 3 }}
       >
-        {({ loading, data: { searchPosts } }) => {
+        {({ loading, data: { posts } }) => {
           if (loading) {
             return (
               <PostCardList>
@@ -65,16 +71,26 @@ const PostRelatedContent = ({
 
           return (
             <PostCardList>
-              {searchPosts.posts.map((post, index) => (
-                <PostCard
-                  key={index}
-                  image={post.media.thumbnail}
-                  title={post.title}
-                  content={post.excerpt}
-                  slug={post.slug}
-                  categories={post.categories}
-                />
-              ))}
+              {posts.nodes.map((post, index) => {
+                const {
+                  title,
+                  excerpt,
+                  featuredImage,
+                  slug,
+                  categories
+                } = post;
+
+                return (
+                  <PostCard
+                    key={index}
+                    media={featuredImage}
+                    title={title}
+                    content={excerpt}
+                    slug={slug}
+                    categories={categories}
+                  />
+                );
+              })}
             </PostCardList>
           );
         }}

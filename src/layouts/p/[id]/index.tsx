@@ -16,52 +16,62 @@ import PostRelatedContent from './components/RelatedContent';
 
 interface Props extends AppProps {}
 
-const getPost = gql`
-  query post($slug: String!) {
-    post(slug: $slug) {
-      posts {
-        id
-        title
-        content
-        media {
-          thumbnail
+const getPostQuery = gql`
+  query post($slug: String) {
+    postBy(slug: $slug) {
+      id
+      title
+      content
+      featuredImage {
+        sourceUrl
+        srcSet
+        sizes
+        altText
+      }
+      extra {
+        subtitle
+      }
+      date
+      categories {
+        nodes {
+          name
         }
-        date
-        acf {
-          subtitle
-          is_podcast_post
-          episode_participants {
-            id
-            avatar
-            display_name
+      }
+      tags {
+        nodes {
+          name
+        }
+      }
+      podcast {
+        isPodcastPost
+        episodeParticipants {
+          name
+          avatar {
+            url
           }
         }
-        author {
-          name
-          avatar_url
-        }
-        tags {
-          name
-        }
-        categories {
-          name
+      }
+      review {
+        hasRating
+        rating
+      }
+      author {
+        name
+        avatar(size: 106) {
+          url
         }
       }
     }
   }
 `;
 
-const handleParticipantsPost = ({ acf, author }): ReactNode => {
-  if (!acf) {
-    return <PostAuthor image={author.avatar_url} name={author.name} />;
-  }
-
-  if (acf.is_podcast_post) {
+const handleParticipantsPost = ({ podcast, author }): ReactNode => {
+  if (podcast.isPodcastPost) {
     return (
-      <EpisodeParticipants episodeParticipants={acf.episode_participants!} />
+      <EpisodeParticipants episodeParticipants={podcast.episodeParticipants} />
     );
   } else {
-    return <PostAuthor image={author.avatar_url} name={author.name} />;
+    return <PostAuthor image={author.avatar.url} name={author.name} />;
   }
 };
 
@@ -91,40 +101,41 @@ const Layout = ({ router }: Props) => {
 
         <Container>
           <PostPageBase>
-            <Query query={getPost} variables={{ slug: router.query.id }}>
-              {({ loading, data: { post } }) => {
+            <Query query={getPostQuery} variables={{ slug: router.query.id }}>
+              {({ loading, data: { postBy } }) => {
                 if (loading) {
                   return <h1>Carregando...</h1>;
                 }
 
                 const {
                   title,
-                  acf,
-                  media,
-                  date,
                   content,
+                  featuredImage,
+                  extra,
+                  date,
+                  podcast,
                   author,
                   id,
                   tags,
-                  categories
-                } = post.posts[0];
+                  categories,
+                  review
+                } = postBy;
 
                 return (
                   <>
-                    {acf && acf.is_podcast_post ? (
+                    {podcast.is_podcast_post ? (
                       <PostScreenPodcastHeader
                         title={title}
-                        id={id}
                         image="https://i0.wp.com/imperio42.com.br/wp-content/uploads/2019/04/surprise_marvel_releases_a_new_full_trailer_and_poster_for_avengers_endgame_social.jpg?fit=1310%2C670&#038;ssl=1"
                         podcastSrc={getPodcastAttributes(content).src}
                       />
                     ) : (
                       <PostScreenHeader
                         title={title}
-                        subtitle={acf.subtitle}
-                        image={media.thumbnail}
+                        subtitle={extra.subtitle}
+                        media={featuredImage}
                         date={date}
-                        acf={acf}
+                        review={review}
                       />
                     )}
 
@@ -135,15 +146,15 @@ const Layout = ({ router }: Props) => {
 
                       <Col lg={4}>
                         {handleParticipantsPost({
-                          acf,
+                          podcast,
                           author
                         })}
                       </Col>
                     </Row>
 
                     <PostRelatedContent
-                      tags={tags.map(item => item.name)}
-                      categories={categories.map(item => item.name)}
+                      tags={tags.nodes.map(item => item.name)}
+                      categories={categories.nodes.map(item => item.name)}
                     />
                   </>
                 );

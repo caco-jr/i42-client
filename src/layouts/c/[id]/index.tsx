@@ -8,27 +8,35 @@ import BodyBackground from '@static/styles/BodyBackground';
 import Header from '@components/Header';
 import { CategoryPageWrapper } from './index.style';
 import CategoryPagePosts from './components/Posts';
-import { getCategoryIDBySlug } from '@helpers/category';
 import CategoryPageInfo from './components/Info';
 import CategoryPagePagination from './components/Pagination';
 import { PostCardList } from '@components/PostCards/List/index.style';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading/index';
 
 const postsByCategoryQuery = gql`
-  query postsByCategory($ID: Int!, $limit: Int!, $page: Int) {
-    postsByCategory(ID: $ID, limit: $limit, page: $page) {
-      totalPages
-      posts {
+  query postsByCategory($categorySlug: String, $first: Int, $after: String) {
+    posts(
+      first: $first
+      after: $after
+      where: { categoryName: $categorySlug }
+    ) {
+      nodes {
         title
         excerpt
-        media {
-          thumbnail
+        featuredImage {
+          sourceUrl
+          altText
         }
         slug
         categories {
-          slug
-          name
-          color
+          nodes {
+            slug
+            name
+            count
+            extra {
+              categoryColor
+            }
+          }
         }
       }
     }
@@ -42,7 +50,6 @@ const Layout = ({ router }: Props) => {
 
   const { id, page } = router.query;
 
-  const categoryID = getCategoryIDBySlug(id);
   const categorySlug = Array.isArray(id) ? id[0] : id;
   const categoryPage = page
     ? Array.isArray(page)
@@ -68,12 +75,12 @@ const Layout = ({ router }: Props) => {
             <Query
               query={postsByCategoryQuery}
               variables={{
-                ID: categoryID,
-                limit: limitPerPage,
-                page: categoryPage
+                categorySlug,
+                first: limitPerPage,
+                after: categoryPage
               }}
             >
-              {({ loading, data: { postsByCategory } }) => {
+              {({ loading, data: { posts } }) => {
                 if (loading) {
                   return (
                     <Container>
@@ -86,11 +93,12 @@ const Layout = ({ router }: Props) => {
                   );
                 }
 
-                setPosts(postsByCategory.posts);
+                setPosts(posts.nodes);
 
-                const othersPost = postsByCategory.posts.slice(1);
+                const othersPost = posts.nodes.slice(1);
+
                 const categoryPosts =
-                  categoryPage === 1 ? othersPost : postsByCategory.posts;
+                  categoryPage === 1 ? othersPost : posts.nodes;
 
                 return (
                   <>
@@ -99,7 +107,7 @@ const Layout = ({ router }: Props) => {
                     <CategoryPagePagination
                       actualPage={categoryPage}
                       category={categorySlug}
-                      totalPages={postsByCategory.totalPages}
+                      totalPages={1}
                     />
                   </>
                 );

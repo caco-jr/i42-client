@@ -20,7 +20,7 @@ import {
 
 const PostCard = ({
   className = '',
-  image,
+  media,
   slug,
   title,
   content,
@@ -31,32 +31,30 @@ const PostCard = ({
   const link = getPostURL(slug);
 
   useEffect(() => {
-    const width = 300;
-    const height = 300;
+    const width = 350;
+    const height = 220;
 
-    setImageURL(handleImageSize(image, width, height));
-  }, [image]);
+    setImageURL(handleImageSize(media.sourceUrl, width, height));
+  }, [media]);
 
   return (
-    <PostCardWrapper>
+    <PostCardWrapper className={className}>
       <PostCardHeader>
         <Link {...link}>
           <PostCardImageLink href={link.as}>
-            <PostCardImage src={imageURL} alt="" />
+            <PostCardImage src={imageURL} alt={media.altText} />
           </PostCardImageLink>
         </Link>
 
         <PostCardCategories>
-          {categories
-            ? categories.map((category, index) => (
-                <CategoryLabel
-                  key={index}
-                  name={category.name}
-                  slug={category.slug}
-                  color={category.color}
-                />
-              ))
-            : null}
+          {categories.nodes.map((category, index) => (
+            <CategoryLabel
+              key={index}
+              name={category.name}
+              slug={category.slug}
+              color={category.extra.categoryColor}
+            />
+          ))}
         </PostCardCategories>
       </PostCardHeader>
 

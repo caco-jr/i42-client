@@ -16,7 +16,7 @@ import {
 
 const PostCardHorizontal = ({
   className = '',
-  image,
+  media,
   slug,
   title,
   date
@@ -29,17 +29,17 @@ const PostCardHorizontal = ({
     const width = 120;
     const height = 120;
 
-    setImageURL(handleImageSize(image, width, height));
-  }, [image]);
+    setImageURL(handleImageSize(media.sourceUrl, width, height));
+  }, [media]);
 
   const componentClassName = 'c-post-card-horizontal';
 
   return (
-    <PostCardHorizontalWrapper>
+    <PostCardHorizontalWrapper className={className}>
       <PostCardHorizontalLeft>
         <Link {...link}>
           <a className={`${componentClassName}__image-link`}>
-            <PostCardHorizontalImage src={imageURL} alt="" />
+            <PostCardHorizontalImage src={imageURL} alt={media.altText} />
           </a>
         </Link>
       </PostCardHorizontalLeft>

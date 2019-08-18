@@ -1,9 +1,9 @@
 import React from 'react';
+import { Row, Col } from 'react-grid-system';
 
 import PostPageToggleMode from '../ToggleMode';
 import { PostScreenHeaderInterface } from './post-screen-header.interface';
 import Rating from '../Rating';
-import { handleImageSize } from '@utils/image';
 import { decode, handleFullDate } from '@helpers/helpers';
 import {
   PostScreenHeaderWrapper,
@@ -14,14 +14,13 @@ import {
   PostScreenHeaderLeftColumn,
   PostScreenHeaderRightColumn
 } from './index.style';
-import { Row, Col } from 'react-grid-system';
 
 const PostScreenHeader = ({
   title,
   subtitle,
-  image,
+  media,
   date,
-  acf
+  review
 }: PostScreenHeaderInterface) => {
   return (
     <PostScreenHeaderWrapper>
@@ -36,7 +35,7 @@ const PostScreenHeader = ({
               </PostScreenHeaderSubTitle>
             ) : null}
 
-            {acf ? acf.has_rating && <Rating rating={acf.rating!} /> : null}
+            {review.hasRating && <Rating rating={review.rating} />}
           </PostScreenHeaderLeftColumn>
         </Col>
 
@@ -54,8 +53,10 @@ const PostScreenHeader = ({
       </Row>
 
       <PostScreenHeaderImage
-        src={handleImageSize(image, 1000, 470)}
-        alt={title}
+        src={media.sourceUrl}
+        alt={media.altText}
+        sizes={media.sizes}
+        srcSet={media.srcSet}
       />
     </PostScreenHeaderWrapper>
   );

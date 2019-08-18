@@ -16,9 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apollo-boost": "^0.4.3",
-    "apollo-datasource-rest": "^0.6.1",
-    "apollo-server-micro": "^2.8.1",
+    "apollo-boost": "^0.4.4",
     "babel-plugin-styled-components": "^1.10.6",
     "graphql": "^14.4.2",
     "isomorphic-unfetch": "^3.0.0",
@@ -35,12 +33,12 @@
   "devDependencies": {
     "@types/graphql": "^14.2.3",
     "@types/next": "^8.0.6",
-    "@types/node": "^12.7.1",
-    "@types/react": "^16.9.1",
+    "@types/node": "^12.7.2",
+    "@types/react": "^16.9.2",
     "@types/react-dom": "^16.8.5",
     "@types/styled-components": "^4.1.18",
     "pluralize": "^8.0.0",
-    "serverless-nextjs-plugin": "^2.3.0",
+    "serverless-nextjs-plugin": "^2.3.2",
     "serverless-offline": "^5.10.1"
   }
 }

@@ -1,5 +1,5 @@
-import { ACFEpisodeParticipantsAPIInterface } from '@interfaces/post/post.interface';
+import { UserAPIInterface } from '@interfaces/user/user.interface';
 
 export interface EpisodeParticipantsInterface {
-  episodeParticipants: ACFEpisodeParticipantsAPIInterface[];
+  episodeParticipants: UserAPIInterface[];
 }

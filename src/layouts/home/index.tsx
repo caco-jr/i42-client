@@ -19,23 +19,24 @@ const Home = () => {
         <Container>
           <HomeBackground>
             <CategoryPostBlock
-              categoryID={2}
               categorySlug="noticias-cinema"
               sectionTitle="Notícias"
             />
 
             <CategoryPostBlock
-              categoryID={132}
               categorySlug="reviews-cinema"
               sectionTitle="Reviews"
             />
 
             <PostCardList>
-              <HighlightBlock sectionTitle="Nave Mainha" categoryID={3} />
-              <HighlightBlock sectionTitle="Games" categoryID={11} />
+              <HighlightBlock
+                sectionTitle="Nave Mainha"
+                categorySlug="nave-mainha"
+              />
+              <HighlightBlock sectionTitle="Games" categorySlug="games" />
               <HighlightBlock
                 sectionTitle="Controle da Missão"
-                categoryID={1}
+                categorySlug="controle-missao"
               />
             </PostCardList>
           </HomeBackground>

@@ -8,18 +8,23 @@ import PostCardCompact from '@components/PostCards/Compact';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
 
 const allPostsQuery = gql`
-  query allPosts($categoriesExclude: [Int], $limit: Int) {
-    allPosts(categoriesExclude: $categoriesExclude, limit: $limit) {
-      posts {
+  query allPosts($categoriesExclude: [ID], $limit: Int) {
+    posts(where: { categoryNotIn: $categoriesExclude }, first: $limit) {
+      nodes {
         title
-        media {
-          thumbnail
+        featuredImage {
+          sourceUrl
+          altText
         }
         slug
         categories {
-          slug
-          name
-          color
+          nodes {
+            slug
+            name
+            extra {
+              categoryColor
+            }
+          }
         }
       }
     }
@@ -35,12 +40,12 @@ const HeroSection = ({
 
   return (
     <Query query={allPostsQuery} variables={{ categoriesExclude, limit: 3 }}>
-      {({ loading, data: { allPosts } }) => {
+      {({ loading, data: { posts } }) => {
         return (
           <Container>
             <HeroSectionWrapper>
               {!loading
-                ? allPosts.posts.map((post, index) => {
+                ? posts.nodes.map((post, index) => {
                     const width = index === 0 ? 735 : 367;
                     const height = index === 0 ? 495 : 300;
 
@@ -50,7 +55,7 @@ const HeroSection = ({
                         className={`${componentClassName}__post`}
                         width={width}
                         height={height}
-                        image={post.media.thumbnail}
+                        media={post.featuredImage}
                         title={post.title}
                         slug={post.slug}
                         categories={post.categories}

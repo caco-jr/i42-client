@@ -17,9 +17,11 @@ const splitDescription = (description: string): string[] =>
   description.split(/<h1>(.*?)<\/h1>/i);
 
 const categoryQuery = gql`
-  query category($slug: String!) {
-    category(slug: $slug) {
-      description
+  query category($slug: [String]) {
+    categories(where: { slug: $slug }) {
+      nodes {
+        description
+      }
     }
   }
 `;
@@ -33,11 +35,17 @@ interface Props {
 const CategoryPageInfo = ({ categorySlug, post, page }: Props) => {
   return (
     <Query query={categoryQuery} variables={{ slug: categorySlug }}>
-      {({ loading, data: { category } }) => {
+      {({ loading, data: { categories } }) => {
         if (loading) {
           return <h2>Carregando</h2>;
         } else {
-          return <Render {...category} post={post} page={page} />;
+          return (
+            <Render
+              description={categories.nodes[0].description}
+              post={post}
+              page={page}
+            />
+          );
         }
       }}
     </Query>
@@ -72,7 +80,7 @@ const Render = ({
             <CategoryPageInfoPostCardWrapper>
               {post ? (
                 <PostCardCompact
-                  image={post.media.thumbnail}
+                  media={post.featuredImage}
                   title={post.title}
                   slug={post.slug}
                   categories={post.categories}

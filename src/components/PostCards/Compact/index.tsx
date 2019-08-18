@@ -7,7 +7,7 @@ import PostCardCompactMobile from './Mobile';
 
 const PostCardCompact = ({
   className = '',
-  image,
+  media,
   slug,
   title,
   categories,
@@ -19,7 +19,7 @@ const PostCardCompact = ({
       <Visible md lg xl>
         <PostCardCompactDesktop
           className={`${className}`}
-          image={image}
+          media={media}
           slug={slug}
           title={title}
           categories={categories}
@@ -31,7 +31,7 @@ const PostCardCompact = ({
       <Hidden md lg xl>
         <PostCardCompactMobile
           className={`${className}`}
-          image={image}
+          media={media}
           slug={slug}
           title={title}
           categories={categories}

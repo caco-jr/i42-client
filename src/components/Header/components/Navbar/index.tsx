@@ -9,13 +9,23 @@ import { getCategoryURL } from '@helpers/urls';
 import { NavbarWrapper, NavbarItem, NavbarLine } from './index.style';
 
 const menuQuery = gql`
-  query menu($id: String!) {
+  query menuByID($id: ID!) {
     menu(id: $id) {
-      slug
-      title
+      menuItems {
+        nodes {
+          label
+          url
+        }
+      }
     }
   }
 `;
+
+const handleURL = (url: string): string => {
+  const urlSplited = url.split('/');
+
+  return urlSplited[urlSplited.length - 2];
+};
 
 const Navbar = (props: NavbarInterface) => {
   const { id = '' } = props.router.query;
@@ -23,19 +33,21 @@ const Navbar = (props: NavbarInterface) => {
 
   return (
     <NavbarWrapper>
-      <Query query={menuQuery} variables={{ id: 'principal' }}>
+      <Query query={menuQuery} variables={{ id: 'TWVudToxODc4' }}>
         {({ loading, data: { menu } }) => {
           if (loading) {
             return <span>Carregando...</span>;
           }
 
-          return menu.map((item, index) => (
-            <Link {...getCategoryURL(item.slug)} key={index}>
+          return menu.menuItems.nodes.map((item, index) => (
+            <Link {...getCategoryURL(handleURL(item.url))} key={index}>
               <NavbarItem
-                href={getCategoryURL(item.slug).as}
-                className={isSelectedItem(item.slug) ? `is-active` : ``}
+                href={getCategoryURL(handleURL(item.url)).as}
+                className={
+                  isSelectedItem(handleURL(item.url)) ? `is-active` : ``
+                }
               >
-                {item.title}
+                {item.label}
               </NavbarItem>
             </Link>
           ));

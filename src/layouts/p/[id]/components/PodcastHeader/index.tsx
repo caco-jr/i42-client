@@ -20,7 +20,6 @@ const SET_PODCAST_ATTRIBUTE = gql`
 `;
 
 const PostScreenPodcastHeader = ({
-  id,
   title,
   image,
   podcastSrc

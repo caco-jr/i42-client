@@ -16,10 +16,10 @@ const EpisodeParticipants = ({
       <EpisodeParticipantsTitle>Participantes</EpisodeParticipantsTitle>
 
       {episodeParticipants.map(item => (
-        <EpisodeParticipantsPerson key={item.id}>
-          <span dangerouslySetInnerHTML={{ __html: item.avatar }} />
+        <EpisodeParticipantsPerson key={item.userId}>
+          <img src={item.avatar.url} />
 
-          <EpisodeParticipantsName>{item.display_name}</EpisodeParticipantsName>
+          <EpisodeParticipantsName>{item.name}</EpisodeParticipantsName>
         </EpisodeParticipantsPerson>
       ))}
     </EpisodeParticipantsWrapper>

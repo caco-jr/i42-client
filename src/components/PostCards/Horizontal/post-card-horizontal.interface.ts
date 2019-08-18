@@ -1,7 +1,5 @@
-export interface PostCardHorizontalInterface {
-  className?: string;
-  image: string;
-  slug: string;
-  title: string;
+import { BasePostCardInterface } from '../index.interface';
+
+export interface PostCardHorizontalInterface extends BasePostCardInterface {
   date: string;
 }

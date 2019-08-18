@@ -8,19 +8,25 @@ import PostCard from '@components/PostCards/Default';
 import PostCardLoading from '@components/PostCards/Default/Loading';
 
 const searchPostsQuery = gql`
-  query searchPosts($term: String!) {
-    searchPosts(term: $term) {
-      posts {
+  query searchPosts($search: String) {
+    posts(where: { search: $search }) {
+      nodes {
         title
         excerpt
-        media {
-          thumbnail
+        featuredImage {
+          sourceUrl
+          altText
         }
         slug
         categories {
-          slug
-          name
-          color
+          nodes {
+            slug
+            name
+            name
+            extra {
+              categoryColor
+            }
+          }
         }
       }
     }
@@ -34,19 +40,27 @@ interface Props {
 const SearchPagePosts = ({ term }: Props) => {
   return (
     <SearchPagePostsWrapper>
-      <Query query={searchPostsQuery} variables={{ term }}>
-        {({ loading, data: { searchPosts } }) => (
+      <Query query={searchPostsQuery} variables={{ search: term }}>
+        {({ loading, data: { posts } }) => (
           <PostCardList>
             {!loading
-              ? searchPosts.posts.map((post, index) => {
+              ? posts.nodes.map((post, index) => {
+                  const {
+                    title,
+                    excerpt,
+                    featuredImage,
+                    slug,
+                    categories
+                  } = post;
+
                   return (
                     <PostCard
                       key={index}
-                      image={post.media.thumbnail}
-                      title={post.title}
-                      content={post.excerpt}
-                      slug={post.slug}
-                      categories={post.categories}
+                      media={featuredImage}
+                      title={title}
+                      content={excerpt}
+                      slug={slug}
+                      categories={categories}
                     />
                   );
                 })

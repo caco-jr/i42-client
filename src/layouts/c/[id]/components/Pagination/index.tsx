@@ -16,8 +16,6 @@ const CategoryPagePagination = ({
   totalPages,
   category
 }: Props) => {
-  console.log(totalPages);
-
   return (
     <CategoryPagePaginationWrapper>
       {actualPage !== 1 && (

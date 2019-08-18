@@ -16,7 +16,7 @@ const CategoryPagePosts = ({ posts }: Props) => {
         {posts.map((post, index) => (
           <PostCardCompact
             key={index}
-            image={post.media.thumbnail}
+            media={post.featuredImage}
             title={post.title}
             slug={post.slug}
             categories={post.categories}

@@ -13,19 +13,24 @@ import { CategoryPostBlockWrapper } from './index.style';
 import SectionTitle from '@components/SectionTitle';
 
 const postsByCategoryQuery = gql`
-  query postsByCategory($ID: Int!, $limit: Int!) {
-    postsByCategory(ID: $ID, limit: $limit) {
-      posts {
+  query postsByCategory($categorySlug: String, $first: Int) {
+    posts(first: $first, where: { categoryName: $categorySlug }) {
+      nodes {
         title
         excerpt
-        media {
-          thumbnail
+        featuredImage {
+          sourceUrl
+          altText
         }
         slug
         categories {
-          slug
-          name
-          color
+          nodes {
+            slug
+            name
+            extra {
+              categoryColor
+            }
+          }
         }
       }
     }
@@ -34,31 +39,41 @@ const postsByCategoryQuery = gql`
 
 const CategoryPostBlock = ({
   sectionTitle,
-  categorySlug,
-  categoryID
+  categorySlug
 }: CategoryPostInterface) => {
   const componentClassName = 'category-post-block';
 
   return (
     <Query
       query={postsByCategoryQuery}
-      variables={{ ID: categoryID, limit: 3 }}
+      variables={{
+        categorySlug,
+        first: 3
+      }}
     >
-      {({ loading, data: { postsByCategory } }) => (
+      {({ loading, data: { posts } }) => (
         <CategoryPostBlockWrapper>
           <SectionTitle>{sectionTitle}</SectionTitle>
 
           <PostCardList>
             {!loading
-              ? postsByCategory.posts.map((post, index) => {
+              ? posts.nodes.map((post, index) => {
+                  const {
+                    title,
+                    excerpt,
+                    featuredImage,
+                    slug,
+                    categories
+                  } = post;
+
                   return (
                     <PostCard
                       key={index}
-                      image={post.media.thumbnail}
-                      title={post.title}
-                      content={post.excerpt}
-                      slug={post.slug}
-                      categories={post.categories}
+                      media={featuredImage}
+                      title={title}
+                      content={excerpt}
+                      slug={slug}
+                      categories={categories}
                     />
                   );
                 })
