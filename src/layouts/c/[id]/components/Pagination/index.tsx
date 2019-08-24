@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { CategoryPagePaginationWrapper } from './index.style';
 import Button from '@components/Button';
 import { getCategoryURL } from '@helpers/urls';
+import SvgLoader from '@components/SvgLoader';
 
 interface Props {
   hasPreviousPage: boolean;
@@ -22,6 +23,8 @@ const CategoryPagePagination = ({
   category,
   actualPage
 }: Props) => {
+  const componentClassName = 'category-page-pagination';
+
   return (
     <CategoryPagePaginationWrapper>
       {actualPage !== 1 && (
@@ -38,7 +41,11 @@ const CategoryPagePagination = ({
               1}&before=${startCursor}`}
             style={{ marginRight: '15px' }}
           >
-            Mais Recente
+            <SvgLoader
+              name="arrow"
+              className={`${componentClassName}__left-arrow`}
+            />
+            Anterior
           </Button>
         </Link>
       )}
@@ -56,7 +63,11 @@ const CategoryPagePagination = ({
             href={`${getCategoryURL(category).as}?page=${actualPage +
               1}&after=${endCursor}`}
           >
-            Mais Antigo
+            Próximo
+            <SvgLoader
+              name="arrow"
+              className={`${componentClassName}__right-arrow`}
+            />
           </Button>
         </Link>
       )}
