@@ -41,7 +41,9 @@ const CategoryPageInfo = ({ categorySlug, post, page }: Props) => {
         } else {
           return (
             <Render
-              description={categories.nodes[0].description}
+              description={
+                categories.nodes.length ? categories.nodes[0].description : ''
+              }
               post={post}
               page={page}
             />
