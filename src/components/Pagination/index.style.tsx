@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-const componentClassName = '.category-page-pagination';
+const componentClassName = '.c-pagination';
 
-export const CategoryPagePaginationWrapper = styled.section`
+export const PaginationWrapper = styled.section`
   display: flex;
   justify-content: center;
   margin-top: 30px;

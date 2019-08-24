@@ -9,7 +9,7 @@ import Header from '@components/Header';
 import { CategoryPageWrapper } from './index.style';
 import CategoryPagePosts from './components/Posts';
 import CategoryPageInfo from './components/Info';
-import CategoryPagePagination from './components/Pagination';
+import Pagination from '@components/Pagination';
 import { PostCardList } from '@components/PostCards/List/index.style';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading/index';
 
@@ -111,7 +111,7 @@ const Layout = ({ router }: Props) => {
                   <>
                     <CategoryPagePosts posts={categoryPosts} />
 
-                    <CategoryPagePagination
+                    <Pagination
                       {...posts.pageInfo}
                       category={categorySlug}
                       actualPage={categoryPage}

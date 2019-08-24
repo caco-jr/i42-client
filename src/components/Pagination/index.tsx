@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { CategoryPagePaginationWrapper } from './index.style';
+import { PaginationWrapper } from './index.style';
 import Button from '@components/Button';
 import { getCategoryURL } from '@helpers/urls';
 import SvgLoader from '@components/SvgLoader';
@@ -15,7 +15,7 @@ interface Props {
   actualPage: number;
 }
 
-const CategoryPagePagination = ({
+const Pagination = ({
   hasPreviousPage,
   hasNextPage,
   startCursor,
@@ -23,10 +23,10 @@ const CategoryPagePagination = ({
   category,
   actualPage
 }: Props) => {
-  const componentClassName = 'category-page-pagination';
+  const componentClassName = 'c-pagination';
 
   return (
-    <CategoryPagePaginationWrapper>
+    <PaginationWrapper>
       {actualPage !== 1 && (
         <Link
           href={`${getCategoryURL(category).href}?page=${actualPage -
@@ -71,8 +71,8 @@ const CategoryPagePagination = ({
           </Button>
         </Link>
       )}
-    </CategoryPagePaginationWrapper>
+    </PaginationWrapper>
   );
 };
 
-export default CategoryPagePagination;
+export default Pagination;
