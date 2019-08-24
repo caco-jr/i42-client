@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+
+import { PostCardCompactDesktopImage } from '@components/PostCards/Compact/Desktop/index.style';
 import {
   PostCardHorizontalWrapper,
   PostCardHorizontalImage
@@ -8,6 +10,10 @@ export const HighlightBlockWrapper = styled.section`
   padding: 0 0 55px;
   border-radius: var(--border-radius);
   position: relative;
+
+  ${PostCardCompactDesktopImage} {
+    max-height: 200px;
+  }
 
   ${PostCardHorizontalWrapper} {
     margin: 30px 0;
