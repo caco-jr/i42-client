@@ -4,7 +4,6 @@ export const PostCardCompactDesktopWrapper = styled.figure`
   width: 100%;
   line-height: 0;
   position: relative;
-  min-height: 200px;
 `;
 
 export const PostCardCompactDesktopTitle = styled.a`

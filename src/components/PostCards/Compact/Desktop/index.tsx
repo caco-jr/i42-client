@@ -34,14 +34,21 @@ const PostCardCompactDesktop = ({
 
     const newHeight = postHeight < 200 ? 450 : postHeight;
 
-    setImageURL(handleImageSize(media.sourceUrl, postWidth, newHeight));
+    if (media) {
+      setImageURL(handleImageSize(media.sourceUrl, postWidth, newHeight));
+    } else {
+      setImageURL('');
+    }
   }, [height, width, media, title]);
 
   return (
     <PostCardCompactDesktopWrapper ref={ref} className={className}>
       <Link {...link}>
         <a>
-          <PostCardCompactDesktopImage alt={media.altText} src={imageURL} />
+          <PostCardCompactDesktopImage
+            alt={media ? media.altText : ''}
+            src={imageURL}
+          />
 
           <Mask />
         </a>

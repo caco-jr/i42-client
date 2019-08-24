@@ -1,8 +1,21 @@
 import styled from 'styled-components';
 
+import {
+  PostCardCompactDesktopImage,
+  PostCardCompactDesktopTitle
+} from '@components/PostCards/Compact/Desktop/index.style';
+
 export const CategoryPageInfoWrapper = styled.section`
   font-size: 18px;
   line-height: 1.33;
+
+  ${PostCardCompactDesktopImage} {
+    max-height: 425px;
+  }
+
+  ${PostCardCompactDesktopTitle} {
+    font-size: 30px;
+  }
 `;
 
 export const CategoryPageInfoTitle = styled.h1`

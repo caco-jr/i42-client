@@ -39,6 +39,12 @@ const postsByCategoryQuery = gql`
           }
         }
       }
+      pageInfo {
+        hasPreviousPage
+        hasNextPage
+        startCursor
+        endCursor
+      }
     }
   }
 `;
@@ -48,7 +54,7 @@ interface Props extends AppProps {}
 const Layout = ({ router }: Props) => {
   const [posts, setPosts] = useState([]);
 
-  const { id, page } = router.query;
+  const { id, page, before, after } = router.query;
 
   const categorySlug = Array.isArray(id) ? id[0] : id;
   const categoryPage = page
@@ -77,7 +83,8 @@ const Layout = ({ router }: Props) => {
               variables={{
                 categorySlug,
                 first: limitPerPage,
-                after: categoryPage
+                before,
+                after
               }}
             >
               {({ loading, data: { posts } }) => {
@@ -105,9 +112,9 @@ const Layout = ({ router }: Props) => {
                     <CategoryPagePosts posts={categoryPosts} />
 
                     <CategoryPagePagination
-                      actualPage={categoryPage}
+                      {...posts.pageInfo}
                       category={categorySlug}
-                      totalPages={1}
+                      actualPage={categoryPage}
                     />
                   </>
                 );
