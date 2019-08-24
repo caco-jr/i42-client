@@ -53,8 +53,6 @@ interface Props {
 }
 
 const SearchPagePosts = ({ term, actualPage, before, after }: Props) => {
-  console.log(after);
-
   return (
     <SearchPagePostsWrapper>
       <Query

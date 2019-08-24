@@ -51,7 +51,7 @@ const Pagination = ({
         : {
             href: `${handleBaseURL().href}?page=${actualPage +
               1}&after=${endCursor}`,
-            as: `${handleBaseURL().href}?page=${actualPage +
+            as: `${handleBaseURL().as}?page=${actualPage +
               1}&after=${endCursor}`
           };
     } else {
@@ -65,7 +65,7 @@ const Pagination = ({
         : {
             href: `${handleBaseURL().href}&page=${actualPage +
               1}&after=${endCursor}`,
-            as: `${handleBaseURL().href}&page=${actualPage +
+            as: `${handleBaseURL().as}&page=${actualPage +
               1}&after=${endCursor}`
           };
     }

@@ -22,8 +22,13 @@ const Layout = ({ router }: Props) => {
     ? Array.isArray(before)
       ? before[0]
       : before
-    : '';
-  const afterTreated = after ? (Array.isArray(after) ? after[0] : after) : '';
+    : undefined;
+
+  const afterTreated = after
+    ? Array.isArray(after)
+      ? after[0]
+      : after
+    : undefined;
 
   return (
     <ScreenClassProvider>
