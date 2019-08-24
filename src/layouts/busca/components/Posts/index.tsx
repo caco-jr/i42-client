@@ -6,10 +6,16 @@ import { SearchPagePostsWrapper } from './index.style';
 import { PostCardList } from '@components/PostCards/List/index.style';
 import PostCard from '@components/PostCards/Default';
 import PostCardLoading from '@components/PostCards/Default/Loading';
+import Pagination from '@components/Pagination';
 
 const searchPostsQuery = gql`
-  query searchPosts($search: String) {
-    posts(where: { search: $search }) {
+  query searchPosts($search: String, $before: String, $after: String) {
+    posts(
+      where: { search: $search }
+      first: 6
+      before: $before
+      after: $after
+    ) {
       nodes {
         title
         excerpt
@@ -29,45 +35,65 @@ const searchPostsQuery = gql`
           }
         }
       }
+      pageInfo {
+        hasPreviousPage
+        hasNextPage
+        startCursor
+        endCursor
+      }
     }
   }
 `;
 
 interface Props {
   term: string | string[];
+  actualPage: number;
+  before: string;
+  after: string;
 }
 
-const SearchPagePosts = ({ term }: Props) => {
+const SearchPagePosts = ({ term, actualPage, before, after }: Props) => {
+  console.log(after);
+
   return (
     <SearchPagePostsWrapper>
-      <Query query={searchPostsQuery} variables={{ search: term }}>
+      <Query
+        query={searchPostsQuery}
+        variables={{ search: term, before, after }}
+      >
         {({ loading, data: { posts } }) => (
-          <PostCardList>
-            {!loading
-              ? posts.nodes.map((post, index) => {
-                  const {
-                    title,
-                    excerpt,
-                    featuredImage,
-                    slug,
-                    categories
-                  } = post;
+          <>
+            <PostCardList>
+              {!loading
+                ? posts.nodes.map((post, index) => {
+                    const {
+                      title,
+                      excerpt,
+                      featuredImage,
+                      slug,
+                      categories
+                    } = post;
 
-                  return (
-                    <PostCard
-                      key={index}
-                      media={featuredImage}
-                      title={title}
-                      content={excerpt}
-                      slug={slug}
-                      categories={categories}
-                    />
-                  );
-                })
-              : [...Array(3)].map((item, index) => (
-                  <PostCardLoading key={index} />
-                ))}
-          </PostCardList>
+                    return (
+                      <PostCard
+                        key={index}
+                        media={featuredImage}
+                        title={title}
+                        content={excerpt}
+                        slug={slug}
+                        categories={categories}
+                      />
+                    );
+                  })
+                : [...Array(6)].map((item, index) => (
+                    <PostCardLoading key={index} />
+                  ))}
+            </PostCardList>
+
+            {!loading && (
+              <Pagination {...posts.pageInfo} actualPage={actualPage} />
+            )}
+          </>
         )}
       </Query>
     </SearchPagePostsWrapper>

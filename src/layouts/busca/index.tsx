@@ -10,7 +10,20 @@ import SearchPagePosts from './components/Posts';
 interface Props extends AppProps {}
 
 const Layout = ({ router }: Props) => {
-  const { q } = router.query;
+  const { q, page, before, after } = router.query;
+
+  const actualPage = page
+    ? Array.isArray(page)
+      ? parseInt(page[0])
+      : parseInt(page)
+    : 1;
+
+  const beforeTreated = before
+    ? Array.isArray(before)
+      ? before[0]
+      : before
+    : '';
+  const afterTreated = after ? (Array.isArray(after) ? after[0] : after) : '';
 
   return (
     <ScreenClassProvider>
@@ -23,7 +36,12 @@ const Layout = ({ router }: Props) => {
               Resultados para sua busca <span>{q}</span>
             </SearchPageTitle>
 
-            <SearchPagePosts term={q} />
+            <SearchPagePosts
+              term={q}
+              actualPage={actualPage}
+              before={beforeTreated}
+              after={afterTreated}
+            />
           </SearchPageWrapper>
         </Container>
       </BodyBackground>
