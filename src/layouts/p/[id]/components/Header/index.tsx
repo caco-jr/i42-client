@@ -55,7 +55,6 @@ const PostScreenHeader = ({
       <PostScreenHeaderImage
         src={media.sourceUrl}
         alt={media.altText}
-        sizes={media.sizes}
         srcSet={media.srcSet}
       />
     </PostScreenHeaderWrapper>

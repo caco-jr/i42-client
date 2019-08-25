@@ -51,10 +51,6 @@ const getPostQuery = gql`
           }
         }
       }
-      review {
-        hasRating
-        rating
-      }
       author {
         name
         avatar(size: 106) {
@@ -117,8 +113,7 @@ const Layout = ({ router }: Props) => {
                   author,
                   id,
                   tags,
-                  categories,
-                  review
+                  categories
                 } = postBy;
 
                 return (
@@ -135,7 +130,7 @@ const Layout = ({ router }: Props) => {
                         subtitle={extra.subtitle}
                         media={featuredImage}
                         date={date}
-                        review={review}
+                        review={{ hasRating: false, rating: null }}
                       />
                     )}
 

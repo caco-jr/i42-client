@@ -35,7 +35,7 @@ interface PostExtraInterface {
 }
 
 export interface PostReviewInterface {
-  hasRating: string;
+  hasRating: boolean;
   rating: string;
 }
 
