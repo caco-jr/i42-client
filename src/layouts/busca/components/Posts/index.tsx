@@ -9,28 +9,38 @@ import PostCardLoading from '@components/PostCards/Default/Loading';
 import Pagination from '@components/Pagination';
 
 const searchPostsQuery = gql`
-  query searchPosts($search: String, $before: String, $after: String) {
+  query searchPosts(
+    $search: String
+    $before: String
+    $after: String
+    $first: Int
+    $last: Int
+  ) {
     posts(
-      where: { search: $search }
-      first: 6
+      first: $first
+      last: $last
       before: $before
       after: $after
+      where: { search: $search }
     ) {
-      nodes {
-        title
-        excerpt
-        featuredImage {
-          sourceUrl
-          altText
-        }
-        slug
-        categories {
-          nodes {
-            slug
-            name
-            name
-            extra {
-              categoryColor
+      edges {
+        cursor
+        node {
+          title
+          excerpt
+          featuredImage {
+            sourceUrl
+            altText
+          }
+          slug
+          categories {
+            nodes {
+              slug
+              name
+              name
+              extra {
+                categoryColor
+              }
             }
           }
         }
@@ -53,24 +63,26 @@ interface Props {
 }
 
 const SearchPagePosts = ({ term, actualPage, before, after }: Props) => {
+  const pagination = before ? { last: 6, before } : { first: 6, after };
+
   return (
     <SearchPagePostsWrapper>
       <Query
         query={searchPostsQuery}
-        variables={{ search: term, before, after }}
+        variables={{ search: term, ...pagination }}
       >
         {({ loading, data: { posts } }) => (
           <>
             <PostCardList>
               {!loading
-                ? posts.nodes.map((post, index) => {
+                ? posts.edges.map((post, index) => {
                     const {
                       title,
                       excerpt,
                       featuredImage,
                       slug,
                       categories
-                    } = post;
+                    } = post.node;
 
                     return (
                       <PostCard
@@ -88,9 +100,13 @@ const SearchPagePosts = ({ term, actualPage, before, after }: Props) => {
                   ))}
             </PostCardList>
 
-            {!loading && (
-              <Pagination {...posts.pageInfo} actualPage={actualPage} />
-            )}
+            {posts ? (
+              <Pagination
+                show={!loading}
+                {...posts.pageInfo}
+                actualPage={actualPage}
+              />
+            ) : null}
           </>
         )}
       </Query>

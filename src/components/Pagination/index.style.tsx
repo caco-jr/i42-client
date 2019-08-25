@@ -1,11 +1,24 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const componentClassName = '.c-pagination';
 
-export const PaginationWrapper = styled.section`
+interface Props {
+  show: boolean;
+}
+
+export const PaginationWrapper = styled.section<Props>`
   display: flex;
   justify-content: center;
   margin-top: 30px;
+
+  ${props =>
+    props.show
+      ? css`
+          display: flex;
+        `
+      : css`
+          display: none;
+        `}
 
   ${componentClassName}__right-arrow,
   ${componentClassName}__left-arrow {

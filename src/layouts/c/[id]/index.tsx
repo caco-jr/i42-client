@@ -14,9 +14,17 @@ import { PostCardList } from '@components/PostCards/List/index.style';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading/index';
 
 const postsByCategoryQuery = gql`
-  query postsByCategory($categorySlug: String, $first: Int, $after: String) {
+  query postsByCategory(
+    $categorySlug: String
+    $before: String
+    $after: String
+    $first: Int
+    $last: Int
+  ) {
     posts(
       first: $first
+      last: $last
+      before: $before
       after: $after
       where: { categoryName: $categorySlug }
     ) {
@@ -64,6 +72,9 @@ const Layout = ({ router }: Props) => {
     : 1;
 
   const limitPerPage = categoryPage === 1 ? 10 : 9;
+  const pagination = before
+    ? { last: limitPerPage, before }
+    : { first: limitPerPage, after };
 
   return (
     <ScreenClassProvider>
@@ -82,40 +93,42 @@ const Layout = ({ router }: Props) => {
               query={postsByCategoryQuery}
               variables={{
                 categorySlug,
-                first: limitPerPage,
-                before,
-                after
+                ...pagination
               }}
             >
               {({ loading, data: { posts } }) => {
-                if (loading) {
-                  return (
-                    <Container>
-                      <PostCardList>
-                        {[...Array(9)].map((item, index) => (
-                          <PostCardCompactLoading key={index} />
-                        ))}
-                      </PostCardList>
-                    </Container>
-                  );
+                let categoryPosts = [];
+
+                if (!loading) {
+                  setPosts(posts.nodes);
+
+                  const othersPost = posts.nodes.slice(1);
+
+                  categoryPosts = categoryPage === 1 ? othersPost : posts.nodes;
                 }
-
-                setPosts(posts.nodes);
-
-                const othersPost = posts.nodes.slice(1);
-
-                const categoryPosts =
-                  categoryPage === 1 ? othersPost : posts.nodes;
 
                 return (
                   <>
-                    <CategoryPagePosts posts={categoryPosts} />
+                    {loading ? (
+                      <Container>
+                        <PostCardList>
+                          {[...Array(9)].map((item, index) => (
+                            <PostCardCompactLoading key={index} />
+                          ))}
+                        </PostCardList>
+                      </Container>
+                    ) : (
+                      <CategoryPagePosts posts={categoryPosts} />
+                    )}
 
-                    <Pagination
-                      {...posts.pageInfo}
-                      category={categorySlug}
-                      actualPage={categoryPage}
-                    />
+                    {posts ? (
+                      <Pagination
+                        {...posts.pageInfo}
+                        category={categorySlug}
+                        actualPage={categoryPage}
+                        show={!loading}
+                      />
+                    ) : null}
                   </>
                 );
               }}

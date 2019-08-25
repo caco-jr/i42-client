@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 import { PaginationWrapper } from './index.style';
@@ -15,6 +15,7 @@ interface Props {
   category?: string;
   actualPage: number;
   router: Router;
+  show?: boolean;
 }
 
 const Pagination = ({
@@ -24,9 +25,12 @@ const Pagination = ({
   endCursor,
   category,
   actualPage,
-  router
+  router,
+  show = true
 }: Props) => {
   const componentClassName = 'c-pagination';
+  const [before, setBefore] = useState('');
+  const [lastPostID, setLastPostID] = useState('');
 
   const handleBaseURL = (): { href: string; as: string } => {
     return category
@@ -40,13 +44,15 @@ const Pagination = ({
   const handleURL = (
     type: 'before' | 'after'
   ): { href: string; as: string } => {
+    const beforePage =
+      before || before === null ? `after=${before}` : `before=${startCursor}`;
+
     if (category) {
       return type === 'before'
         ? {
             href: `${handleBaseURL().href}?page=${actualPage -
-              1}&before=${startCursor}`,
-            as: `${handleBaseURL().as}?page=${actualPage -
-              1}&before=${startCursor}`
+              1}&${beforePage}`,
+            as: `${handleBaseURL().as}?page=${actualPage - 1}&${beforePage}`
           }
         : {
             href: `${handleBaseURL().href}?page=${actualPage +
@@ -58,9 +64,8 @@ const Pagination = ({
       return type === 'before'
         ? {
             href: `${handleBaseURL().href}&page=${actualPage -
-              1}&before=${startCursor}`,
-            as: `${handleBaseURL().as}&page=${actualPage -
-              1}&before=${startCursor}`
+              1}&${beforePage}`,
+            as: `${handleBaseURL().as}&page=${actualPage - 1}&${beforePage}`
           }
         : {
             href: `${handleBaseURL().href}&page=${actualPage +
@@ -71,8 +76,22 @@ const Pagination = ({
     }
   };
 
+  const handleBefore = (isPrevious: boolean) => {
+    if (lastPostID) {
+      actualPage === 1 || (actualPage === 3 && isPrevious)
+        ? setBefore(null)
+        : setBefore(lastPostID);
+    } else {
+      actualPage === 1 || (actualPage === 3 && isPrevious)
+        ? setBefore(null)
+        : setBefore(startCursor);
+    }
+
+    setLastPostID(endCursor);
+  };
+
   return (
-    <PaginationWrapper>
+    <PaginationWrapper show={show}>
       {actualPage !== 1 && (
         <Link href={handleURL('before').href} as={handleURL('before').as}>
           <Button
@@ -80,6 +99,7 @@ const Pagination = ({
             styleType="outline"
             href={handleURL('before').as}
             style={{ marginRight: '15px' }}
+            onClick={() => handleBefore(true)}
           >
             <SvgLoader
               name="arrow"
@@ -92,7 +112,12 @@ const Pagination = ({
 
       {hasNextPage && (
         <Link href={handleURL('after').href} as={handleURL('after').as}>
-          <Button as="a" styleType="outline" href={handleURL('after').as}>
+          <Button
+            as="a"
+            styleType="outline"
+            href={handleURL('after').as}
+            onClick={() => handleBefore(false)}
+          >
             Próximo
             <SvgLoader
               name="arrow"
