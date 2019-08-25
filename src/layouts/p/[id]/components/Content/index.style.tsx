@@ -13,8 +13,13 @@ export const PostContentWrapper = styled.section`
     line-height: 1.8;
   }
 
-  h3 {
+  h2,
+  h3,
+  h4 {
     margin: 30px 0 15px;
+  }
+
+  h3 {
     font-size: 1.5em;
   }
 
@@ -29,6 +34,10 @@ export const PostContentWrapper = styled.section`
   ul {
     padding: 0 20px;
     line-height: 1.5;
+  }
+
+  a {
+    color: var(--text-color);
   }
 
   iframe,
