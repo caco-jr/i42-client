@@ -5,8 +5,8 @@ import { Container, Row, Col } from 'react-grid-system';
 import { HeaderWrapper, HeaderRightColumn } from './header.style';
 import { GlobalStyle } from '@static/styles/GlobalStyle';
 import SvgLoader from '@components/SvgLoader';
-import Navbar from './components/Navbar';
 import Search from './components/Search';
+import Navbar from './components/Navbar';
 
 const Header = () => {
   const componentClassName = 'header-bar';
@@ -31,6 +31,7 @@ const Header = () => {
           <Col sm={10}>
             <HeaderRightColumn>
               <Navbar />
+
               <Search />
             </HeaderRightColumn>
           </Col>
