@@ -1,5 +1,5 @@
 import React from 'react';
-import App, { Container, AppInitialProps } from 'next/app';
+import App, { AppInitialProps } from 'next/app';
 import DefaultAppIProps from 'next/app';
 import { ApolloProvider } from 'react-apollo';
 import withApolloClient from '@lib/with-apollo-client';
@@ -33,13 +33,11 @@ class MyApp extends App<DefaultAppIProps & AppProps & IProps> {
   render() {
     const { Component, pageProps, apolloClient, ...otherProps } = this.props;
     return (
-      <Container>
-        <ApolloProvider client={apolloClient}>
-          <Component {...pageProps} {...otherProps} />
+      <ApolloProvider client={apolloClient}>
+        <Component {...pageProps} {...otherProps} />
 
-          <PodcastPlayer />
-        </ApolloProvider>
-      </Container>
+        <PodcastPlayer />
+      </ApolloProvider>
     );
   }
 }
