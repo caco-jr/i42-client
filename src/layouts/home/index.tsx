@@ -19,14 +19,11 @@ const Home = () => {
         <Container>
           <HomeBackground>
             <CategoryPostBlock
-              categorySlug="noticias-cinema"
+              categorySlug="noticias"
               sectionTitle="Notícias"
             />
 
-            <CategoryPostBlock
-              categorySlug="reviews-cinema"
-              sectionTitle="Reviews"
-            />
+            <CategoryPostBlock categorySlug="reviews" sectionTitle="Reviews" />
 
             <PostCardList>
               <HighlightBlock
