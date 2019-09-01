@@ -12,6 +12,8 @@ import {
 import { PostAPIInterface } from '@interfaces/post/post.interface';
 import PostCardCompact from '@components/PostCards/Compact';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
+import CategoryPageSEO from '../SEO';
+import { getCategoryURL } from '@helpers/urls';
 
 const splitDescription = (description: string): string[] =>
   description.split(/<h1>(.*?)<\/h1>/i);
@@ -20,6 +22,7 @@ const categoryQuery = gql`
   query category($slug: [String]) {
     categories(where: { slug: $slug }) {
       nodes {
+        name
         description
       }
     }
@@ -36,17 +39,47 @@ const CategoryPageInfo = ({ categorySlug, post, page }: Props) => {
   return (
     <Query query={categoryQuery} variables={{ slug: categorySlug }}>
       {({ loading, data: { categories } }) => {
+        const slug = Array.isArray(categorySlug)
+          ? categorySlug[0]
+          : categorySlug;
+
         if (loading) {
-          return <h2>Carregando</h2>;
+          return (
+            <>
+              <CategoryPageSEO
+                title={slug}
+                description=""
+                url={`${getCategoryURL(slug).as}`}
+              />
+
+              <h2>Carregando</h2>
+            </>
+          );
         } else {
           return (
-            <Render
-              description={
-                categories.nodes.length ? categories.nodes[0].description : ''
-              }
-              post={post}
-              page={page}
-            />
+            <>
+              <CategoryPageSEO
+                title={categories.nodes[0] ? categories.nodes[0].name : ''}
+                description={
+                  categories.nodes[0] ? categories.nodes[0].description : ''
+                }
+                url={`${getCategoryURL(slug).as}`}
+                media={[
+                  {
+                    url: post ? post.featuredImage.sourceUrl : '',
+                    alt: post ? post.featuredImage.altText : ''
+                  }
+                ]}
+              />
+
+              <Render
+                description={
+                  categories.nodes.length ? categories.nodes[0].description : ''
+                }
+                post={post}
+                page={page}
+              />
+            </>
           );
         }
       }}

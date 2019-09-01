@@ -13,8 +13,8 @@ import PostCard from '@components/PostCards/Default';
 import PostCardLoading from '@components/PostCards/Default/Loading';
 
 const searchPostsQuery = gql`
-  query searchPosts($search: String!, $limit: Int) {
-    posts(where: { search: $search }, first: $limit) {
+  query searchPosts($search: String!, $limit: Int, $exclude: [ID]) {
+    posts(where: { search: $search, notIn: $exclude }, first: $limit) {
       nodes {
         title
         excerpt
@@ -39,14 +39,18 @@ const searchPostsQuery = gql`
 `;
 
 const PostRelatedContent = ({
+  postIdExclude,
+  title,
   tags,
   categories
 }: {
+  postIdExclude: number;
+  title: string;
   tags: string[];
   categories: string[];
 }) => {
-  let items = tags.length ? tags : categories;
-  let itemSelected = getRandomItem(items);
+  const items = tags.length ? tags : categories;
+  const itemSelected = getRandomItem(items);
 
   return (
     <PostRelatedContentWrapper>
@@ -56,7 +60,11 @@ const PostRelatedContent = ({
 
       <Query
         query={searchPostsQuery}
-        variables={{ search: itemSelected, limit: 3 }}
+        variables={{
+          search: itemSelected || title,
+          limit: 3,
+          exclude: postIdExclude
+        }}
       >
         {({ loading, data: { posts } }) => {
           if (loading) {

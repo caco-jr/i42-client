@@ -2,8 +2,9 @@ import React from 'react';
 import App, { AppInitialProps } from 'next/app';
 import DefaultAppIProps from 'next/app';
 import { ApolloProvider } from 'react-apollo';
-import withApolloClient from '@lib/with-apollo-client';
 import { NextRouter } from 'next/router';
+
+import withApolloClient from '@lib/with-apollo-client';
 import PodcastPlayer from '@components/PodcastPlayer';
 
 export interface AppProps extends AppInitialProps {

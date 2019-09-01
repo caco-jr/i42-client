@@ -13,13 +13,14 @@ import PostAuthor from './components/Author';
 import EpisodeParticipants from './components/EpisodeParticipants';
 import PostScreenPodcastHeader from './components/PodcastHeader';
 import PostRelatedContent from './components/RelatedContent';
+import PostPageSEO from './components/SEO';
 
 interface Props extends AppProps {}
 
 const getPostQuery = gql`
   query post($slug: String) {
     postBy(slug: $slug) {
-      id
+      postId
       title
       content
       featuredImage {
@@ -32,6 +33,7 @@ const getPostQuery = gql`
         subtitle
       }
       date
+      modified
       categories {
         nodes {
           name
@@ -56,6 +58,17 @@ const getPostQuery = gql`
         avatar(size: 106) {
           url
         }
+      }
+      seo {
+        title
+        metaDesc
+        metaKeywords
+        opengraphDescription
+        opengraphTitle
+        opengraphImage
+        twitterImage
+        twitterTitle
+        twitterDescription
       }
     }
   }
@@ -104,20 +117,51 @@ const Layout = ({ router }: Props) => {
                 }
 
                 const {
+                  postId,
                   title,
                   content,
                   featuredImage,
                   extra,
                   date,
+                  modified,
                   podcast,
                   author,
-                  id,
                   tags,
-                  categories
+                  categories,
+                  seo
                 } = postBy;
 
                 return (
                   <>
+                    <PostPageSEO
+                      title={seo.title}
+                      description={seo.metaDesc}
+                      url={router.asPath}
+                      openGraph={{
+                        title: seo.opengraphTitle,
+                        description: seo.opengraphDescription,
+                        images: [
+                          {
+                            url: seo.opengraphImage || featuredImage.sourceUrl,
+                            height: 650,
+                            width: 850,
+                            alt: featuredImage.altText
+                          }
+                        ]
+                      }}
+                      article={{
+                        publishedTime: date,
+                        modifiedTime: modified,
+                        tags: tags.nodes.map(item => item.name),
+                        section: categories.nodes[0]
+                          ? categories.nodes[0].name
+                          : '',
+                        authors: [
+                          { name: author.name, image: author.avatar.url }
+                        ]
+                      }}
+                    />
+
                     {podcast.is_podcast_post ? (
                       <PostScreenPodcastHeader
                         title={title}
@@ -148,6 +192,8 @@ const Layout = ({ router }: Props) => {
                     </Row>
 
                     <PostRelatedContent
+                      postIdExclude={postId}
+                      title={title}
                       tags={tags.nodes.map(item => item.name)}
                       categories={categories.nodes.map(item => item.name)}
                     />

@@ -8,11 +8,14 @@ import CategoryPostBlock from './components/CategoryPostBlock';
 import HighlightBlock from './components/HighlightBlock';
 import { HomeBackground } from './index.style';
 import { PostCardList } from '@components/PostCards/List/index.style';
+import HomePageSEO from './components/SEO';
 
 const Home = () => {
   return (
     <ScreenClassProvider>
       <BodyBackground>
+        <HomePageSEO />
+
         <Header />
         <HeroSection categoriesExclude={[2, 132, 3, 11, 1]} />
 
