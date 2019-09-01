@@ -15,8 +15,8 @@ const EpisodeParticipants = ({
     <EpisodeParticipantsWrapper>
       <EpisodeParticipantsTitle>Participantes</EpisodeParticipantsTitle>
 
-      {episodeParticipants.map(item => (
-        <EpisodeParticipantsPerson key={item.userId}>
+      {episodeParticipants.map((item, index) => (
+        <EpisodeParticipantsPerson key={index}>
           <img src={item.avatar.url} />
 
           <EpisodeParticipantsName>{item.name}</EpisodeParticipantsName>
