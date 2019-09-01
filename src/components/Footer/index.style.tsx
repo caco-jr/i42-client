@@ -7,7 +7,7 @@ export const FooterWrapper = styled.footer`
 `;
 
 export const FooterTop = styled.section`
-  padding: 40px 0 30px;
+  padding: 30px 0;
   background: url('/static/images/background/bg-footer.webp') center;
   background-size: cover;
 

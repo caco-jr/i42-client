@@ -6,6 +6,7 @@ const BodyBackground = styled.section`
   background-attachment: fixed;
   background-position: top;
   min-height: 100vh;
+  padding-bottom: 20px;
 `;
 
 export default BodyBackground;
