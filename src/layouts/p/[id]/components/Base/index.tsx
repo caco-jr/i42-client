@@ -1,28 +1,17 @@
 import React from 'react';
-import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+
 import { PostPageBaseWrapper } from './index.style';
+import { usePageContext } from '@controllers/p/[id]';
 
-const GET_COLOR_MODE = gql`
-  {
-    configuration @client {
-      colorMode
-    }
-  }
-`;
+const PostPageBase = ({ children }) => {
+  const [state, setState] = usePageContext();
+  console.log('Page Context', state);
 
-const PostPageBase = ({ children }) => (
-  <Query query={GET_COLOR_MODE}>
-    {({ data: { configuration } }) => {
-      const colorTheme = configuration ? configuration.colorMode : 'dark';
-
-      return (
-        <PostPageBaseWrapper data-theme={colorTheme}>
-          {children}
-        </PostPageBaseWrapper>
-      );
-    }}
-  </Query>
-);
+  return (
+    <PostPageBaseWrapper data-theme={state.colorMode}>
+      {children}
+    </PostPageBaseWrapper>
+  );
+};
 
 export default PostPageBase;

@@ -1,66 +1,40 @@
 import React from 'react';
-import gql from 'graphql-tag';
 
 import Button from '@components/Button';
 import SvgLoader from '@components/SvgLoader';
-import { Query, Mutation } from 'react-apollo';
 import { PostPageToggleModeWrapper } from './index.style';
+import { usePageContext } from '@controllers/p/[id]';
 
-const GET_COLOR_MODE = gql`
-  {
-    configuration @client {
-      colorMode
-    }
-  }
-`;
+const PostPageToggleMode = () => {
+  const [state, setState] = usePageContext();
 
-const SET_COLOR_MODE = gql`
-  mutation SetConfiguration($colorMode: String!) {
-    setConfiguration(colorMode: $colorMode) @client
-  }
-`;
+  const componentClassName = 'post-page-toggle-mode';
+  const isDarkMode = state.colorMode === 'dark';
 
-const PostPageToggleMode = () => (
-  <Query query={GET_COLOR_MODE}>
-    {({ data: { configuration } }) => (
-      <Mutation mutation={SET_COLOR_MODE}>
-        {setConfiguration => {
-          const componentClassName = 'post-page-toggle-mode';
-          const isDarkMode = configuration.colorMode === 'dark';
+  const toggleMode = (): void => {
+    isDarkMode
+      ? setState({ ...state, colorMode: 'light' })
+      : setState({ ...state, colorMode: 'dark' });
 
-          const toggleMode = (): void => {
-            isDarkMode
-              ? setConfiguration({
-                  variables: { colorMode: 'light' }
-                })
-              : setConfiguration({
-                  variables: { colorMode: 'dark' }
-                });
-          };
+    isDarkMode
+      ? localStorage.setItem('colorMode', 'light')
+      : localStorage.setItem('colorMode', 'dark');
+  };
 
-          return (
-            <PostPageToggleModeWrapper>
-              <Button
-                type="button"
-                className={`${componentClassName} ${componentClassName}--${
-                  configuration.colorMode
-                }`}
-                styleType="basic"
-                onClick={toggleMode}
-              >
-                <span> Modo noturno </span>
+  return (
+    <PostPageToggleModeWrapper>
+      <Button
+        type="button"
+        className={`${componentClassName} ${componentClassName}--${state.colorMode}`}
+        styleType="basic"
+        onClick={toggleMode}
+      >
+        <span> Modo noturno </span>
 
-                <SvgLoader
-                  name="sun"
-                  className={`${componentClassName}__icon`}
-                />
-              </Button>
-            </PostPageToggleModeWrapper>
-          );
-        }}
-      </Mutation>
-    )}
-  </Query>
-);
+        <SvgLoader name="sun" className={`${componentClassName}__icon`} />
+      </Button>
+    </PostPageToggleModeWrapper>
+  );
+};
 
 export default PostPageToggleMode;

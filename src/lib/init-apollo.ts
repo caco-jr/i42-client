@@ -17,50 +17,26 @@ function create(initialState) {
     }),
     cache: new InMemoryCache().restore(initialState || {}),
     typeDefs: `
-      type Configuration {
-        colorMode: String
-      }
-
       type PodcastPlayer {
         src: String
       }
 
       type Query {
-        configuration: Configuration
         podcast: PodcastPlayer
       }
 
       type Mutation {
-        setConfiguration( colorMode: String )
         setPodcastAttribute( src: String )
       }
     `,
     resolvers: {
       Query: {
-        configuration: () => ({
-          __typename: 'Configuration',
-          colorMode: 'dark'
-        }),
         podcast: () => ({
           __typename: 'PodcastPlayer',
           src: ''
         })
       },
       Mutation: {
-        setConfiguration: async (
-          parent,
-          { colorMode },
-          { cache, getCacheKey }
-        ) => {
-          await cache.writeData({
-            data: {
-              configuration: {
-                colorMode,
-                __typename: 'Configuration'
-              }
-            }
-          });
-        },
         setPodcastAttribute: async (
           parent,
           { src },
