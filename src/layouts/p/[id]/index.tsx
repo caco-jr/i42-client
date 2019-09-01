@@ -14,6 +14,7 @@ import EpisodeParticipants from './components/EpisodeParticipants';
 import PostScreenPodcastHeader from './components/PodcastHeader';
 import PostRelatedContent from './components/RelatedContent';
 import PostPageSEO from './components/SEO';
+import Footer from '@components/Footer';
 
 interface Props extends AppProps {}
 
@@ -201,6 +202,8 @@ const Layout = ({ router }: Props) => {
           </PostPageBase>
         </Container>
       </BodyBackground>
+
+      <Footer />
     </ScreenClassProvider>
   );
 };

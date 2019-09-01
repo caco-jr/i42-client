@@ -4,6 +4,7 @@ import { ScreenClassProvider, Container } from 'react-grid-system';
 import { AppProps } from '@pages/_app';
 import BodyBackground from '@static/styles/BodyBackground';
 import Header from '@components/Header';
+import Footer from '@components/Footer';
 
 interface Props extends AppProps {}
 
@@ -18,7 +19,10 @@ const Layout = ({  }: Props) => {
             Hello World from __PATH__
           </span>
         </Container>
+
       </BodyBackground>
+
+      <Footer/>
     </ScreenClassProvider>
   );
 };

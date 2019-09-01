@@ -12,6 +12,7 @@ import CategoryPageInfo from './components/Info';
 import Pagination from '@components/Pagination';
 import { PostCardList } from '@components/PostCards/List/index.style';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading/index';
+import Footer from '@components/Footer';
 
 const postsByCategoryQuery = gql`
   query postsByCategory(
@@ -136,6 +137,8 @@ const Layout = ({ router }: Props) => {
           </CategoryPageWrapper>
         </Container>
       </BodyBackground>
+
+      <Footer />
     </ScreenClassProvider>
   );
 };

@@ -9,6 +9,7 @@ import HighlightBlock from './components/HighlightBlock';
 import { HomeBackground } from './index.style';
 import { PostCardList } from '@components/PostCards/List/index.style';
 import HomePageSEO from './components/SEO';
+import Footer from '@components/Footer';
 
 const Home = () => {
   return (
@@ -42,6 +43,8 @@ const Home = () => {
           </HomeBackground>
         </Container>
       </BodyBackground>
+
+      <Footer />
     </ScreenClassProvider>
   );
 };
