@@ -5,7 +5,6 @@ import { usePageContext } from '@controllers/p/[id]';
 
 const PostPageBase = ({ children }) => {
   const [state, setState] = usePageContext();
-  console.log('Page Context', state);
 
   return (
     <PostPageBaseWrapper data-theme={state.colorMode}>
