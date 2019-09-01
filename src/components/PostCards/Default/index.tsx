@@ -34,7 +34,7 @@ const PostCard = ({
     const width = 350;
     const height = 220;
 
-    setImageURL(handleImageSize(media.sourceUrl, width, height));
+    media && setImageURL(handleImageSize(media.sourceUrl, width, height));
   }, [media]);
 
   return (
@@ -42,7 +42,7 @@ const PostCard = ({
       <PostCardHeader>
         <Link {...link}>
           <PostCardImageLink href={link.as}>
-            <PostCardImage src={imageURL} alt={media.altText} />
+            <PostCardImage src={imageURL} alt={media ? media.altText : ''} />
           </PostCardImageLink>
         </Link>
 
