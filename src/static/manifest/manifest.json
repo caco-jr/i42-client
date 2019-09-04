@@ -1,6 +1,6 @@
 {
-  "short_name": "next-ts-template",
-  "name": "next-ts-template",
+  "short_name": "Império 42",
+  "name": "Império 42",
   "icons": [
     {
       "src": "/static/manifest/launcher-icon.png",
@@ -19,7 +19,7 @@
     }
   ],
   "start_url": "/?launcher=true",
-  "background_color": "#FFF",
-  "theme_color": "#111",
+  "background_color": "#0a0818",
+  "theme_color": "#201a41",
   "display": "standalone"
 }
