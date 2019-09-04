@@ -8,8 +8,17 @@ import Layout from '@layouts/c/[id]';
 interface InitialProps {}
 
 const getInitialProps = async ({
-
+  res
 }: NextPageContext & AppInitialProps): Promise<InitialProps> => {
+  if (res) {
+    const TIME_SECONDS = '1';
+
+    res.setHeader(
+      'Cache-Control',
+      `s-maxage=${TIME_SECONDS}, stale-while-revalidate`
+    );
+  }
+
   return {};
 };
 

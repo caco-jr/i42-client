@@ -7,23 +7,31 @@ import Layout from '@layouts/busca';
 
 interface InitialProps {}
 
-type Query = {}
+type Query = {};
 
 const getInitialProps = async ({
-
+  res
 }: NextPageContext & AppInitialProps): Promise<InitialProps> => {
-  return {}
-}
+  if (res) {
+    const TIME_SECONDS = '1';
+    res.setHeader(
+      'Cache-Control',
+      `s-maxage=${TIME_SECONDS}, stale-while-revalidate`
+    );
+  }
 
-const PageContext = React.createContext<AppProps & InitialProps>({} as any)
+  return {};
+};
+
+const PageContext = React.createContext<AppProps & InitialProps>({} as any);
 
 const Page = (pageProps: AppProps & InitialProps) => (
   <PageContext.Provider value={pageProps}>
-    <Layout {...pageProps}/>
+    <Layout {...pageProps} />
   </PageContext.Provider>
-)
+);
 
-Page.getInitialProps = getInitialProps
+Page.getInitialProps = getInitialProps;
 
-export default Page
-export const usePageContext = () => useContext(PageContext)
+export default Page;
+export const usePageContext = () => useContext(PageContext);

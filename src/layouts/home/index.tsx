@@ -35,6 +35,8 @@ const Home = () => {
                 categorySlug="nave-mainha"
               />
               <HighlightBlock sectionTitle="Games" categorySlug="games" />
+
+              {/* TODO: Fazer o category exclude para não aparecer reviews e críticas em Controle da Missão */}
               <HighlightBlock
                 sectionTitle="Controle da Missão"
                 categorySlug="controle-missao"
