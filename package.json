@@ -1,17 +1,13 @@
 {
   "name": "imperio-42",
-  "version": "2.1.1",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next \"src\"",
-    "build": "next build \"src\"",
-    "now-build": "npm run prepare && next build \"src\"",
-    "start": "next start \"src\"",
-    "build:serverless": "serverless package",
-    "new:page": "ts-node template-generator/generate_new_page.ts",
-    "lambda": "serverless offline start",
-    "deploy": "serverless deploy --package .serverless"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "new:page": "ts-node template-generator/generate_new_page.ts"
   },
   "keywords": [],
   "author": "",
