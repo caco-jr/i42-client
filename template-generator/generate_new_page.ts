@@ -34,9 +34,9 @@ for (const q of queries) {
 
 const queryTypeStr = JSON.stringify(queryType, null, 2).replace(/"/g, '');
 
-const PAGE_ROOT_PATH = path.resolve(__dirname, '../src/pages');
-const LAYOUT_ROOT_PATH = path.resolve(__dirname, '../src/layouts');
-const CONTROLLER_ROOT_PATH = path.resolve(__dirname, '../src/controllers');
+const PAGE_ROOT_PATH = path.resolve(__dirname, '../pages');
+const LAYOUT_ROOT_PATH = path.resolve(__dirname, '../layouts');
+const CONTROLLER_ROOT_PATH = path.resolve(__dirname, '../controllers');
 const PAGE_TEMPLATE_PATH = path.resolve(__dirname, 'templates/page.template');
 const LAYOUT_TEMPLATE_PATH = path.resolve(
   __dirname,
@@ -128,3 +128,5 @@ checkDir(LAYOUT_ROOT_PATH);
 createNewPage();
 createNewController();
 createNewLayout();
+
+export {};
