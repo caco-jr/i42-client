@@ -30,6 +30,10 @@ interface PostsParamsWPAPI {
 }
 
 const handleParams = params => {
+  if (!params) {
+    return '';
+  }
+
   return new URLSearchParams(Object.entries(params));
 };
 

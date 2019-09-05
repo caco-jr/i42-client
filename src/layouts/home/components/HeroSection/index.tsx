@@ -1,23 +1,31 @@
 import React from 'react';
 import { Container } from 'react-grid-system';
 import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
 
 import { HeroSectionWrapper } from './hero-section.style';
 import PostCardCompact from '@components/PostCards/Compact';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
-import { Query } from 'react-apollo';
 
 const allPostsQuery = gql`
-  query allPosts($categoriesExclude: [Int], $limit: Int) {
-    allPosts(categoriesExclude: $categoriesExclude, limit: $limit) {
-      title
-      media {
-        thumbnail
-      }
-      slug
-      categories {
-        id
-        name
+  query allPosts($categoriesExclude: [ID], $limit: Int) {
+    posts(where: { categoryNotIn: $categoriesExclude }, first: $limit) {
+      nodes {
+        title
+        featuredImage {
+          sourceUrl
+          altText
+        }
+        slug
+        categories {
+          nodes {
+            slug
+            name
+            extra {
+              categoryColor
+            }
+          }
+        }
       }
     }
   }
@@ -32,14 +40,14 @@ const HeroSection = ({
 
   return (
     <Query query={allPostsQuery} variables={{ categoriesExclude, limit: 3 }}>
-      {({ loading, data: { allPosts } }) => {
+      {({ loading, data: { posts } }) => {
         return (
           <Container>
             <HeroSectionWrapper>
               {!loading
-                ? allPosts.map((post, index) => {
+                ? posts.nodes.map((post, index) => {
                     const width = index === 0 ? 735 : 367;
-                    const height = index === 0 ? 495 : 230;
+                    const height = index === 0 ? 495 : 300;
 
                     return (
                       <PostCardCompact
@@ -47,19 +55,24 @@ const HeroSection = ({
                         className={`${componentClassName}__post`}
                         width={width}
                         height={height}
-                        image={post.media.thumbnail}
+                        media={post.featuredImage}
                         title={post.title}
                         slug={post.slug}
                         categories={post.categories}
                       />
                     );
                   })
-                : [...Array(3)].map((item, index) => (
-                    <PostCardCompactLoading
-                      key={index}
-                      className={`${componentClassName}__post ${componentClassName}__post-loading`}
-                    />
-                  ))}
+                : [...Array(3)].map((item, index) => {
+                    const height = index === 0 ? 495 : '100%';
+
+                    return (
+                      <PostCardCompactLoading
+                        key={index}
+                        height={height}
+                        className={`${componentClassName}__post ${componentClassName}__post-loading`}
+                      />
+                    );
+                  })}
             </HeroSectionWrapper>
           </Container>
         );

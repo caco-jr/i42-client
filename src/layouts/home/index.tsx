@@ -1,35 +1,52 @@
 import React from 'react';
-import { ScreenClassProvider } from 'react-grid-system';
+import { ScreenClassProvider, Container } from 'react-grid-system';
 
 import BodyBackground from '@static/styles/BodyBackground';
 import Header from '@components/Header';
 import HeroSection from './components/HeroSection';
 import CategoryPostBlock from './components/CategoryPostBlock';
 import HighlightBlock from './components/HighlightBlock';
+import { HomeBackground } from './index.style';
+import { PostCardList } from '@components/PostCards/List/index.style';
+import HomePageSEO from './components/SEO';
+import Footer from '@components/Footer';
 
 const Home = () => {
   return (
     <ScreenClassProvider>
       <BodyBackground>
+        <HomePageSEO />
+
         <Header />
         <HeroSection categoriesExclude={[2, 132, 3, 11, 1]} />
 
-        <CategoryPostBlock
-          categoryID={2}
-          categorySlug="noticias-cinema"
-          sectionTitle="Notícias"
-        />
+        <Container>
+          <HomeBackground>
+            <CategoryPostBlock
+              categorySlug="noticias"
+              sectionTitle="Notícias"
+            />
 
-        <CategoryPostBlock
-          categoryID={132}
-          categorySlug="reviews-cinema"
-          sectionTitle="Reviews"
-        />
+            <CategoryPostBlock categorySlug="reviews" sectionTitle="Reviews" />
 
-        <HighlightBlock sectionTitle="Nave Mainha" categoryID={3} />
-        <HighlightBlock sectionTitle="Games" categoryID={11} />
-        <HighlightBlock sectionTitle="Controle da Missão" categoryID={1} />
+            <PostCardList>
+              <HighlightBlock
+                sectionTitle="Nave Mainha"
+                categorySlug="nave-mainha"
+              />
+              <HighlightBlock sectionTitle="Games" categorySlug="games" />
+
+              {/* TODO: Fazer o category exclude para não aparecer reviews e críticas em Controle da Missão */}
+              <HighlightBlock
+                sectionTitle="Controle da Missão"
+                categorySlug="controle-missao"
+              />
+            </PostCardList>
+          </HomeBackground>
+        </Container>
       </BodyBackground>
+
+      <Footer />
     </ScreenClassProvider>
   );
 };

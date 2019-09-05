@@ -1,12 +1,30 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import { ScreenClassProvider, Container } from 'react-grid-system';
 
-interface Props {}
+import { AppProps } from '@pages/_app';
+import BodyBackground from '@static/styles/BodyBackground';
+import Header from '@components/Header';
+import Footer from '@components/Footer';
 
-const Layout = ({}: Props) => {
-  return <Wrapper>Hello World from __PATH__</Wrapper>
-}
+interface Props extends AppProps {}
 
-const Wrapper = styled.div``
+const Layout = ({  }: Props) => {
+  return (
+    <ScreenClassProvider>
+      <BodyBackground>
+        <Header />
 
-export default Layout
+        <Container>
+          <span style={{ color: 'var(--text-color)' }}>
+            Hello World from __PATH__
+          </span>
+        </Container>
+
+      </BodyBackground>
+
+      <Footer/>
+    </ScreenClassProvider>
+  );
+};
+
+export default Layout;

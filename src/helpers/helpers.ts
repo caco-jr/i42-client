@@ -61,5 +61,5 @@ export const handleAttributes = (attributes: string[], node: HTMLElement) => {
   return object;
 };
 
-export const getRandomItem = (list: any[]) =>
+export const getRandomItem = (list: any[]): string =>
   list[Math.floor(Math.random() * list.length)];

@@ -16,7 +16,7 @@ import { handleLimitCharacters, decode } from '@helpers/helpers';
 
 const PostCardCompactDesktop = ({
   className = '',
-  image,
+  media,
   slug,
   title,
   categories,
@@ -34,14 +34,21 @@ const PostCardCompactDesktop = ({
 
     const newHeight = postHeight < 200 ? 450 : postHeight;
 
-    setImageURL(handleImageSize(image, postWidth, newHeight));
-  }, [height, width, image, title]);
+    if (media) {
+      setImageURL(handleImageSize(media.sourceUrl, postWidth, newHeight));
+    } else {
+      setImageURL('');
+    }
+  }, [height, width, media, title]);
 
   return (
-    <PostCardCompactDesktopWrapper ref={ref}>
-      <Link href={link}>
+    <PostCardCompactDesktopWrapper ref={ref} className={className}>
+      <Link {...link}>
         <a>
-          <PostCardCompactDesktopImage alt={title} src={imageURL} />
+          <PostCardCompactDesktopImage
+            alt={media ? media.altText : ''}
+            src={imageURL}
+          />
 
           <Mask />
         </a>
@@ -49,13 +56,18 @@ const PostCardCompactDesktop = ({
 
       <PostCardCompactDesktopInfo>
         {categories
-          ? categories.map((item, index) => (
-              <CategoryLabel id={item.id} name={item.name} key={index} />
+          ? categories.nodes.map((item, index) => (
+              <CategoryLabel
+                slug={item.slug}
+                name={item.name}
+                key={index}
+                color={item.extra.categoryColor}
+              />
             ))
           : null}
 
-        <Link href={link}>
-          <PostCardCompactDesktopTitle>
+        <Link {...link}>
+          <PostCardCompactDesktopTitle href={link.as}>
             {handleLimitCharacters(decode(title))}
           </PostCardCompactDesktopTitle>
         </Link>

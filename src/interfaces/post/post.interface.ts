@@ -1,60 +1,45 @@
+import { UserAPIInterface } from '@interfaces/user/user.interface';
+import { CategoryAPIInterface } from '@interfaces/category/category.interface';
+
 export interface PostAPIInterface {
   id: number;
   title: string;
   slug: string;
   date: string;
-  date_modified: string;
   content: string;
   excerpt: string;
-  media: MediaPostAPIInterface;
-  author: AuthorPostAPIInterface;
-  tags: TermPostAPIInterface[];
-  categories: CategoryPostAPIInterface[];
-  acf?: PostACFAPIInterface;
+  featuredImage: PostMediaAPIInterface;
+  author: UserAPIInterface;
+  tags: PostTermAPIInterface[];
+  categories: CategoryAPIInterface;
+  extra: PostExtraInterface;
+  review: PostReviewInterface;
+  podcast: PostPodcastInterface;
 }
 
-interface MediaPostAPIInterface {
-  thumbnail: string;
+export interface PostMediaAPIInterface {
+  sourceUrl: string;
+  srcSet: string;
+  sizes: string;
+  altText: string;
 }
 
-interface AuthorPostAPIInterface {
-  id: number;
-  name: string;
-  avatar_url: string;
-}
-
-export interface TermPostAPIInterface {
-  id: number;
-  name: string;
-  slug: string;
-}
-
-export interface CategoryPostAPIInterface {
+export interface PostTermAPIInterface {
   id: number;
   name: string;
   slug: string;
-  color: string;
 }
 
-export interface PostACFAPIInterface {
-  subtitle?: string;
-  has_rating?: boolean;
-  rating?: string;
-  has_spoiler?: boolean;
-  is_podcast_post?: boolean;
-  episode_participants?: ACFEpisodeParticipantsInterface[];
+interface PostExtraInterface {
+  subtitle: string;
 }
 
-interface ACFEpisodeParticipantsInterface {
-  ID: number;
-  display_name: string;
-  nickname: string;
-  user_avatar: string;
-  user_description: string;
-  user_email: string;
-  user_firstname: string;
-  user_lastname: string;
-  user_nicename: string;
-  user_registered: string;
-  user_url: string;
+export interface PostReviewInterface {
+  hasRating: boolean;
+  rating: string;
+}
+
+export interface PostPodcastInterface {
+  episodeParticipants: UserAPIInterface[];
+  isPodcastPost: boolean;
 }

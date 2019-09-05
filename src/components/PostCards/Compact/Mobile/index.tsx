@@ -5,7 +5,7 @@ import { PostCardCompactInterface } from '../post-card-compact.interface';
 
 const PostCardCompactMobile = ({
   className = '',
-  image,
+  media,
   slug,
   title,
   categories,
@@ -18,7 +18,7 @@ const PostCardCompactMobile = ({
     <section className={`${className} ${componentClassName}`}>
       <PostCard
         className={`${className}__post`}
-        image={image}
+        media={media}
         title={title}
         slug={slug}
         categories={categories}

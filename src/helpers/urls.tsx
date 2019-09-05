@@ -1,8 +1,15 @@
 import { removeAccents } from './helpers';
 
-export const getPostURL = (postSlug: string): string => `/p/${postSlug}`;
+export const getPostURL = (postSlug: string): { href: string; as: string } => ({
+  href: `/p/[id]`,
+  as: `/p/${postSlug}`
+});
 
-export const getCategoryURL = (categorySlug: string): string =>
-  `/c/${removeAccents(categorySlug)
+export const getCategoryURL = (
+  categorySlug: string
+): { href: string; as: string } => ({
+  href: `/c/[id]`,
+  as: `/c/${removeAccents(categorySlug)
     .replace(/\s/g, '-')
-    .toLowerCase()}`;
+    .toLowerCase()}`
+});

@@ -10,12 +10,49 @@ function create(initialState) {
     connectToDevTools: isBrowser,
     ssrMode: !isBrowser, // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
-      uri: 'http://localhost:3000/api/graphql', // Server URL (must be absolute)
+      uri: 'https://imperio42.com.br/graphql', // Server URL (must be absolute)
       credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
       // Use fetch() polyfill on the server
       fetch: !isBrowser && fetch
     }),
-    cache: new InMemoryCache().restore(initialState || {})
+    cache: new InMemoryCache().restore(initialState || {}),
+    typeDefs: `
+      type PodcastPlayer {
+        src: String
+      }
+
+      type Query {
+        podcast: PodcastPlayer
+      }
+
+      type Mutation {
+        setPodcastAttribute( src: String )
+      }
+    `,
+    resolvers: {
+      Query: {
+        podcast: () => ({
+          __typename: 'PodcastPlayer',
+          src: ''
+        })
+      },
+      Mutation: {
+        setPodcastAttribute: async (
+          parent,
+          { src },
+          { cache, getCacheKey }
+        ) => {
+          await cache.writeData({
+            data: {
+              podcast: {
+                src,
+                __typename: 'PodcastPlayer'
+              }
+            }
+          });
+        }
+      }
+    }
   });
 }
 

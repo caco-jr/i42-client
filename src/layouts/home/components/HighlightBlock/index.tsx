@@ -7,18 +7,33 @@ import PostCardCompact from '@components/PostCards/Compact';
 import PostCardHorizontal from '@components/PostCards/Horizontal';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
 import PostCardHorizontalLoading from '@components/PostCards/Horizontal/Loading';
+import SectionTitle from '@components/SectionTitle';
+import {
+  HighlightBlockWrapper,
+  HighlightBlockPostsContainer
+} from './index.style';
 
 const postsByCategoryQuery = gql`
-  query postsByCategory($ID: Int!, $limit: Int) {
-    postsByCategory(ID: $ID, limit: $limit) {
-      title
-      media {
-        thumbnail
-      }
-      slug
-      categories {
-        id
-        name
+  query postsByCategory($categorySlug: String, $limit: Int) {
+    posts(first: $limit, where: { categoryName: $categorySlug }) {
+      nodes {
+        title
+        excerpt
+        date
+        featuredImage {
+          sourceUrl
+          altText
+        }
+        slug
+        categories {
+          nodes {
+            slug
+            name
+            extra {
+              categoryColor
+            }
+          }
+        }
       }
     }
   }
@@ -27,26 +42,23 @@ const postsByCategoryQuery = gql`
 const HighlightBlock = (props: HighlightBlockInterface) => {
   const componentClassName = 'highlight-block';
 
-  const { categoryID, sectionTitle } = props;
+  const { categorySlug, sectionTitle } = props;
 
   return (
-    <Query
-      query={postsByCategoryQuery}
-      variables={{ ID: categoryID, limit: 3 }}
-    >
-      {({ loading, data: { postsByCategory } }) => (
-        <section className={componentClassName}>
-          <h2 className={`${componentClassName}__title`}>{sectionTitle}</h2>
+    <Query query={postsByCategoryQuery} variables={{ categorySlug, limit: 3 }}>
+      {({ loading, data: { posts } }) => (
+        <HighlightBlockWrapper>
+          <SectionTitle>{sectionTitle}</SectionTitle>
 
-          <section className={`${componentClassName}__posts-container`}>
+          <HighlightBlockPostsContainer>
             {!loading
-              ? postsByCategory.map((post, index) => {
+              ? posts.nodes.map((post, index) => {
                   if (index === 0) {
                     return (
                       <PostCardCompact
                         key={index}
                         className={`${componentClassName}__post-large`}
-                        image={post.media.thumbnail}
+                        media={post.featuredImage}
                         title={post.title}
                         slug={post.slug}
                         categories={post.categories}
@@ -57,7 +69,7 @@ const HighlightBlock = (props: HighlightBlockInterface) => {
                       <PostCardHorizontal
                         className={`${componentClassName}__post`}
                         key={index}
-                        image={post.media.thumbnail}
+                        media={post.featuredImage}
                         title={post.title}
                         slug={post.slug}
                         date={post.date}
@@ -82,8 +94,8 @@ const HighlightBlock = (props: HighlightBlockInterface) => {
                     );
                   }
                 })}
-          </section>
-        </section>
+          </HighlightBlockPostsContainer>
+        </HighlightBlockWrapper>
       )}
     </Query>
   );

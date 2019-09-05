@@ -5,10 +5,18 @@ import { PostCardHorizontalInterface } from './post-card-horizontal.interface';
 import { getPostURL } from '@helpers/urls';
 import { handleImageSize } from '@utils/image';
 import { handleLimitCharacters, handleDate, decode } from '@helpers/helpers';
+import {
+  PostCardHorizontalWrapper,
+  PostCardHorizontalLeft,
+  PostCardHorizontalRight,
+  PostCardHorizontalTitle,
+  PostCardHorizontalDate,
+  PostCardHorizontalImage
+} from './index.style';
 
 const PostCardHorizontal = ({
   className = '',
-  image,
+  media,
   slug,
   title,
   date
@@ -21,39 +29,33 @@ const PostCardHorizontal = ({
     const width = 120;
     const height = 120;
 
-    setImageURL(handleImageSize(image, width, height));
-  }, [image]);
+    setImageURL(handleImageSize(media.sourceUrl, width, height));
+  }, [media]);
 
   const componentClassName = 'c-post-card-horizontal';
 
   return (
-    <article className={`${componentClassName} ${className}`}>
-      <section className={`${componentClassName}__left`}>
-        <Link href={link}>
+    <PostCardHorizontalWrapper className={className}>
+      <PostCardHorizontalLeft>
+        <Link {...link}>
           <a className={`${componentClassName}__image-link`}>
-            <img
-              src={imageURL}
-              alt=""
-              className={`${componentClassName}__image`}
-            />
+            <PostCardHorizontalImage src={imageURL} alt={media.altText} />
           </a>
         </Link>
-      </section>
+      </PostCardHorizontalLeft>
 
-      <section className={`${componentClassName}__right`}>
-        <Link href={link}>
+      <PostCardHorizontalRight>
+        <Link {...link}>
           <a className={`${componentClassName}__link`}>
-            <h3 className={`${componentClassName}__title`}>
+            <PostCardHorizontalTitle>
               {handleLimitCharacters(decode(title))}
-            </h3>
+            </PostCardHorizontalTitle>
           </a>
         </Link>
 
-        <span className={`${componentClassName}__date`}>
-          {handleDate(date)}
-        </span>
-      </section>
-    </article>
+        <PostCardHorizontalDate>{handleDate(date)}</PostCardHorizontalDate>
+      </PostCardHorizontalRight>
+    </PostCardHorizontalWrapper>
   );
 };
 

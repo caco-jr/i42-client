@@ -1,13 +1,3 @@
-export interface PostCardInterface {
-  className?: string;
-  image: string;
-  slug: string;
-  title: string;
-  content?: string;
-  categories: CategoryInterface[];
-}
+import { BasePostCardInterface } from '../index.interface';
 
-interface CategoryInterface {
-  id: number | string;
-  name: string;
-}
+export interface PostCardInterface extends BasePostCardInterface {}

@@ -8,18 +8,30 @@ import PostCardLoading from '@components/PostCards/Default/Loading';
 import { getCategoryURL } from '@helpers/urls';
 import Button from '@components/Button';
 import { Query } from 'react-apollo';
+import { PostCardList } from '@components/PostCards/List/index.style';
+import { CategoryPostBlockWrapper } from './index.style';
+import SectionTitle from '@components/SectionTitle';
 
 const postsByCategoryQuery = gql`
-  query postsByCategory($ID: Int!, $limit: Int!) {
-    postsByCategory(ID: $ID, limit: $limit) {
-      title
-      media {
-        thumbnail
-      }
-      slug
-      categories {
-        id
-        name
+  query postsByCategory($categorySlug: String, $first: Int) {
+    posts(first: $first, where: { categoryName: $categorySlug }) {
+      nodes {
+        title
+        excerpt
+        featuredImage {
+          sourceUrl
+          altText
+        }
+        slug
+        categories {
+          nodes {
+            slug
+            name
+            extra {
+              categoryColor
+            }
+          }
+        }
       }
     }
   }
@@ -27,46 +39,59 @@ const postsByCategoryQuery = gql`
 
 const CategoryPostBlock = ({
   sectionTitle,
-  categorySlug,
-  categoryID
+  categorySlug
 }: CategoryPostInterface) => {
   const componentClassName = 'category-post-block';
 
   return (
     <Query
       query={postsByCategoryQuery}
-      variables={{ ID: categoryID, limit: 3 }}
+      variables={{
+        categorySlug,
+        first: 3
+      }}
     >
-      {({ loading, data: { postsByCategory } }) => (
-        <section className={componentClassName}>
-          <h2 className={`${componentClassName}__title`}>{sectionTitle}</h2>
+      {({ loading, data: { posts } }) => (
+        <CategoryPostBlockWrapper>
+          <SectionTitle>{sectionTitle}</SectionTitle>
 
-          <section className={`${componentClassName}__container`}>
+          <PostCardList>
             {!loading
-              ? postsByCategory.map((post, index) => {
+              ? posts.nodes.map((post, index) => {
+                  const {
+                    title,
+                    excerpt,
+                    featuredImage,
+                    slug,
+                    categories
+                  } = post;
+
                   return (
                     <PostCard
-                      className={`${componentClassName}__post ${componentClassName}__post--${index}`}
                       key={index}
-                      image={post.media.thumbnail}
-                      title={post.title}
-                      content={post.excerpt}
-                      slug={post.slug}
-                      categories={post.categories}
+                      media={featuredImage}
+                      title={title}
+                      content={excerpt}
+                      slug={slug}
+                      categories={categories}
                     />
                   );
                 })
               : [...Array(3)].map((item, index) => (
                   <PostCardLoading key={index} />
                 ))}
-          </section>
+          </PostCardList>
 
-          <Link href={getCategoryURL(categorySlug)}>
-            <a className={`${componentClassName}__button`}>
+          <Link {...getCategoryURL(categorySlug)}>
+            <Button
+              as="a"
+              styleType="outline"
+              href={getCategoryURL(categorySlug).as}
+            >
               Mais {sectionTitle}
-            </a>
+            </Button>
           </Link>
-        </section>
+        </CategoryPostBlockWrapper>
       )}
     </Query>
   );
