@@ -177,6 +177,12 @@ const Layout = ({ router }: Props) => {
                       />
                     )}
 
+                    <div id="audimaWidget"></div>
+                    <script
+                      src="http://audio.audima.co/audima-widget.js"
+                      defer
+                    ></script>
+
                     <Row>
                       <Col lg={8}>
                         <PostContent content={handleContent(content)} />
