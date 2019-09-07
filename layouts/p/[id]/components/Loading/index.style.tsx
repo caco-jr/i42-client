@@ -43,7 +43,7 @@ export const PostPageLoadingImage = styled.section<Props>`
     background: linear-gradient(
       to right,
       rgba(10, 8, 24, 0) 0%,
-      rgba(10, 8, 24, 0.6) 30%,
+      rgba(21, 17, 47, 0.6) 30%,
       rgba(10, 8, 24, 0) 81%
     );
   }
