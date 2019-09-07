@@ -29,11 +29,11 @@ export const FooterTop = styled.section`
 `;
 
 export const FooterBottom = styled.section`
-  text-align: center;
+  text-align: left;
   padding: 25px 0 30px;
 
   p:nth-of-type(1) {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
 `;
 

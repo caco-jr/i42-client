@@ -13,7 +13,7 @@ const getInitialProps = async ({
   res
 }: NextPageContext & AppInitialProps): Promise<InitialProps> => {
   if (res) {
-    const TIME_SECONDS = '1';
+    const TIME_SECONDS = 60 * 60 * 4;
     res.setHeader(
       'Cache-Control',
       `s-maxage=${TIME_SECONDS}, stale-while-revalidate`
