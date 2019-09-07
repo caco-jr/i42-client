@@ -19,6 +19,10 @@ export const PodcastPlayerWrapper = styled.section`
   transform: translateY(0);
   z-index: 99;
 
+  &:focus {
+    outline: none;
+  }
+
   &:hover {
     transform: translateY(-45px);
   }
