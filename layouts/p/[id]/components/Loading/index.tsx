@@ -24,7 +24,7 @@ const PostPageLoading = () => {
         </Col>
       </Row>
 
-      <PostPageLoadingImage style={{ margin: '45px 0' }} />
+      <PostPageLoadingImage height={450} style={{ margin: '45px 0' }} />
 
       <Row>
         <Col xs={12} md={9}>
