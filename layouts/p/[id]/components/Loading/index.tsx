@@ -12,7 +12,11 @@ const PostPageLoading = () => {
     <PostPageLoadingWrapper>
       <Row>
         <Col xs={12} md={9}>
-          <PostPageLoadingBar width="calc( 100% - 50px )" height={35} />
+          <PostPageLoadingBar
+            width="calc( 100% - 50px )"
+            height={35}
+            style={{ marginBottom: '15px' }}
+          />
         </Col>
 
         <Col xs={12} md={3}>
