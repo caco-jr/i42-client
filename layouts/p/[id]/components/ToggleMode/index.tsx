@@ -28,6 +28,7 @@ const PostPageToggleMode = () => {
         className={`${componentClassName} ${componentClassName}--${state.colorMode}`}
         styleType="basic"
         onClick={toggleMode}
+        aria-label="Mudar modo de leitura"
       >
         <span> Modo {isDarkMode ? 'diurno' : 'noturno'} </span>
 
