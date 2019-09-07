@@ -29,7 +29,7 @@ const PostPageToggleMode = () => {
         styleType="basic"
         onClick={toggleMode}
       >
-        <span> Modo noturno </span>
+        <span> Modo {isDarkMode ? 'diurno' : 'noturno'} </span>
 
         <SvgLoader name="sun" className={`${componentClassName}__icon`} />
       </Button>
