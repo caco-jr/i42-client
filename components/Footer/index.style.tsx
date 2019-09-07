@@ -4,12 +4,12 @@ const component = '.c-footer';
 
 export const FooterWrapper = styled.footer`
   color: var(--text-color);
+  background: url('/static/images/background/footer.webp') center;
+  background-size: cover;
 `;
 
 export const FooterTop = styled.section`
   padding: 30px 0;
-  background: url('/static/images/background/bg-footer.webp') center;
-  background-size: cover;
 
   a {
     color: var(--text-color);
@@ -29,7 +29,6 @@ export const FooterTop = styled.section`
 `;
 
 export const FooterBottom = styled.section`
-  background-color: var(--background-color);
   text-align: center;
   padding: 25px 0 30px;
 

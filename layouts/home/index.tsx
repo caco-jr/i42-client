@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScreenClassProvider, Container } from 'react-grid-system';
 
-import BodyBackground from '@static/styles/BodyBackground';
+import BodyBackground from '@components/BodyBackground';
 import Header from '@components/Header';
 import HeroSection from './components/HeroSection';
 import CategoryPostBlock from './components/CategoryPostBlock';

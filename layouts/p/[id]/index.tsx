@@ -3,7 +3,7 @@ import { ScreenClassProvider, Container, Row, Col } from 'react-grid-system';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
-import BodyBackground from '@static/styles/BodyBackground';
+import BodyBackground from '@components/BodyBackground';
 import Header from '@components/Header';
 import PostPageBase from './components/Base';
 import { AppProps } from '@pages/_app';
