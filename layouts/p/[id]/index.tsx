@@ -16,6 +16,7 @@ import PostRelatedContent from './components/RelatedContent';
 import PostPageSEO from './components/SEO';
 import Footer from '@components/Footer';
 import PostPageLoading from './components/Loading';
+import { handleLimitCharacters, decode } from '@helpers/helpers';
 
 interface Props extends AppProps {}
 
@@ -134,11 +135,15 @@ const Layout = ({ router }: Props) => {
                   <>
                     <PostPageSEO
                       title={seo.title}
-                      description={seo.metaDesc}
+                      description={
+                        seo.metaDesc || handleLimitCharacters(decode(content))
+                      }
                       url={router.asPath}
                       openGraph={{
                         title: seo.opengraphTitle,
-                        description: seo.opengraphDescription,
+                        description:
+                          seo.opengraphDescription ||
+                          handleLimitCharacters(decode(content)),
                         images: [
                           {
                             url: seo.opengraphImage || featuredImage.sourceUrl,
