@@ -88,6 +88,7 @@ const Footer = () => {
                 href="https://www.instagram.com/imperio_42"
                 target="_blank"
                 aria-label={`Nos siga no Instagram`}
+                rel="noopener"
               >
                 Instagram
               </a>
@@ -96,6 +97,7 @@ const Footer = () => {
                 href="https://twitter.com/imperio42"
                 target="_blank"
                 aria-label={`Nos siga no Twitter`}
+                rel="noopener"
               >
                 Twitter
               </a>
