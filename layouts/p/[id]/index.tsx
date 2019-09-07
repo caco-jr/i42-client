@@ -15,6 +15,7 @@ import PostScreenPodcastHeader from './components/PodcastHeader';
 import PostRelatedContent from './components/RelatedContent';
 import PostPageSEO from './components/SEO';
 import Footer from '@components/Footer';
+import PostPageLoading from './components/Loading';
 
 interface Props extends AppProps {}
 
@@ -111,7 +112,7 @@ const Layout = ({ router }: Props) => {
             <Query query={getPostQuery} variables={{ slug: router.query.id }}>
               {({ loading, data: { postBy } }) => {
                 if (loading) {
-                  return <h1>Carregando...</h1>;
+                  return <PostPageLoading />;
                 }
 
                 const {
