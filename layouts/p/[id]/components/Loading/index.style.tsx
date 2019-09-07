@@ -10,7 +10,7 @@ const loaderAnimate = keyframes`
 `;
 
 interface Props {
-  height?: number;
+  height?: string;
   width?: string;
 }
 
@@ -26,15 +26,7 @@ export const PostPageLoadingImage = styled.section<Props>`
   position: relative;
   overflow: hidden;
   z-index: 2;
-
-  ${props =>
-    props.height
-      ? css`
-          height: ${props.height}px;
-        `
-      : css`
-          height: 240px;
-        `}
+  min-height: 240px;
 
   &:after {
     content: '';
@@ -55,6 +47,17 @@ export const PostPageLoadingImage = styled.section<Props>`
       rgba(10, 8, 24, 0) 81%
     );
   }
+
+  @media (min-width: 768px) {
+    ${props =>
+      props.height
+        ? css`
+            height: ${props.height};
+          `
+        : css`
+            height: 240px;
+          `}
+  }
 `;
 
 export const PostPageLoadingBar = styled.span<Props>`
@@ -67,7 +70,7 @@ export const PostPageLoadingBar = styled.span<Props>`
   ${props =>
     props.height
       ? css`
-          height: ${props.height}px;
+          height: ${props.height};
         `
       : css`
           height: 24px;
