@@ -21,7 +21,7 @@ export default class MyDocument extends Document<any> {
 
   render() {
     return (
-      <html>
+      <html lang="pt-BR">
         <Head>
           <meta
             name="viewport"

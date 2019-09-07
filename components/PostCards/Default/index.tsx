@@ -41,7 +41,10 @@ const PostCard = ({
     <PostCardWrapper className={className}>
       <PostCardHeader>
         <Link {...link}>
-          <PostCardImageLink href={link.as}>
+          <PostCardImageLink
+            href={link.as}
+            aria-label={`Leia mais sobre: ${title}`}
+          >
             <PostCardImage src={imageURL} alt={media ? media.altText : ''} />
           </PostCardImageLink>
         </Link>
@@ -60,7 +63,7 @@ const PostCard = ({
 
       <PostCardBody>
         <Link {...link}>
-          <PostCardLink href={link.as}>
+          <PostCardLink href={link.as} aria-label={`Leia mais sobre: ${title}`}>
             <PostCardTitle>
               {handleLimitCharacters(decode(title))}
             </PostCardTitle>

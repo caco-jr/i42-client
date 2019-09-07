@@ -25,7 +25,11 @@ const Footer = () => {
             >
               <FooterTitle>Sobre</FooterTitle>
 
-              <a href="mailTo:contato@imperio42.com.br" target="_blank">
+              <a
+                href="mailTo:contato@imperio42.com.br"
+                target="_blank"
+                aria-label={`Mande um email para nós`}
+              >
                 contato@imperio42.com.br
               </a>
             </Col>
@@ -39,11 +43,15 @@ const Footer = () => {
               <FooterTitle>Programas</FooterTitle>
 
               <Link {...getCategoryURL('nave-mainha')}>
-                <a>Nave Mainha</a>
+                <a aria-label={`Ir para a categoria Nave Mãinha`}>
+                  Nave Mainha
+                </a>
               </Link>
 
               <Link {...getCategoryURL('imperialista')}>
-                <a>ImperiaLista</a>
+                <a aria-label={`Ir para a categoria Imperialista`}>
+                  ImperiaLista
+                </a>
               </Link>
             </Col>
 
@@ -56,15 +64,15 @@ const Footer = () => {
               <FooterTitle>Notícias</FooterTitle>
 
               <Link {...getCategoryURL('cinema')}>
-                <a>Cinema</a>
+                <a aria-label={`Ir para a categoria Cinema`}>Cinema</a>
               </Link>
 
               <Link {...getCategoryURL('series')}>
-                <a>Séries</a>
+                <a aria-label={`Ir para a categoria Séries`}>Séries</a>
               </Link>
 
               <Link {...getCategoryURL('games')}>
-                <a>Games</a>
+                <a aria-label={`Ir para a categoria Games`}>Games</a>
               </Link>
             </Col>
 
@@ -76,11 +84,19 @@ const Footer = () => {
             >
               <FooterTitle>Redes sociais</FooterTitle>
 
-              <a href="https://www.instagram.com/imperio_42" target="_blank">
+              <a
+                href="https://www.instagram.com/imperio_42"
+                target="_blank"
+                aria-label={`Nos siga no Instagram`}
+              >
                 Instagram
               </a>
 
-              <a href="https://twitter.com/imperio42" target="_blank">
+              <a
+                href="https://twitter.com/imperio42"
+                target="_blank"
+                aria-label={`Nos siga no Twitter`}
+              >
                 Twitter
               </a>
             </Col>

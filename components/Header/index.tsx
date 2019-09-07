@@ -31,7 +31,10 @@ const Header = () => {
           <Row>
             <Col xs={10} sm={2}>
               <Link href="/">
-                <a className={`${componentClassName}__logo`}>
+                <a
+                  className={`${componentClassName}__logo`}
+                  aria-label="Ir para a home page"
+                >
                   <SvgLoader
                     name="logo"
                     className={`${componentClassName}__logo-image`}

@@ -32,6 +32,8 @@ const Search = ({ router }: SearchInterface) => {
         type="submit"
         styleType="basic"
         className={`${componentClassName}__button`}
+        aria-label="Buscar posts"
+        aria-labelledby="search"
       >
         <SvgLoader name="search" className={`${componentClassName}__icon`} />
       </Button>

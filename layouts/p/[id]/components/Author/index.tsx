@@ -11,7 +11,7 @@ import {
 const PostAuthor = ({ name, image }: PostAuthorInterface) => {
   return (
     <PostAuthorWrapper>
-      <PostAuthorImage src={image} />
+      <PostAuthorImage src={image} alt={`Foto do autor, ${name}`} />
 
       <figcaption>
         <PostAuthorTitle>Publicado por</PostAuthorTitle>

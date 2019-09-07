@@ -46,6 +46,7 @@ const NavbarDesktop = (props: NavbarInterface) => {
                 className={
                   isSelectedItem(handleURL(item.url)) ? `is-active` : ``
                 }
+                aria-label={`Ir para a categoria ${item.label}`}
               >
                 {item.label}
               </NavbarItem>
