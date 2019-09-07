@@ -46,10 +46,7 @@ const PostCard = ({
             aria-label={`Leia mais sobre: ${title}`}
           >
             {imageURL && (
-              <PostCardImage
-                data-src={imageURL}
-                alt={media ? media.altText : ''}
-              />
+              <PostCardImage src={imageURL} alt={media ? media.altText : ''} />
             )}
 
             <noscript>
