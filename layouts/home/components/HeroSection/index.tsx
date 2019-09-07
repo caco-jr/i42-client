@@ -63,7 +63,7 @@ const HeroSection = ({
                     );
                   })
                 : [...Array(3)].map((item, index) => {
-                    const height = index === 0 ? 495 : '100%';
+                    const height = index === 0 ? '495px' : '100%';
 
                     return (
                       <PostCardCompactLoading
