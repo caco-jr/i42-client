@@ -4,7 +4,8 @@ import { NextSeo } from 'next-seo';
 const HomePageSEO = () => {
   const config = {
     title: 'Império 42',
-    description: ''
+    description:
+      'Desbrave as novidades da cultura pop e outras coisas nonsenses'
   };
 
   return (
@@ -15,19 +16,13 @@ const HomePageSEO = () => {
         type: 'website',
         title: config.title,
         description: config.description,
-        url: '',
+        url: 'https://imperio42.com.br/',
         images: [
           {
-            url: 'https://www.example.ie/og-image.jpg',
-            width: 800,
-            height: 600,
-            alt: 'Og Image Alt'
-          },
-          {
-            url: 'https://www.example.ie/og-image-2.jpg',
-            width: 800,
-            height: 600,
-            alt: 'Og Image Alt 2'
+            url: '/static/icons/i42.png?v=1.0.0',
+            width: 1000,
+            height: 1000,
+            alt: 'Claudio o macaco'
           }
         ]
       }}
