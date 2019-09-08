@@ -121,7 +121,7 @@ const Render = ({
                   categories={post.categories}
                 />
               ) : (
-                <PostCardCompactLoading height={350} />
+                <PostCardCompactLoading height="350px" />
               )}
             </CategoryPageInfoPostCardWrapper>
           </Col>

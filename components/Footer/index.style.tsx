@@ -4,23 +4,37 @@ const component = '.c-footer';
 
 export const FooterWrapper = styled.footer`
   color: var(--text-color);
+  background: url('/static/images/background/footer.webp') center;
+  background-size: cover;
+`;
+
+export const FooterList = styled.ul`
+  list-style: none;
+`;
+
+export const FooterListItem = styled.li`
+  margin-bottom: 10px;
 `;
 
 export const FooterTop = styled.section`
   padding: 30px 0;
-  background: url('/static/images/background/bg-footer.webp') center;
-  background-size: cover;
 
   a {
     color: var(--text-color);
     text-decoration: none;
-    display: block;
-    line-height: 1.75;
+    display: inline-block;
     font-weight: 500;
+    padding: 5px 15px;
   }
 
   ${component}__block {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+  }
+
+  @media (min-width: 992px) {
+    a {
+      margin-left: -15px;
+    }
   }
 
   @media (max-width: 992px) {
@@ -29,12 +43,11 @@ export const FooterTop = styled.section`
 `;
 
 export const FooterBottom = styled.section`
-  background-color: var(--background-color);
-  text-align: center;
+  text-align: left;
   padding: 25px 0 30px;
 
   p:nth-of-type(1) {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
 `;
 

@@ -41,8 +41,20 @@ const PostCard = ({
     <PostCardWrapper className={className}>
       <PostCardHeader>
         <Link {...link}>
-          <PostCardImageLink href={link.as}>
-            <PostCardImage src={imageURL} alt={media ? media.altText : ''} />
+          <PostCardImageLink
+            href={link.as}
+            aria-label={`Leia mais sobre: ${title}`}
+          >
+            {imageURL && (
+              <PostCardImage src={imageURL} alt={media ? media.altText : ''} />
+            )}
+
+            <noscript>
+              <PostCardImage
+                src={handleImageSize(media.sourceUrl, 350, 220)}
+                alt={media ? media.altText : ''}
+              />
+            </noscript>
           </PostCardImageLink>
         </Link>
 
@@ -60,7 +72,7 @@ const PostCard = ({
 
       <PostCardBody>
         <Link {...link}>
-          <PostCardLink href={link.as}>
+          <PostCardLink href={link.as} aria-label={`Leia mais sobre: ${title}`}>
             <PostCardTitle>
               {handleLimitCharacters(decode(title))}
             </PostCardTitle>

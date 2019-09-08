@@ -3,7 +3,7 @@ import { ScreenClassProvider, Container, Row, Col } from 'react-grid-system';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
-import BodyBackground from '@static/styles/BodyBackground';
+import BodyBackground from '@components/BodyBackground';
 import Header from '@components/Header';
 import PostPageBase from './components/Base';
 import { AppProps } from '@pages/_app';
@@ -15,6 +15,8 @@ import PostScreenPodcastHeader from './components/PodcastHeader';
 import PostRelatedContent from './components/RelatedContent';
 import PostPageSEO from './components/SEO';
 import Footer from '@components/Footer';
+import PostPageLoading from './components/Loading';
+import { handleLimitCharacters, decode } from '@helpers/helpers';
 
 interface Props extends AppProps {}
 
@@ -111,7 +113,7 @@ const Layout = ({ router }: Props) => {
             <Query query={getPostQuery} variables={{ slug: router.query.id }}>
               {({ loading, data: { postBy } }) => {
                 if (loading) {
-                  return <h1>Carregando...</h1>;
+                  return <PostPageLoading />;
                 }
 
                 const {
@@ -133,11 +135,15 @@ const Layout = ({ router }: Props) => {
                   <>
                     <PostPageSEO
                       title={seo.title}
-                      description={seo.metaDesc}
+                      description={
+                        seo.metaDesc || handleLimitCharacters(decode(content))
+                      }
                       url={router.asPath}
                       openGraph={{
                         title: seo.opengraphTitle,
-                        description: seo.opengraphDescription,
+                        description:
+                          seo.opengraphDescription ||
+                          handleLimitCharacters(decode(content)),
                         images: [
                           {
                             url: seo.opengraphImage || featuredImage.sourceUrl,

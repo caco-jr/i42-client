@@ -67,6 +67,7 @@ const NavbarMobile = ({ isVisible }: Props) => {
                 <Link {...getCategoryURL(handleURL(item.url))} key={index}>
                   <NavbarMobileItem
                     href={getCategoryURL(handleURL(item.url)).as}
+                    aria-label={`Ir para a categoria ${item.label}`}
                   >
                     {item.label}
                   </NavbarMobileItem>

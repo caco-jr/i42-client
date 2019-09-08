@@ -10,16 +10,14 @@ const PostCardCompactLoading = ({
   width = '100%'
 }: {
   className?: string;
-  height?: number | string;
-  width?: number | string;
+  height?: string;
+  width?: string;
 }) => {
   return (
     <PostCardCompactLoadingWrapper
       className={className}
-      style={{
-        width,
-        height
-      }}
+      width={width}
+      height={height}
     >
       <PostCardCompactLoadingBar />
 

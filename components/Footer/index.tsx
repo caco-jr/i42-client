@@ -4,7 +4,9 @@ import {
   FooterWrapper,
   FooterTop,
   FooterBottom,
-  FooterTitle
+  FooterTitle,
+  FooterList,
+  FooterListItem
 } from './index.style';
 import Link from 'next/link';
 import { getCategoryURL } from '../../helpers/urls';
@@ -25,9 +27,17 @@ const Footer = () => {
             >
               <FooterTitle>Sobre</FooterTitle>
 
-              <a href="mailTo:contato@imperio42.com.br" target="_blank">
-                contato@imperio42.com.br
-              </a>
+              <FooterList>
+                <FooterListItem>
+                  <a
+                    href="mailTo:contato@imperio42.com.br"
+                    target="_blank"
+                    aria-label={`Mande um email para nós`}
+                  >
+                    contato@imperio42.com.br
+                  </a>
+                </FooterListItem>
+              </FooterList>
             </Col>
 
             <Col
@@ -38,13 +48,23 @@ const Footer = () => {
             >
               <FooterTitle>Programas</FooterTitle>
 
-              <Link {...getCategoryURL('nave-mainha')}>
-                <a>Nave Mainha</a>
-              </Link>
+              <FooterList>
+                <FooterListItem>
+                  <Link {...getCategoryURL('nave-mainha')}>
+                    <a aria-label={`Ir para a categoria Nave Mãinha`}>
+                      Nave Mainha
+                    </a>
+                  </Link>
+                </FooterListItem>
 
-              <Link {...getCategoryURL('imperialista')}>
-                <a>ImperiaLista</a>
-              </Link>
+                <FooterListItem>
+                  <Link {...getCategoryURL('imperialista')}>
+                    <a aria-label={`Ir para a categoria Imperialista`}>
+                      ImperiaLista
+                    </a>
+                  </Link>
+                </FooterListItem>
+              </FooterList>
             </Col>
 
             <Col
@@ -55,17 +75,25 @@ const Footer = () => {
             >
               <FooterTitle>Notícias</FooterTitle>
 
-              <Link {...getCategoryURL('cinema')}>
-                <a>Cinema</a>
-              </Link>
+              <FooterList>
+                <FooterListItem>
+                  <Link {...getCategoryURL('cinema')}>
+                    <a aria-label={`Ir para a categoria Cinema`}>Cinema</a>
+                  </Link>
+                </FooterListItem>
 
-              <Link {...getCategoryURL('series')}>
-                <a>Séries</a>
-              </Link>
+                <FooterListItem>
+                  <Link {...getCategoryURL('series')}>
+                    <a aria-label={`Ir para a categoria Séries`}>Séries</a>
+                  </Link>
+                </FooterListItem>
 
-              <Link {...getCategoryURL('games')}>
-                <a>Games</a>
-              </Link>
+                <FooterListItem>
+                  <Link {...getCategoryURL('games')}>
+                    <a aria-label={`Ir para a categoria Games`}>Games</a>
+                  </Link>
+                </FooterListItem>
+              </FooterList>
             </Col>
 
             <Col
@@ -76,13 +104,29 @@ const Footer = () => {
             >
               <FooterTitle>Redes sociais</FooterTitle>
 
-              <a href="https://www.instagram.com/imperio_42" target="_blank">
-                Instagram
-              </a>
+              <FooterList>
+                <FooterListItem>
+                  <a
+                    href="https://www.instagram.com/imperio_42"
+                    target="_blank"
+                    aria-label={`Nos siga no Instagram`}
+                    rel="noopener"
+                  >
+                    Instagram
+                  </a>
+                </FooterListItem>
 
-              <a href="https://twitter.com/imperio42" target="_blank">
-                Twitter
-              </a>
+                <FooterListItem>
+                  <a
+                    href="https://twitter.com/imperio42"
+                    target="_blank"
+                    aria-label={`Nos siga no Twitter`}
+                    rel="noopener"
+                  >
+                    Twitter
+                  </a>
+                </FooterListItem>
+              </FooterList>
             </Col>
           </Row>
         </Container>
@@ -90,12 +134,11 @@ const Footer = () => {
 
       <FooterBottom>
         <Container>
+          <p>© 2019 Império 42 | Versão 1.0 Λ</p>
           <p>
             Todas as imagens de filmes, séries e etc são marcas registradas dos
             seus respectivos proprietários.
           </p>
-
-          <p>© 2019 Império 42 | Versão 1.0 Λ</p>
         </Container>
       </FooterBottom>
     </FooterWrapper>

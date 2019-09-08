@@ -28,9 +28,15 @@ export const SearchWrapper = styled.form`
     border: solid 1.3px #ffffff;
     padding: 5px 10px 5px 35px;
     font-size: 16px;
+    transition: 0.3s all ease;
 
     &::placeholder {
       color: #fff;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--primary-color);
     }
   }
 `;

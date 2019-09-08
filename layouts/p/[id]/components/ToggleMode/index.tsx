@@ -28,8 +28,9 @@ const PostPageToggleMode = () => {
         className={`${componentClassName} ${componentClassName}--${state.colorMode}`}
         styleType="basic"
         onClick={toggleMode}
+        aria-label="Mudar modo de leitura"
       >
-        <span> Modo noturno </span>
+        <span> Modo {isDarkMode ? 'diurno' : 'noturno'} </span>
 
         <SvgLoader name="sun" className={`${componentClassName}__icon`} />
       </Button>

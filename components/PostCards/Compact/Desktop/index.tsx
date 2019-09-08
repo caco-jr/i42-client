@@ -44,11 +44,24 @@ const PostCardCompactDesktop = ({
   return (
     <PostCardCompactDesktopWrapper ref={ref} className={className}>
       <Link {...link}>
-        <a>
-          <PostCardCompactDesktopImage
-            alt={media ? media.altText : ''}
-            src={imageURL}
-          />
+        <a aria-label={`Leia mais sobre: ${title}`}>
+          {imageURL && (
+            <PostCardCompactDesktopImage
+              alt={media ? media.altText : ''}
+              src={imageURL}
+            />
+          )}
+
+          <noscript>
+            <PostCardCompactDesktopImage
+              alt={media ? media.altText : ''}
+              src={handleImageSize(
+                media.sourceUrl,
+                width || 350,
+                height || 200
+              )}
+            />
+          </noscript>
 
           <Mask />
         </a>
@@ -67,7 +80,10 @@ const PostCardCompactDesktop = ({
           : null}
 
         <Link {...link}>
-          <PostCardCompactDesktopTitle href={link.as}>
+          <PostCardCompactDesktopTitle
+            href={link.as}
+            aria-label={`Leia mais sobre: ${title}`}
+          >
             {handleLimitCharacters(decode(title))}
           </PostCardCompactDesktopTitle>
         </Link>

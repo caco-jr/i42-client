@@ -2,7 +2,7 @@ import React from 'react';
 import { ScreenClassProvider, Container } from 'react-grid-system';
 
 import { AppProps } from '@pages/_app';
-import BodyBackground from '@static/styles/BodyBackground';
+import BodyBackground from '@components/BodyBackground';
 import Header from '@components/Header';
 import { SearchPageWrapper, SearchPageTitle } from './index.style';
 import SearchPagePosts from './components/Posts';

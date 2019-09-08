@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 
 const loaderAnimate = keyframes`
     0% {
@@ -9,7 +9,12 @@ const loaderAnimate = keyframes`
     }
 `;
 
-export const PostCardCompactLoadingWrapper = styled.section`
+interface Props {
+  height?: string;
+  width?: string;
+}
+
+export const PostCardCompactLoadingWrapper = styled.section<Props>`
   display: flex;
   background-color: var(--purple);
   border-radius: var(--border-radius);
@@ -20,6 +25,15 @@ export const PostCardCompactLoadingWrapper = styled.section`
   overflow: hidden;
   max-width: 100%;
   min-height: 200px;
+
+  ${props =>
+    props.width
+      ? css`
+          width: ${props.width};
+        `
+      : css`
+          width: 100%;
+        `}
 
   &:after {
     content: '';
@@ -39,6 +53,17 @@ export const PostCardCompactLoadingWrapper = styled.section`
       rgba(42, 35, 86, 0.6) 30%,
       rgba(42, 35, 86, 0) 81%
     );
+  }
+
+  @media (min-width: 768px) {
+    ${props =>
+      props.height
+        ? css`
+            height: ${props.height};
+          `
+        : css`
+            height: 100%;
+          `}
   }
 `;
 

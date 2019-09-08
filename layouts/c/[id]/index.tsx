@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
 import { AppProps } from '@pages/_app';
-import BodyBackground from '@static/styles/BodyBackground';
+import BodyBackground from '@components/BodyBackground';
 import Header from '@components/Header';
 import { CategoryPageWrapper } from './index.style';
 import CategoryPagePosts from './components/Posts';
