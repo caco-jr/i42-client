@@ -6,6 +6,7 @@ import { Query } from 'react-apollo';
 import { HeroSectionWrapper } from './hero-section.style';
 import PostCardCompact from '@components/PostCards/Compact';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
+import { lazyLoadImages } from '@helpers/LazyLoad/Image';
 
 const allPostsQuery = gql`
   query allPosts($categoriesExclude: [ID], $limit: Int) {
@@ -39,7 +40,11 @@ const HeroSection = ({
   const componentClassName = 'hero-section';
 
   return (
-    <Query query={allPostsQuery} variables={{ categoriesExclude, limit: 3 }}>
+    <Query
+      query={allPostsQuery}
+      variables={{ categoriesExclude, limit: 3 }}
+      onCompleted={() => lazyLoadImages()}
+    >
       {({ loading, data: { posts } }) => {
         return (
           <Container>

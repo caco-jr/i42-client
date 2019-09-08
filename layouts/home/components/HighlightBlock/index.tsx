@@ -8,6 +8,7 @@ import PostCardHorizontal from '@components/PostCards/Horizontal';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
 import PostCardHorizontalLoading from '@components/PostCards/Horizontal/Loading';
 import SectionTitle from '@components/SectionTitle';
+import { lazyLoadImages } from '@helpers/LazyLoad/Image';
 import {
   HighlightBlockWrapper,
   HighlightBlockPostsContainer
@@ -45,7 +46,11 @@ const HighlightBlock = (props: HighlightBlockInterface) => {
   const { categorySlug, sectionTitle } = props;
 
   return (
-    <Query query={postsByCategoryQuery} variables={{ categorySlug, limit: 3 }}>
+    <Query
+      query={postsByCategoryQuery}
+      variables={{ categorySlug, limit: 3 }}
+      onCompleted={() => lazyLoadImages()}
+    >
       {({ loading, data: { posts } }) => (
         <HighlightBlockWrapper>
           <SectionTitle>{sectionTitle}</SectionTitle>

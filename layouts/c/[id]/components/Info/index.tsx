@@ -14,6 +14,7 @@ import PostCardCompact from '@components/PostCards/Compact';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
 import CategoryPageSEO from '../SEO';
 import { getCategoryURL } from '@helpers/urls';
+import { lazyLoadImages } from '@helpers/LazyLoad/Image';
 
 const splitDescription = (description: string): string[] =>
   description.split(/<h1>(.*?)<\/h1>/i);
@@ -37,7 +38,11 @@ interface Props {
 
 const CategoryPageInfo = ({ categorySlug, post, page }: Props) => {
   return (
-    <Query query={categoryQuery} variables={{ slug: categorySlug }}>
+    <Query
+      query={categoryQuery}
+      variables={{ slug: categorySlug }}
+      onCompleted={() => lazyLoadImages()}
+    >
       {({ loading, data: { categories } }) => {
         const slug = Array.isArray(categorySlug)
           ? categorySlug[0]

@@ -101,6 +101,7 @@ const Layout = ({ router }: Props) => {
                 categorySlug,
                 ...pagination
               }}
+              onCompleted={() => lazyLoadImages()}
             >
               {({ loading, data: { posts } }) => {
                 let categoryPosts = [];

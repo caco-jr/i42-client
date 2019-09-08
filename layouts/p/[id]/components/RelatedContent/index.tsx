@@ -11,6 +11,7 @@ import {
 import { PostCardList } from '@components/PostCards/List/index.style';
 import PostCard from '@components/PostCards/Default';
 import PostCardLoading from '@components/PostCards/Default/Loading';
+import { lazyLoadImages } from '@helpers/LazyLoad/Image';
 
 const searchPostsQuery = gql`
   query searchPosts($search: String!, $limit: Int, $exclude: [ID]) {
@@ -65,6 +66,7 @@ const PostRelatedContent = ({
           limit: 3,
           exclude: postIdExclude
         }}
+        onCompleted={() => lazyLoadImages()}
       >
         {({ loading, data: { posts } }) => {
           if (loading) {

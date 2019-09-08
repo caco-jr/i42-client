@@ -7,6 +7,7 @@ import { PostCardList } from '@components/PostCards/List/index.style';
 import PostCard from '@components/PostCards/Default';
 import PostCardLoading from '@components/PostCards/Default/Loading';
 import Pagination from '@components/Pagination';
+import { lazyLoadImages } from '@helpers/LazyLoad/Image';
 
 const searchPostsQuery = gql`
   query searchPosts(
@@ -70,6 +71,7 @@ const SearchPagePosts = ({ term, actualPage, before, after }: Props) => {
       <Query
         query={searchPostsQuery}
         variables={{ search: term, ...pagination }}
+        onCompleted={() => lazyLoadImages()}
       >
         {({ loading, data: { posts } }) => (
           <>
