@@ -27,14 +27,14 @@ const PostCard = ({
   categories
 }: PostCardInterface) => {
   const [imageURL, setImageURL] = useState('');
+  const imageWidth = 350;
+  const imageHeight = 220;
 
   const link = getPostURL(slug);
 
   useEffect(() => {
-    const width = 350;
-    const height = 220;
-
-    media && setImageURL(handleImageSize(media.sourceUrl, width, height));
+    media &&
+      setImageURL(handleImageSize(media.sourceUrl, imageWidth, imageHeight));
   }, [media]);
 
   return (
@@ -51,7 +51,7 @@ const PostCard = ({
 
             <noscript>
               <PostCardImage
-                src={handleImageSize(media.sourceUrl, 350, 220)}
+                src={handleImageSize(media.sourceUrl, imageWidth, imageHeight)}
                 alt={media ? media.altText : ''}
               />
             </noscript>
