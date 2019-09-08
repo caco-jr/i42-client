@@ -45,12 +45,10 @@ const PostCardCompactDesktop = ({
     <PostCardCompactDesktopWrapper ref={ref} className={className}>
       <Link {...link}>
         <a aria-label={`Leia mais sobre: ${title}`}>
-          {imageURL && (
-            <PostCardCompactDesktopImage
-              alt={media ? media.altText : ''}
-              src={imageURL}
-            />
-          )}
+          <PostCardCompactDesktopImage
+            data-src={imageURL}
+            alt={media ? media.altText : ''}
+          />
 
           <noscript>
             <PostCardCompactDesktopImage
