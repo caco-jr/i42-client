@@ -1,12 +1,18 @@
 export function lazyLoadImages(selector = 'img') {
   function createObserver() {
     const elements = document.querySelectorAll(selector);
-    console.log(elements);
+
+    const filteredList = Array.from(elements).filter(item =>
+      item.attributes.getNamedItem('data-src')
+    );
+
+    if (!filteredList.length) {
+      return;
+    }
+
     const observer = new window.IntersectionObserver(
       (entries, observerChild) => {
         entries.forEach(entry => {
-          console.log(entry);
-
           if (entry.isIntersecting && entry.target.getAttribute('data-src')) {
             entry.target['src'] = entry.target.getAttribute('data-src');
             entry.target.removeAttribute('data-src');
@@ -17,7 +23,7 @@ export function lazyLoadImages(selector = 'img') {
       {}
     );
 
-    Array.prototype.map.call(elements, function(item) {
+    Array.prototype.map.call(filteredList, function(item) {
       observer.observe(item);
     });
   }

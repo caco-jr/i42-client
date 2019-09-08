@@ -7,7 +7,6 @@ import Header from '@components/Header';
 import { SearchPageWrapper, SearchPageTitle } from './index.style';
 import SearchPagePosts from './components/Posts';
 import Footer from '@components/Footer';
-import { lazyLoadImages } from '@helpers/LazyLoad/Image';
 
 interface Props extends AppProps {}
 
@@ -27,10 +26,6 @@ const Layout = ({ router }: Props) => {
     : null;
 
   const afterTreated = after ? (Array.isArray(after) ? after[0] : after) : null;
-
-  useEffect(() => {
-    lazyLoadImages();
-  }, []);
 
   return (
     <ScreenClassProvider>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ScreenClassProvider, Container } from 'react-grid-system';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
@@ -13,7 +13,6 @@ import Pagination from '@components/Pagination';
 import { PostCardList } from '@components/PostCards/List/index.style';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading/index';
 import Footer from '@components/Footer';
-import { lazyLoadImages } from '@helpers/LazyLoad/Image';
 
 const postsByCategoryQuery = gql`
   query postsByCategory(
@@ -77,10 +76,6 @@ const Layout = ({ router }: Props) => {
   const pagination = before
     ? { last: limitPerPage, before }
     : { first: limitPerPage, after };
-
-  useEffect(() => {
-    lazyLoadImages();
-  }, []);
 
   return (
     <ScreenClassProvider>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import gql from 'graphql-tag';
 import { Container, Row, Col } from 'react-grid-system';
 import { Query } from 'react-apollo';
