@@ -8,19 +8,33 @@ export const FooterWrapper = styled.footer`
   background-size: cover;
 `;
 
+export const FooterList = styled.ul`
+  list-style: none;
+`;
+
+export const FooterListItem = styled.li`
+  margin-bottom: 10px;
+`;
+
 export const FooterTop = styled.section`
   padding: 30px 0;
 
   a {
     color: var(--text-color);
     text-decoration: none;
-    display: block;
-    line-height: 1.75;
+    display: inline-block;
     font-weight: 500;
+    padding: 5px 15px;
   }
 
   ${component}__block {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+  }
+
+  @media (min-width: 992px) {
+    a {
+      margin-left: -15px;
+    }
   }
 
   @media (max-width: 992px) {
