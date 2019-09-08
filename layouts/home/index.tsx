@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ScreenClassProvider, Container } from 'react-grid-system';
 
 import BodyBackground from '@components/BodyBackground';
@@ -10,13 +10,8 @@ import { HomeBackground } from './index.style';
 import { PostCardList } from '@components/PostCards/List/index.style';
 import HomePageSEO from './components/SEO';
 import Footer from '@components/Footer';
-import { lazyLoadImages } from '@helpers/LazyLoad/Image';
 
 const Home = () => {
-  useEffect(() => {
-    lazyLoadImages();
-  }, []);
-
   return (
     <ScreenClassProvider>
       <BodyBackground>

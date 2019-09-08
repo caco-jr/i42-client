@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode } from 'react';
 import { ScreenClassProvider, Container, Row, Col } from 'react-grid-system';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
@@ -17,7 +17,6 @@ import PostPageSEO from './components/SEO';
 import Footer from '@components/Footer';
 import PostPageLoading from './components/Loading';
 import { handleLimitCharacters, decode } from '@helpers/helpers';
-import { lazyLoadImages } from '@helpers/LazyLoad/Image';
 
 interface Props extends AppProps {}
 
@@ -104,10 +103,6 @@ const getPodcastAttributes = (content: string): { src: string } => {
 };
 
 const Layout = ({ router }: Props) => {
-  useEffect(() => {
-    lazyLoadImages();
-  }, []);
-
   return (
     <ScreenClassProvider>
       <BodyBackground>

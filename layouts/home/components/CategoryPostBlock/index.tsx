@@ -11,7 +11,6 @@ import { Query } from 'react-apollo';
 import { PostCardList } from '@components/PostCards/List/index.style';
 import { CategoryPostBlockWrapper } from './index.style';
 import SectionTitle from '@components/SectionTitle';
-import { lazyLoadImages } from '@helpers/LazyLoad/Image';
 
 const postsByCategoryQuery = gql`
   query postsByCategory($categorySlug: String, $first: Int) {
@@ -51,7 +50,6 @@ const CategoryPostBlock = ({
         categorySlug,
         first: 3
       }}
-      onCompleted={() => lazyLoadImages()}
     >
       {({ loading, data: { posts } }) => (
         <CategoryPostBlockWrapper>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import gql from 'graphql-tag';
 import { Container, Row, Col } from 'react-grid-system';
 import { Query } from 'react-apollo';
@@ -14,7 +14,6 @@ import PostCardCompact from '@components/PostCards/Compact';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
 import CategoryPageSEO from '../SEO';
 import { getCategoryURL } from '@helpers/urls';
-import { lazyLoadImages } from '@helpers/LazyLoad/Image';
 
 const splitDescription = (description: string): string[] =>
   description.split(/<h1>(.*?)<\/h1>/i);
@@ -38,11 +37,7 @@ interface Props {
 
 const CategoryPageInfo = ({ categorySlug, post, page }: Props) => {
   return (
-    <Query
-      query={categoryQuery}
-      variables={{ slug: categorySlug }}
-      onCompleted={() => lazyLoadImages()}
-    >
+    <Query query={categoryQuery} variables={{ slug: categorySlug }}>
       {({ loading, data: { categories } }) => {
         const slug = Array.isArray(categorySlug)
           ? categorySlug[0]
