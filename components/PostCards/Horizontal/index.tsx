@@ -42,9 +42,7 @@ const PostCardHorizontal = ({
             className={`${componentClassName}__image-link`}
             aria-label={`Leia mais sobre: ${title}`}
           >
-            {imageURL && (
-              <PostCardHorizontalImage src={imageURL} alt={media.altText} />
-            )}
+            <PostCardHorizontalImage data-src={imageURL} alt={media.altText} />
 
             <noscript>
               <PostCardHorizontalImage
