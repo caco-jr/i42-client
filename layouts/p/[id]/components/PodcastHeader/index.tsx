@@ -10,7 +10,7 @@ import {
   PostScreenPodcastHeaderBox,
   PostScreenPodcastHeaderPlay
 } from './index.style';
-import Mask from '@static/styles/Mask';
+import Mask from '@components/Mask';
 import { Mutation } from 'react-apollo';
 
 const SET_PODCAST_ATTRIBUTE = gql`
