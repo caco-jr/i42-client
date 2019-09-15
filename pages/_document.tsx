@@ -27,6 +27,12 @@ export default class MyDocument extends Document<any> {
             name="viewport"
             content="width=device-width,initial-scale=1,viewport-fit=cover"
           />
+
+          {/* Para validação do Google Search Console */}
+          <meta
+            name="google-site-verification"
+            content="ZD9OmhEaRKpmHf2MNc9htuCMrvBJgg1Ca_3isTlkQ-Y"
+          />
           <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
           <link
             rel="stylesheet"
@@ -35,7 +41,6 @@ export default class MyDocument extends Document<any> {
           <link rel="stylesheet" href="/static/styles/FontFamily/style.css" />
           <link rel="manifest" href="/static/manifest/manifest.json" />
           <link rel="manifest" href="manifest.webmanifest" />
-
           <link
             rel="apple-touch-icon"
             sizes="48x48"
@@ -51,7 +56,6 @@ export default class MyDocument extends Document<any> {
             sizes="192x192"
             href="/static/manifest/launcher-icon@4x.png?v=1.0.0"
           />
-
           <meta
             name="apple-mobile-web-app-status-bar-style"
             content="default"
@@ -64,7 +68,51 @@ export default class MyDocument extends Document<any> {
             integrity="sha384-VcI6S+HIsE80FVM1jgbd6WDFhzKYA0PecD/LcIyMQpT4fMJdijBh0I7Iblaacawc"
             crossOrigin="anonymous"
           />
+
           {this.props.styleTags}
+
+          {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-93047507-1"
+          ></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-93047507-1');`
+            }}
+          ></script>
+
+          <script
+            async
+            src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+          ></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+    (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-2787359838428098",
+            enable_page_level_ads: true
+        });`
+            }}
+          ></script>
+          {/* <!-- End Google Adsense --> */}
+
+          <script
+            async
+            type="text/javascript"
+            dangerouslySetInnerHTML={{
+              __html: `
+    window.smartlook||(function(d) {
+        var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
+        var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
+        c.charset='utf-8';c.src='https://rec.smartlook.com/recorder.js';h.appendChild(c);
+        })(document);
+        smartlook('init', '1f672e94efc947fef3dc76e7f8bff65d5a754607');`
+            }}
+          ></script>
         </Head>
         <body>
           <Main />
