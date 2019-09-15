@@ -1,8 +1,9 @@
 {
   "version": 2,
+  "alias": ["www.imperio42.com.br"],
   "routes": [
     {
-      "src": "https://i42.com.br/$1",
+      "src": "/(.*)",
       "status": 301,
       "headers": { "Location": "https://imperio42.com.br/$1" }
     },
