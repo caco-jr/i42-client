@@ -4,7 +4,8 @@ const component = '.c-footer';
 
 export const FooterWrapper = styled.footer`
   color: var(--text-color);
-  background: url('/static/images/background/footer.webp') center;
+  background: var(--background-color)
+    url('/static/images/background/footer.webp') center;
   background-size: cover;
 `;
 

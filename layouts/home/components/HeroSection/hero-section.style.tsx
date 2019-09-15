@@ -28,6 +28,7 @@ export const HeroSectionWrapper = styled.section`
     ${PostCardCompactLoadingWrapper}:nth-of-type(1) {
       grid-row-start: 1;
       grid-row-end: 3;
+      max-height: 455px;
     }
   }
 

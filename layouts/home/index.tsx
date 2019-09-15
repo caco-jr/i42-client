@@ -18,7 +18,7 @@ const Home = () => {
         <HomePageSEO />
 
         <Header />
-        <HeroSection categoriesExclude={[2, 132, 3, 11, 1]} />
+        <HeroSection categoriesExclude={[2, 132, 3, 11, 141]} />
 
         <Container>
           <HomeBackground>
@@ -36,10 +36,9 @@ const Home = () => {
               />
               <HighlightBlock sectionTitle="Games" categorySlug="games" />
 
-              {/* TODO: Fazer o category exclude para não aparecer reviews e críticas em Controle da Missão */}
               <HighlightBlock
-                sectionTitle="Controle da Missão"
-                categorySlug="controle-missao"
+                sectionTitle="ImperiaLista"
+                categorySlug="imperialista"
               />
             </PostCardList>
           </HomeBackground>

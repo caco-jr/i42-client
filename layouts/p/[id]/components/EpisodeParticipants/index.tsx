@@ -17,7 +17,7 @@ const EpisodeParticipants = ({
 
       {episodeParticipants.map((item, index) => (
         <EpisodeParticipantsPerson key={index}>
-          <img src={item.avatar.url} />
+          {item.avatar && <img src={item.avatar.url} />}
 
           <EpisodeParticipantsName>{item.name}</EpisodeParticipantsName>
         </EpisodeParticipantsPerson>

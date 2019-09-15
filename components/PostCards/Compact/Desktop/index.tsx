@@ -10,7 +10,7 @@ import {
   PostCardCompactDesktopInfo,
   PostCardCompactDesktopTitle
 } from './index.style';
-import Mask from '@static/styles/Mask';
+import Mask from '@components/Mask';
 import CategoryLabel from '@components/CategoryLabel';
 import { handleLimitCharacters, decode } from '@helpers/helpers';
 
