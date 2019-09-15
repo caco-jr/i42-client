@@ -2,17 +2,7 @@
   "version": 2,
   "routes": [
     {
-      "src": "/(.*)",
-      "status": 301,
-      "headers": { "Location": "https://imperio42.com.br/$1" }
-    },
-    {
       "src": "https://i42.com.br/$1",
-      "status": 301,
-      "headers": { "Location": "https://imperio42.com.br/$1" }
-    },
-    {
-      "src": "www.i42.com.br/$1",
       "status": 301,
       "headers": { "Location": "https://imperio42.com.br/$1" }
     },
