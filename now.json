@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "alias": ["www.imperio42.com.br", "www.i42.com.br", "https://i42.com.br/"],
+  "alias": ["www.imperio42.com.br", "www.i42.com.br", "https://i42.com.br"],
   "routes": [
     {
       "src": "/(.*)",
