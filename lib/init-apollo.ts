@@ -10,7 +10,7 @@ function create(initialState) {
     connectToDevTools: isBrowser,
     ssrMode: !isBrowser, // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
-      uri: 'https://imperio42.com.br/graphql', // Server URL (must be absolute)
+      uri: 'http://18.208.139.13/graphql', // Server URL (must be absolute)
       credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
       // Use fetch() polyfill on the server
       fetch: !isBrowser && fetch
