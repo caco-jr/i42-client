@@ -21,7 +21,7 @@ const SET_PODCAST_ATTRIBUTE = gql`
 
 const PostScreenPodcastHeader = ({
   title,
-  image,
+  media,
   podcastSrc
 }: PostScreenPodcastHeaderInterface) => {
   const componentClassName = 'post-screen-podcast-header';
@@ -32,7 +32,7 @@ const PostScreenPodcastHeader = ({
         <PostScreenPodcastHeaderTitle>{title}</PostScreenPodcastHeaderTitle>
       </Hidden>
 
-      <img src={image} alt="" />
+      <img src={media.sourceUrl} alt={media.altText} />
 
       <Visible md lg xl>
         <Mask />
