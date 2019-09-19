@@ -169,7 +169,7 @@ const Layout = ({ router }: Props) => {
                     {podcast.isPodcastPost ? (
                       <PostScreenPodcastHeader
                         title={title}
-                        image="https://i0.wp.com/imperio42.com.br/wp-content/uploads/2019/04/surprise_marvel_releases_a_new_full_trailer_and_poster_for_avengers_endgame_social.jpg?fit=1310%2C670&#038;ssl=1"
+                        media={featuredImage}
                         podcastSrc={getPodcastAttributes(content).src}
                       />
                     ) : (

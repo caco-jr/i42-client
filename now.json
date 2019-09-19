@@ -1,12 +1,6 @@
 {
   "version": 2,
-  "alias": ["www.imperio42.com.br", "www.i42.com.br", "https://i42.com.br"],
   "routes": [
-    {
-      "src": "/(.*)",
-      "status": 301,
-      "headers": { "Location": "https://imperio42.com.br/$1" }
-    },
     {
       "src": "^/service-worker.js$",
       "dest": "/_next/static/service-worker.js",

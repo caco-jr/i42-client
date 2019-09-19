@@ -1,5 +1,7 @@
+import { PostMediaAPIInterface } from '@interfaces/post/post.interface';
+
 export interface PostScreenPodcastHeaderInterface {
   title: string;
-  image: string;
+  media: PostMediaAPIInterface;
   podcastSrc: string;
 }
