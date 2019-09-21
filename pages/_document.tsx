@@ -86,23 +86,6 @@ export default class MyDocument extends Document<any> {
         gtag('config', 'UA-93047507-1');`
             }}
           ></script>
-
-          <script
-            defer
-            src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-          ></script>
-          <script
-            type="text/javascript"
-            defer
-            dangerouslySetInnerHTML={{
-              __html: `
-    (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-2787359838428098",
-            enable_page_level_ads: true
-        });`
-            }}
-          ></script>
-          {/* <!-- End Google Adsense --> */}
         </Head>
         <body>
           <Main />
