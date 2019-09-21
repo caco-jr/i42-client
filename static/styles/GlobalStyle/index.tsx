@@ -25,7 +25,7 @@ export const GlobalStyle = createGlobalStyle`
   // -------------------------
   // --- Border
   --border-color: var(--grey);
-  --border-radius: 5px;
+  --border-radius: 10px;
   // -------------------------
   // --- Others
   --background-color: var(--darker-blue);

@@ -44,15 +44,18 @@ export const PostCardTitle = styled.h3`
   font-family: var(--title-font-family);
   font-weight: var(--title-font-weight);
   color: var(--title-color);
+  line-height: 1.18;
+  letter-spacing: 0.1px;
 `;
 
 export const PostCardContent = styled.section`
-  font-size: 18px;
-  line-height: 1.33;
+  font-size: 16px;
+  line-height: 1.38;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  letter-spacing: 0.1px;
   height: 68px;
   color: var(--text-color);
 `;
