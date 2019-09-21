@@ -4,27 +4,27 @@ const NAVBAR_ITEMS = [
   {
     positionX: '7px',
     width: '73px',
-    color: 'var(--red)'
+    color: '#F42458'
   },
   {
     positionX: '92px',
     width: '61px',
-    color: 'var(--secondary-color)'
+    color: '#6638ED'
   },
   {
     positionX: '165px',
     width: '67px',
-    color: '#e67e22'
+    color: '#0AD0B5'
   },
   {
     positionX: '249px',
     width: '113px',
-    color: 'var(--green)'
+    color: '#FE8723'
   },
   {
     positionX: '372px',
     width: '177px',
-    color: 'var(--blue)'
+    color: '#23A7FC'
   }
 ];
 
