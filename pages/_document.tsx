@@ -6,6 +6,7 @@ import Document, {
   DocumentContext
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { GtagScript, GtagNoscript } from '@components/Scripts/GoogleTagManager';
 
 export default class MyDocument extends Document<any> {
   static async getInitialProps(ctx: DocumentContext) {
@@ -37,14 +38,12 @@ export default class MyDocument extends Document<any> {
 
           <link
             href="https://fonts.googleapis.com/css?family=DM+Sans:400,700&display=swap&subset=latin-ext"
-            rel="preconnect"
-            as="font"
+            rel="stylesheet"
           ></link>
 
           <link
             href="https://cdn.rawgit.com/filipelinhares/ress/master/dist/ress.min.css"
-            rel="preconnect"
-            as="style"
+            rel="stylesheet"
           />
           <link rel="manifest" href="/static/manifest/manifest.json" />
           <link rel="manifest" href="manifest.webmanifest" />
@@ -78,9 +77,11 @@ export default class MyDocument extends Document<any> {
 
           {this.props.styleTags}
 
-          {/* TODO: Inserir o Google Tag Manager */}
+          <GtagScript />
         </Head>
         <body>
+          <GtagNoscript />
+
           <Main />
           <NextScript />
 
