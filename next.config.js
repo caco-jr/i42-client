@@ -33,12 +33,14 @@ const nextConfig = {
     cleanupOutdatedCaches: true,
     clientsClaim: true,
     skipWaiting: true,
+    globPatterns: ['static/**/*'],
+    globDirectory: '.',
     runtimeCaching: [
       {
         urlPattern: /^https?.*/,
         handler: 'NetworkFirst',
         options: {
-          cacheName: 'https-calls-v1',
+          cacheName: 'https-calls',
           networkTimeoutSeconds: 15,
           expiration: {
             maxEntries: 200,
