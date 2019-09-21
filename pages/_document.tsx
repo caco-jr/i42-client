@@ -7,6 +7,7 @@ import Document, {
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import { GtagScript, GtagNoscript } from '@components/Scripts/GoogleTagManager';
+import SmartLookScript from '@components/Scripts/SmartLook';
 
 export default class MyDocument extends Document<any> {
   static async getInitialProps(ctx: DocumentContext) {
@@ -85,19 +86,7 @@ export default class MyDocument extends Document<any> {
           <Main />
           <NextScript />
 
-          <script
-            defer
-            type="text/javascript"
-            dangerouslySetInnerHTML={{
-              __html: `
-    window.smartlook||(function(d) {
-        var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
-        var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
-        c.charset='utf-8';c.src='https://rec.smartlook.com/recorder.js';h.appendChild(c);
-        })(document);
-        smartlook('init', '1f672e94efc947fef3dc76e7f8bff65d5a754607');`
-            }}
-          ></script>
+          <SmartLookScript />
         </body>
       </html>
     );
