@@ -17,6 +17,7 @@ import PostPageSEO from './components/SEO';
 import Footer from '@components/Footer';
 import PostPageLoading from './components/Loading';
 import { handleLimitCharacters, decode } from '@helpers/helpers';
+import PostScreenAudima from './components/Audima';
 
 interface Props extends AppProps {}
 
@@ -182,11 +183,7 @@ const Layout = ({ router }: Props) => {
                       />
                     )}
 
-                    <div id="audimaWidget"></div>
-                    <script
-                      src="http://audio.audima.co/audima-widget.js"
-                      defer
-                    ></script>
+                    <PostScreenAudima />
 
                     <Row>
                       <Col lg={8}>
