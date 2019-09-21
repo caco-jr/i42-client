@@ -24,7 +24,8 @@ const nextConfig = {
     return config;
   },
   target: 'serverless',
-  // transformManifest: manifest => ['/'].concat(manifest), // add the homepage to the cache
+  transformManifest: manifest =>
+    [{ url: '/', revision: '000001' }].concat(manifest), // add the homepage to the cache
   // Trying to set NODE_ENV=production when running yarn dev causes a build-time error so we
   // turn on the SW in dev mode so that we can actually test it
   generateInDevMode: false,
