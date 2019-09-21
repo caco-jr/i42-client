@@ -10,9 +10,7 @@ const getInitialProps = async ({
   res
 }: NextPageContext & AppProps): Promise<InitialProps> => {
   if (res) {
-    // TODO: Voltar a utilizar o TIME_SECONDS comentado.
-    // const TIME_SECONDS = 60 * 60;
-    const TIME_SECONDS = 1;
+    const TIME_SECONDS = 60 * 60;
 
     res.setHeader(
       'Cache-Control',
