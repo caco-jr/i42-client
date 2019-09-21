@@ -17,6 +17,7 @@ import PostPageSEO from './components/SEO';
 import Footer from '@components/Footer';
 import PostPageLoading from './components/Loading';
 import { handleLimitCharacters, decode } from '@helpers/helpers';
+import PostScreenAudima from './components/Audima';
 
 interface Props extends AppProps {}
 
@@ -181,6 +182,8 @@ const Layout = ({ router }: Props) => {
                         review={{ hasRating: false, rating: null }}
                       />
                     )}
+
+                    <PostScreenAudima />
 
                     <Row>
                       <Col lg={8}>

@@ -34,11 +34,16 @@ export default class MyDocument extends Document<any> {
             content="ZD9OmhEaRKpmHf2MNc9htuCMrvBJgg1Ca_3isTlkQ-Y"
           />
           <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
+
+          <link
+            href="https://fonts.googleapis.com/css?family=DM+Sans:400,700&display=swap&subset=latin-ext"
+            rel="stylesheet"
+          ></link>
+
           <link
             rel="stylesheet"
             href="https://cdn.rawgit.com/filipelinhares/ress/master/dist/ress.min.css"
           />
-          <link rel="stylesheet" href="/static/styles/FontFamily/style.css" />
           <link rel="manifest" href="/static/manifest/manifest.json" />
           <link rel="manifest" href="manifest.webmanifest" />
           <link
@@ -73,10 +78,12 @@ export default class MyDocument extends Document<any> {
 
           {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
           <script
-            async
+            defer
             src="https://www.googletagmanager.com/gtag/js?id=UA-93047507-1"
           ></script>
           <script
+            defer
+            type="text/javascript"
             dangerouslySetInnerHTML={{
               __html: `window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -84,24 +91,13 @@ export default class MyDocument extends Document<any> {
         gtag('config', 'UA-93047507-1');`
             }}
           ></script>
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
 
           <script
-            async
-            src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-          ></script>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-    (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-2787359838428098",
-            enable_page_level_ads: true
-        });`
-            }}
-          ></script>
-          {/* <!-- End Google Adsense --> */}
-
-          <script
-            async
+            defer
             type="text/javascript"
             dangerouslySetInnerHTML={{
               __html: `
@@ -113,10 +109,6 @@ export default class MyDocument extends Document<any> {
         smartlook('init', '1f672e94efc947fef3dc76e7f8bff65d5a754607');`
             }}
           ></script>
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
         </body>
       </html>
     );

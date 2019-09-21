@@ -13,5 +13,6 @@ export const PostRelatedContentLine = styled.span`
 export const PostRelatedContentTitle = styled.h2`
   font-size: 30px;
   font-family: var(--title-font-family);
+  font-weight: var(--title-font-weight);
   margin-bottom: 20px;
 `;

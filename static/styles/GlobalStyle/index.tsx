@@ -25,7 +25,7 @@ export const GlobalStyle = createGlobalStyle`
   // -------------------------
   // --- Border
   --border-color: var(--grey);
-  --border-radius: 5px;
+  --border-radius: 10px;
   // -------------------------
   // --- Others
   --background-color: var(--darker-blue);
@@ -33,13 +33,11 @@ export const GlobalStyle = createGlobalStyle`
   --title-color: #fff;
   // -------------------------
   // --- Font
-  --primary-font-family: 'Avenir LT Std 45 Book', Helvetica, sans-serif;
-  --primary-font-family-medium: 'Avenir LT Std 65 Medium', Helvetica, sans-serif;
-  --primary-font-family-bold: 'Avenir LT Std 85 Heavy', Helvetica, sans-serif;
-  --primary-font-family-black: 'Avenir LT Std 95 Black', Helvetica, sans-serif;
-
-  --title-font-family: var(--primary-font-family-black);
+  --primary-font-family: 'DM Sans', Helvetica, sans-serif;
   --text-font-family: var(--primary-font-family);
+  --text-font-weight: 400;
+  --title-font-family: var(--primary-font-family);
+  --title-font-weight: 700;
   // -------------------------
 }
 

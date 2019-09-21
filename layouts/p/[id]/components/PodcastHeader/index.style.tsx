@@ -13,6 +13,7 @@ export const PostScreenPodcastHeaderTitle = styled.h1`
   font-size: 28px;
   line-height: 1.04;
   font-family: var(--title-font-family);
+  font-weight: var(--title-font-weight);
   width: auto;
 
   @media (min-width: 992px) {

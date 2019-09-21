@@ -19,6 +19,7 @@ const BaseButton = css`
   color: var(--text-color);
   font-size: 16px;
   font-family: var(--title-font-family);
+  font-weight: var(--title-font-weight);
   text-decoration: none;
 
   &:focus {

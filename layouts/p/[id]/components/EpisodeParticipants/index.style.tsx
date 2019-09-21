@@ -11,6 +11,7 @@ export const EpisodeParticipantsWrapper = styled.section`
 export const EpisodeParticipantsTitle = styled.span`
   font-size: 22px;
   font-family: var(--title-font-family);
+  font-weight: var(--title-font-weight);
   margin: 0 0 12px;
   display: inline-block;
 `;

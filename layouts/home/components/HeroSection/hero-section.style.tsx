@@ -14,11 +14,13 @@ export const HeroSectionWrapper = styled.section`
   ${PostCardCompactDesktopWrapper} {
     min-height: 200px;
     height: 100%;
+    max-height: 240px;
   }
 
   ${PostCardCompactDesktopWrapper}:nth-of-type(1) ${PostCardCompactDesktopTitle} {
-    font-size: 30px;
+    font-size: 32px;
     margin-top: 10px;
+    line-height: 1.38;
   }
 
   @media (min-width: 992px) {

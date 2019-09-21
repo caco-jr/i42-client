@@ -24,12 +24,18 @@ const nextConfig = {
     return config;
   },
   target: 'serverless',
-  transformManifest: manifest => ['/'].concat(manifest), // add the homepage to the cache
+  transformManifest: manifest =>
+    [{ url: '/', revision: '000001' }].concat(manifest), // add the homepage to the cache
   // Trying to set NODE_ENV=production when running yarn dev causes a build-time error so we
   // turn on the SW in dev mode so that we can actually test it
   generateInDevMode: false,
   workboxOpts: {
     swDest: 'static/service-worker.js',
+    cleanupOutdatedCaches: true,
+    clientsClaim: true,
+    skipWaiting: true,
+    globPatterns: ['static/**/*'],
+    globDirectory: '.',
     runtimeCaching: [
       {
         urlPattern: /^https?.*/,
@@ -38,8 +44,8 @@ const nextConfig = {
           cacheName: 'https-calls',
           networkTimeoutSeconds: 15,
           expiration: {
-            maxEntries: 150,
-            maxAgeSeconds: 30 * 24 * 60 * 60 // 1 month
+            maxEntries: 200,
+            maxAgeSeconds: 60 * 60 * 24 * 30 // 1 month
           },
           cacheableResponse: {
             statuses: [0, 200]
