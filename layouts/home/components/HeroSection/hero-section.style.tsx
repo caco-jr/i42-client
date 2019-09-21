@@ -14,6 +14,7 @@ export const HeroSectionWrapper = styled.section`
   ${PostCardCompactDesktopWrapper} {
     min-height: 200px;
     height: 100%;
+    max-height: 240px;
   }
 
   ${PostCardCompactDesktopWrapper}:nth-of-type(1) ${PostCardCompactDesktopTitle} {
