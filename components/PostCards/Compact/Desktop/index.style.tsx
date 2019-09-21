@@ -14,8 +14,8 @@ export const PostCardCompactDesktopTitle = styled.a`
   color: #fff;
   font-family: var(--title-font-family);
   font-weight: var(--title-font-weight);
-  font-size: 20px;
-  line-height: 1.2;
+  font-size: 22px;
+  line-height: 1.09;
   text-decoration: none;
 `;
 

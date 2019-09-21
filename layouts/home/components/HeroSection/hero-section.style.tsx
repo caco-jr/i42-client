@@ -17,8 +17,9 @@ export const HeroSectionWrapper = styled.section`
   }
 
   ${PostCardCompactDesktopWrapper}:nth-of-type(1) ${PostCardCompactDesktopTitle} {
-    font-size: 30px;
+    font-size: 32px;
     margin-top: 10px;
+    line-height: 1.38;
   }
 
   @media (min-width: 992px) {
