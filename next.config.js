@@ -31,6 +31,8 @@ const nextConfig = {
   workboxOpts: {
     swDest: 'static/service-worker.js',
     cleanupOutdatedCaches: true,
+    clientsClaim: true,
+    skipWaiting: true,
     runtimeCaching: [
       {
         urlPattern: /^https?.*/,
