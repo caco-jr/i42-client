@@ -73,10 +73,11 @@ export default class MyDocument extends Document<any> {
 
           {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
           <script
-            async
+            defer
             src="https://www.googletagmanager.com/gtag/js?id=UA-93047507-1"
           ></script>
           <script
+            defer
             dangerouslySetInnerHTML={{
               __html: `window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -86,7 +87,7 @@ export default class MyDocument extends Document<any> {
           ></script>
 
           <script
-            async
+            defer
             src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
           ></script>
           <script
@@ -99,25 +100,25 @@ export default class MyDocument extends Document<any> {
             }}
           ></script>
           {/* <!-- End Google Adsense --> */}
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
 
-          <script
-            async
-            type="text/javascript"
-            dangerouslySetInnerHTML={{
-              __html: `
+        <script
+          defer
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: `
     window.smartlook||(function(d) {
         var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
         var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
         c.charset='utf-8';c.src='https://rec.smartlook.com/recorder.js';h.appendChild(c);
         })(document);
         smartlook('init', '1f672e94efc947fef3dc76e7f8bff65d5a754607');`
-            }}
-          ></script>
-        </Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
+          }}
+        ></script>
       </html>
     );
   }
