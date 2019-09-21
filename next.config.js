@@ -37,7 +37,6 @@ const nextConfig = {
         handler: 'NetworkFirst',
         options: {
           cacheName: 'https-calls',
-          cleanupOutdatedCaches: true,
           networkTimeoutSeconds: 15,
           expiration: {
             maxEntries: 200,
