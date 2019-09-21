@@ -33,7 +33,7 @@ class MyApp extends App<DefaultAppIProps & AppProps & IProps> {
   static getInitialProps = getInitialProps;
 
   componentDidMount() {
-    // gTagInitialize();
+    gTagInitialize();
   }
 
   render() {
