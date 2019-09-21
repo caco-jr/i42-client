@@ -10,6 +10,7 @@ export const SearchPageTitle = styled.h1`
   margin: 0 0 50px;
   font-size: 22px;
   font-family: var(--title-font-family);
+  font-weight: var(--title-font-weight);
   color: var(--text-color);
 
   span {

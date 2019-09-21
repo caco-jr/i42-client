@@ -2,28 +2,28 @@ import styled, { css } from 'styled-components';
 
 const NAVBAR_ITEMS = [
   {
-    positionX: '5px',
-    width: '65px',
+    positionX: '7px',
+    width: '73px',
     color: 'var(--red)'
   },
   {
-    positionX: '82px',
-    width: '53px',
+    positionX: '92px',
+    width: '61px',
     color: 'var(--secondary-color)'
   },
   {
-    positionX: '147px',
-    width: '60px',
+    positionX: '165px',
+    width: '67px',
     color: '#e67e22'
   },
   {
-    positionX: '219px',
-    width: '105px',
+    positionX: '249px',
+    width: '113px',
     color: 'var(--green)'
   },
   {
-    positionX: '336px',
-    width: '149px',
+    positionX: '372px',
+    width: '177px',
     color: 'var(--blue)'
   }
 ];
@@ -32,13 +32,13 @@ export const NavbarItem = styled.a`
   display: inline-flex;
   color: #fff;
   text-decoration: none;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 18px;
+  font-weight: var(--text-font-weight);
   padding: 5px;
   margin: 0 6px;
 
   &.is-active {
-    font-family: var(--title-font-family);
+    font-weight: var(--title-font-weight);
   }
 `;
 

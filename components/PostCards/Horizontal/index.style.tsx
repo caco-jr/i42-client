@@ -19,6 +19,7 @@ export const PostCardHorizontalRight = styled.section`
 export const PostCardHorizontalTitle = styled.h3`
   font-size: 20px;
   font-family: var(--title-font-family);
+  font-weight: var(--title-font-weight);
   line-height: 1.4;
   margin-bottom: 10px;
 `;

@@ -30,9 +30,10 @@ export const PostScreenHeaderRightColumn = styled.section`
 
 export const PostScreenHeaderTitle = styled.h1`
   font-family: var(--title-font-family);
+  font-weight: var(--title-font-weight);
+  font-size: 48px;
   color: var(--title-color);
   margin: 0 0 5px;
-  font-size: 48px;
   line-height: 1.04;
 
   @media (max-width: 991px) {

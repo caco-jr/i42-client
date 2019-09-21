@@ -34,11 +34,16 @@ export default class MyDocument extends Document<any> {
             content="ZD9OmhEaRKpmHf2MNc9htuCMrvBJgg1Ca_3isTlkQ-Y"
           />
           <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
+
+          <link
+            href="https://fonts.googleapis.com/css?family=DM+Sans:400,700&display=swap&subset=latin-ext"
+            rel="stylesheet"
+          ></link>
+
           <link
             rel="stylesheet"
             href="https://cdn.rawgit.com/filipelinhares/ress/master/dist/ress.min.css"
           />
-          <link rel="stylesheet" href="/static/styles/FontFamily/style.css" />
           <link rel="manifest" href="/static/manifest/manifest.json" />
           <link rel="manifest" href="manifest.webmanifest" />
           <link

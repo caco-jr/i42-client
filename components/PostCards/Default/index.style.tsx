@@ -42,6 +42,7 @@ export const PostCardTitle = styled.h3`
   font-size: 22px;
   margin-bottom: 10px;
   font-family: var(--title-font-family);
+  font-weight: var(--title-font-weight);
   color: var(--title-color);
 `;
 
