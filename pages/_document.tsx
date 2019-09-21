@@ -37,12 +37,14 @@ export default class MyDocument extends Document<any> {
 
           <link
             href="https://fonts.googleapis.com/css?family=DM+Sans:400,700&display=swap&subset=latin-ext"
-            rel="stylesheet"
+            rel="preconnect"
+            as="font"
           ></link>
 
           <link
-            rel="stylesheet"
             href="https://cdn.rawgit.com/filipelinhares/ress/master/dist/ress.min.css"
+            rel="preconnect"
+            as="style"
           />
           <link rel="manifest" href="/static/manifest/manifest.json" />
           <link rel="manifest" href="manifest.webmanifest" />
