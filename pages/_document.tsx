@@ -78,21 +78,7 @@ export default class MyDocument extends Document<any> {
 
           {this.props.styleTags}
 
-          {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-          <script
-            defer
-            src="https://www.googletagmanager.com/gtag/js?id=UA-93047507-1"
-          ></script>
-          <script
-            defer
-            type="text/javascript"
-            dangerouslySetInnerHTML={{
-              __html: `window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-93047507-1');`
-            }}
-          ></script>
+          {/* TODO: Inserir o Google Tag Manager */}
         </Head>
         <body>
           <Main />
