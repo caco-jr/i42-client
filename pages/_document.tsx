@@ -78,6 +78,7 @@ export default class MyDocument extends Document<any> {
           ></script>
           <script
             defer
+            type="text/javascript"
             dangerouslySetInnerHTML={{
               __html: `window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -91,6 +92,8 @@ export default class MyDocument extends Document<any> {
             src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
           ></script>
           <script
+            type="text/javascript"
+            defer
             dangerouslySetInnerHTML={{
               __html: `
     (adsbygoogle = window.adsbygoogle || []).push({
@@ -104,21 +107,21 @@ export default class MyDocument extends Document<any> {
         <body>
           <Main />
           <NextScript />
-        </body>
 
-        <script
-          defer
-          type="text/javascript"
-          dangerouslySetInnerHTML={{
-            __html: `
+          <script
+            defer
+            type="text/javascript"
+            dangerouslySetInnerHTML={{
+              __html: `
     window.smartlook||(function(d) {
         var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
         var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
         c.charset='utf-8';c.src='https://rec.smartlook.com/recorder.js';h.appendChild(c);
         })(document);
         smartlook('init', '1f672e94efc947fef3dc76e7f8bff65d5a754607');`
-          }}
-        ></script>
+            }}
+          ></script>
+        </body>
       </html>
     );
   }
