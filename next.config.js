@@ -6,7 +6,7 @@ const isDev = process.env.NODE_ENV === 'dev';
 const nextOfflineConfig = {
   dontAutoRegisterSw: true,
   transformManifest: manifest =>
-    [{ url: '/', revision: '000004' }].concat(manifest), // add the homepage to the cache
+    [{ url: '/', revision: '000005' }].concat(manifest), // add the homepage to the cache
   // Trying to set NODE_ENV=production when running yarn dev causes a build-time error so we
   // turn on the SW in dev mode so that we can actually test it
   generateInDevMode: false,
@@ -38,6 +38,8 @@ const nextOfflineConfig = {
 };
 
 const nextConfig = {
+  target: 'serverless',
+  ...nextOfflineConfig,
   webpack: config => {
     config.plugins = config.plugins || [];
 
@@ -56,13 +58,10 @@ const nextConfig = {
     };
 
     return config;
-  },
-  target: 'serverless'
-  // ...nextOfflineConfig
+  }
   // onDemandEntries: {
   //   maxInactiveAge: 1000 * 60 * 60 * 24
   // }
 };
 
-// module.exports = withOffline(nextConfig);
-module.exports = nextConfig;
+module.exports = withOffline(nextConfig);
