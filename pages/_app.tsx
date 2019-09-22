@@ -3,6 +3,7 @@ import App, { AppInitialProps } from 'next/app';
 import DefaultAppIProps from 'next/app';
 import { ApolloProvider } from 'react-apollo';
 import { NextRouter } from 'next/router';
+import { register, unregister } from 'next-offline/runtime';
 
 import withApolloClient from '@lib/with-apollo-client';
 import PodcastPlayer from '@components/PodcastPlayer';
@@ -34,6 +35,11 @@ class MyApp extends App<DefaultAppIProps & AppProps & IProps> {
 
   componentDidMount() {
     gTagInitialize();
+    register();
+  }
+
+  componentWillUnmount() {
+    unregister();
   }
 
   render() {
