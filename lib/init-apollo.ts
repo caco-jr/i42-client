@@ -1,5 +1,6 @@
 import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
 import fetch from 'isomorphic-unfetch';
+import https from 'https';
 
 let apolloClient = null;
 
@@ -13,7 +14,10 @@ function create(initialState) {
       uri: 'https://adm.i42.com.br/graphql', // Server URL (must be absolute)
       credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
       // Use fetch() polyfill on the server
-      fetch: !isBrowser && fetch
+      fetch: !isBrowser && fetch,
+      fetchOptions: {
+        agent: new https.Agent({ rejectUnauthorized: false, ecdhCurve: 'auto' })
+      }
     }),
     cache: new InMemoryCache().restore(initialState || {}),
     typeDefs: `
