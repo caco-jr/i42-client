@@ -35,11 +35,11 @@ class MyApp extends App<DefaultAppIProps & AppProps & IProps> {
 
   componentDidMount() {
     gTagInitialize();
-    register();
+    // register();
   }
 
   componentWillUnmount() {
-    unregister();
+    // unregister();
   }
 
   render() {
