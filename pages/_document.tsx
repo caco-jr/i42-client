@@ -6,6 +6,8 @@ import Document, {
   DocumentContext
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { GtagScript, GtagNoscript } from '@components/Scripts/GoogleTagManager';
+import SmartLookScript from '@components/Scripts/SmartLook';
 
 export default class MyDocument extends Document<any> {
   static async getInitialProps(ctx: DocumentContext) {
@@ -41,8 +43,8 @@ export default class MyDocument extends Document<any> {
           ></link>
 
           <link
-            rel="stylesheet"
             href="https://cdn.rawgit.com/filipelinhares/ress/master/dist/ress.min.css"
+            rel="stylesheet"
           />
           <link rel="manifest" href="/static/manifest/manifest.json" />
           <link rel="manifest" href="manifest.webmanifest" />
@@ -75,40 +77,15 @@ export default class MyDocument extends Document<any> {
           />
 
           {this.props.styleTags}
-
-          {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-          <script
-            defer
-            src="https://www.googletagmanager.com/gtag/js?id=UA-93047507-1"
-          ></script>
-          <script
-            defer
-            type="text/javascript"
-            dangerouslySetInnerHTML={{
-              __html: `window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-93047507-1');`
-            }}
-          ></script>
+          <GtagScript />
         </Head>
         <body>
+          <GtagNoscript />
+
           <Main />
           <NextScript />
 
-          <script
-            defer
-            type="text/javascript"
-            dangerouslySetInnerHTML={{
-              __html: `
-    window.smartlook||(function(d) {
-        var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
-        var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
-        c.charset='utf-8';c.src='https://rec.smartlook.com/recorder.js';h.appendChild(c);
-        })(document);
-        smartlook('init', '1f672e94efc947fef3dc76e7f8bff65d5a754607');`
-            }}
-          ></script>
+          <SmartLookScript />
         </body>
       </html>
     );

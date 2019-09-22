@@ -6,6 +6,7 @@ import { NextRouter } from 'next/router';
 
 import withApolloClient from '@lib/with-apollo-client';
 import PodcastPlayer from '@components/PodcastPlayer';
+import { gTagInitialize } from '@components/Scripts/GoogleTagManager';
 
 export interface AppProps extends AppInitialProps {
   router: NextRouter;
@@ -30,6 +31,12 @@ const getInitialProps = async ({
 
 class MyApp extends App<DefaultAppIProps & AppProps & IProps> {
   static getInitialProps = getInitialProps;
+
+  componentDidMount() {
+    gTagInitialize();
+  }
+
+  componentWillUnmount() {}
 
   render() {
     const { Component, pageProps, apolloClient, ...otherProps } = this.props;
