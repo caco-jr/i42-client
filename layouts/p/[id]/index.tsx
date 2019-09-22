@@ -149,13 +149,13 @@ const Layout = ({ router }: Props) => {
         <Container>
           <PostPageBase>
             <PostPageSEO
-              title={seo.title}
+              title={decode(seo.title)}
               description={
                 seo.metaDesc || handleLimitCharacters(decode(content))
               }
               url={router.asPath}
               openGraph={{
-                title: seo.opengraphTitle,
+                title: decode(seo.opengraphTitle),
                 description:
                   seo.opengraphDescription ||
                   handleLimitCharacters(decode(content)),
@@ -164,7 +164,7 @@ const Layout = ({ router }: Props) => {
                     url: seo.opengraphImage || featuredImage.sourceUrl,
                     height: 650,
                     width: 850,
-                    alt: featuredImage.altText
+                    alt: decode(featuredImage.altText)
                   }
                 ]
               }}
