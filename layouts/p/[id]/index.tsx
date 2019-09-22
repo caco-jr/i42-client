@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { ScreenClassProvider, Container, Row, Col } from 'react-grid-system';
 import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+import { useQuery } from 'react-apollo';
 
 import BodyBackground from '@components/BodyBackground';
 import Header from '@components/Header';
@@ -21,7 +21,7 @@ import PostScreenAudima from './components/Audima';
 
 interface Props extends AppProps {}
 
-const getPostQuery = gql`
+const GET_POST_QUERY = gql`
   query post($slug: String) {
     postBy(slug: $slug) {
       postId
@@ -104,6 +104,43 @@ const getPodcastAttributes = (content: string): { src: string } => {
 };
 
 const Layout = ({ router }: Props) => {
+  const { loading, error, data } = useQuery(GET_POST_QUERY, {
+    variables: { slug: router.query.id }
+  });
+
+  if (loading) {
+    return (
+      <ScreenClassProvider>
+        <BodyBackground>
+          <Header />
+
+          <Container>
+            <PostPageBase>
+              <PostPageLoading />
+            </PostPageBase>
+          </Container>
+        </BodyBackground>
+
+        <Footer />
+      </ScreenClassProvider>
+    );
+  }
+
+  const {
+    postId,
+    title,
+    content,
+    featuredImage,
+    extra,
+    date,
+    modified,
+    podcast,
+    author,
+    tags,
+    categories,
+    seo
+  } = data.postBy;
+
   return (
     <ScreenClassProvider>
       <BodyBackground>
@@ -111,103 +148,71 @@ const Layout = ({ router }: Props) => {
 
         <Container>
           <PostPageBase>
-            <Query query={getPostQuery} variables={{ slug: router.query.id }}>
-              {({ loading, data: { postBy } }) => {
-                if (loading) {
-                  return <PostPageLoading />;
-                }
-
-                const {
-                  postId,
-                  title,
-                  content,
-                  featuredImage,
-                  extra,
-                  date,
-                  modified,
-                  podcast,
-                  author,
-                  tags,
-                  categories,
-                  seo
-                } = postBy;
-
-                return (
-                  <>
-                    <PostPageSEO
-                      title={seo.title}
-                      description={
-                        seo.metaDesc || handleLimitCharacters(decode(content))
-                      }
-                      url={router.asPath}
-                      openGraph={{
-                        title: seo.opengraphTitle,
-                        description:
-                          seo.opengraphDescription ||
-                          handleLimitCharacters(decode(content)),
-                        images: [
-                          {
-                            url: seo.opengraphImage || featuredImage.sourceUrl,
-                            height: 650,
-                            width: 850,
-                            alt: featuredImage.altText
-                          }
-                        ]
-                      }}
-                      article={{
-                        publishedTime: date,
-                        modifiedTime: modified,
-                        tags: tags.nodes.map(item => item.name),
-                        section: categories.nodes[0]
-                          ? categories.nodes[0].name
-                          : '',
-                        authors: [
-                          { name: author.name, image: author.avatar.url }
-                        ]
-                      }}
-                    />
-
-                    {podcast.isPodcastPost ? (
-                      <PostScreenPodcastHeader
-                        title={title}
-                        media={featuredImage}
-                        podcastSrc={getPodcastAttributes(content).src}
-                      />
-                    ) : (
-                      <PostScreenHeader
-                        title={title}
-                        subtitle={extra.subtitle}
-                        media={featuredImage}
-                        date={date}
-                        review={{ hasRating: false, rating: null }}
-                      />
-                    )}
-
-                    <PostScreenAudima />
-
-                    <Row>
-                      <Col lg={8}>
-                        <PostContent content={handleContent(content)} />
-                      </Col>
-
-                      <Col lg={4}>
-                        {handleParticipantsPost({
-                          podcast,
-                          author
-                        })}
-                      </Col>
-                    </Row>
-
-                    <PostRelatedContent
-                      postIdExclude={postId}
-                      title={title}
-                      tags={tags.nodes.map(item => item.name)}
-                      categories={categories.nodes.map(item => item.name)}
-                    />
-                  </>
-                );
+            <PostPageSEO
+              title={decode(seo.title)}
+              description={
+                seo.metaDesc || handleLimitCharacters(decode(content))
+              }
+              url={router.asPath}
+              openGraph={{
+                title: decode(seo.opengraphTitle),
+                description:
+                  seo.opengraphDescription ||
+                  handleLimitCharacters(decode(content)),
+                images: [
+                  {
+                    url: seo.opengraphImage || featuredImage.sourceUrl,
+                    height: 650,
+                    width: 850,
+                    alt: decode(featuredImage.altText)
+                  }
+                ]
               }}
-            </Query>
+              article={{
+                publishedTime: date,
+                modifiedTime: modified,
+                tags: tags.nodes.map(item => item.name),
+                section: categories.nodes[0] ? categories.nodes[0].name : '',
+                authors: [{ name: author.name, image: author.avatar.url }]
+              }}
+            />
+
+            {podcast.isPodcastPost ? (
+              <PostScreenPodcastHeader
+                title={title}
+                media={featuredImage}
+                podcastSrc={getPodcastAttributes(content).src}
+              />
+            ) : (
+              <PostScreenHeader
+                title={title}
+                subtitle={extra.subtitle}
+                media={featuredImage}
+                date={date}
+                review={{ hasRating: false, rating: null }}
+              />
+            )}
+
+            <PostScreenAudima />
+
+            <Row>
+              <Col lg={8}>
+                <PostContent content={handleContent(content)} />
+              </Col>
+              <Col lg={4}>
+                {handleParticipantsPost({
+                  podcast,
+                  author
+                })}
+              </Col>
+            </Row>
+
+            <PostRelatedContent
+              postIdExclude={postId}
+              title={title}
+              tags={tags.nodes.map(item => item.name)}
+              categories={categories.nodes.map(item => item.name)}
+            />
           </PostPageBase>
         </Container>
       </BodyBackground>

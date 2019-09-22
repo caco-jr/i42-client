@@ -36,8 +36,6 @@ class MyApp extends App<DefaultAppIProps & AppProps & IProps> {
     gTagInitialize();
   }
 
-  componentWillUnmount() {}
-
   render() {
     const { Component, pageProps, apolloClient, ...otherProps } = this.props;
 

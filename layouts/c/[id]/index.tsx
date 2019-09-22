@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScreenClassProvider, Container } from 'react-grid-system';
 import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+import { useQuery } from 'react-apollo';
 
 import { AppProps } from '@pages/_app';
 import BodyBackground from '@components/BodyBackground';
@@ -14,7 +14,7 @@ import { PostCardList } from '@components/PostCards/List/index.style';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading/index';
 import Footer from '@components/Footer';
 
-const postsByCategoryQuery = gql`
+const POSTS_BY_CATEGORY_QUERY = gql`
   query postsByCategory(
     $categorySlug: String
     $before: String
@@ -61,7 +61,7 @@ const postsByCategoryQuery = gql`
 interface Props extends AppProps {}
 
 const Layout = ({ router }: Props) => {
-  const [posts, setPosts] = useState([]);
+  const [categoryPosts, setCategoryPosts] = useState([]);
 
   const { id, page, before, after } = router.query;
 
@@ -77,6 +77,25 @@ const Layout = ({ router }: Props) => {
     ? { last: limitPerPage, before }
     : { first: limitPerPage, after };
 
+  const { loading, error, data } = useQuery(POSTS_BY_CATEGORY_QUERY, {
+    variables: {
+      categorySlug,
+      ...pagination
+    }
+  });
+
+  useEffect(() => {
+    if (!data) {
+      return setCategoryPosts([]);
+    }
+
+    const othersPost = data.posts.nodes.slice(1);
+    const categoryPostsLogic =
+      categoryPage === 1 ? othersPost : data.posts.nodes;
+
+    setCategoryPosts(categoryPostsLogic);
+  }, [data]);
+
   return (
     <ScreenClassProvider>
       <BodyBackground>
@@ -86,54 +105,30 @@ const Layout = ({ router }: Props) => {
           <CategoryPageWrapper>
             <CategoryPageInfo
               categorySlug={categorySlug}
-              post={posts[0]}
+              post={data && data.posts.nodes[0]}
               page={categoryPage}
             />
 
-            <Query
-              query={postsByCategoryQuery}
-              variables={{
-                categorySlug,
-                ...pagination
-              }}
-            >
-              {({ loading, data: { posts } }) => {
-                let categoryPosts = [];
+            {loading && categoryPosts.length ? (
+              <Container>
+                <PostCardList>
+                  {[...Array(9)].map((item, index) => (
+                    <PostCardCompactLoading key={index} />
+                  ))}
+                </PostCardList>
+              </Container>
+            ) : (
+              <CategoryPagePosts posts={categoryPosts} />
+            )}
 
-                if (!loading) {
-                  setPosts(posts.nodes);
-
-                  const othersPost = posts.nodes.slice(1);
-
-                  categoryPosts = categoryPage === 1 ? othersPost : posts.nodes;
-                }
-
-                return (
-                  <>
-                    {loading ? (
-                      <Container>
-                        <PostCardList>
-                          {[...Array(9)].map((item, index) => (
-                            <PostCardCompactLoading key={index} />
-                          ))}
-                        </PostCardList>
-                      </Container>
-                    ) : (
-                      <CategoryPagePosts posts={categoryPosts} />
-                    )}
-
-                    {posts ? (
-                      <Pagination
-                        {...posts.pageInfo}
-                        category={categorySlug}
-                        actualPage={categoryPage}
-                        show={!loading}
-                      />
-                    ) : null}
-                  </>
-                );
-              }}
-            </Query>
+            {data && data.posts ? (
+              <Pagination
+                {...data.posts.pageInfo}
+                category={categorySlug}
+                actualPage={categoryPage}
+                show={!loading}
+              />
+            ) : null}
           </CategoryPageWrapper>
         </Container>
       </BodyBackground>
