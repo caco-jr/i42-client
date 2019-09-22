@@ -36,6 +36,11 @@ class MyApp extends App<DefaultAppIProps & AppProps & IProps> {
   componentDidMount() {
     gTagInitialize();
     register();
+
+    console.log('===========');
+    console.log(navigator);
+    console.log('===========');
+    console.log(typeof window);
   }
 
   componentWillUnmount() {
