@@ -57,11 +57,12 @@ const nextConfig = {
 
     return config;
   },
-  target: 'serverless',
-  ...nextOfflineConfig
+  target: 'serverless'
+  // ...nextOfflineConfig
   // onDemandEntries: {
   //   maxInactiveAge: 1000 * 60 * 60 * 24
   // }
 };
 
-module.exports = withOffline(nextConfig);
+// module.exports = withOffline(nextConfig);
+module.exports = nextConfig;
