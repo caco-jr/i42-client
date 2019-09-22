@@ -4,7 +4,6 @@ const withOffline = require('next-offline');
 const isDev = process.env.NODE_ENV === 'dev';
 
 const nextOfflineConfig = {
-  dontAutoRegisterSw: true,
   transformManifest: manifest =>
     [{ url: '/', revision: '000005' }].concat(manifest), // add the homepage to the cache
   // Trying to set NODE_ENV=production when running yarn dev causes a build-time error so we
