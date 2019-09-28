@@ -35,7 +35,7 @@ class MyApp extends App<DefaultAppIProps & AppProps & IProps> {
 
   componentDidMount() {
     gTagInitialize();
-    gAdSenseInitialize();
+    // gAdSenseInitialize();
   }
 
   render() {
