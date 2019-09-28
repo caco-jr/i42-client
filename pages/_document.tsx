@@ -8,6 +8,7 @@ import Document, {
 import { ServerStyleSheet } from 'styled-components';
 import { GtagScript, GtagNoscript } from '@components/Scripts/GoogleTagManager';
 import SmartLookScript from '@components/Scripts/SmartLook';
+import { GAdSenseScript } from '@components/Scripts/GoogleAdSense';
 
 export default class MyDocument extends Document<any> {
   static async getInitialProps(ctx: DocumentContext) {
@@ -78,6 +79,7 @@ export default class MyDocument extends Document<any> {
 
           {this.props.styleTags}
           <GtagScript />
+          <GAdSenseScript />
         </Head>
         <body>
           <GtagNoscript />
