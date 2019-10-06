@@ -61,7 +61,7 @@ const HighlightBlock = ({
       <SectionTitle>{sectionTitle}</SectionTitle>
 
       <HighlightBlockPostsContainer>
-        {!loading
+        {!loading && postsExclude.length
           ? data &&
             data.posts.nodes.map((post, index) => {
               if (index === 0) {

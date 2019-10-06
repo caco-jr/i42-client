@@ -63,7 +63,7 @@ const CategoryPostBlock = ({
       <SectionTitle>{sectionTitle}</SectionTitle>
 
       <PostCardList>
-        {!loading
+        {!loading && postsExclude.length
           ? data &&
             data.posts.nodes.map((post, index) => {
               const { title, excerpt, featuredImage, slug, categories } = post;
