@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScreenClassProvider, Container } from 'react-grid-system';
 
 import BodyBackground from '@components/BodyBackground';
@@ -12,33 +12,50 @@ import HomePageSEO from './components/SEO';
 import Footer from '@components/Footer';
 
 const Home = () => {
+  const [postsExclude, setPostsExclude] = useState([]);
+
+  const handlePostsExclude = (postIDs: number[]) => {
+    setPostsExclude(postIDs);
+  };
+
   return (
     <ScreenClassProvider>
       <BodyBackground>
         <HomePageSEO />
 
         <Header />
-        <HeroSection categoriesExclude={[2, 132, 3, 11, 141]} />
+        <HeroSection handlePostsHero={handlePostsExclude} />
 
         <Container>
           <HomeBackground>
             <CategoryPostBlock
               categorySlug="noticias"
               sectionTitle="Notícias"
+              postsExclude={postsExclude}
             />
 
-            <CategoryPostBlock categorySlug="reviews" sectionTitle="Reviews" />
+            <CategoryPostBlock
+              categorySlug="reviews"
+              sectionTitle="Reviews"
+              postsExclude={postsExclude}
+            />
 
             <PostCardList>
               <HighlightBlock
                 sectionTitle="Nave Mainha"
                 categorySlug="nave-mainha"
+                postsExclude={postsExclude}
               />
-              <HighlightBlock sectionTitle="Games" categorySlug="games" />
+              <HighlightBlock
+                sectionTitle="Games"
+                categorySlug="games"
+                postsExclude={postsExclude}
+              />
 
               <HighlightBlock
                 sectionTitle="ImperiaLista"
                 categorySlug="imperialista"
+                postsExclude={postsExclude}
               />
             </PostCardList>
           </HomeBackground>
