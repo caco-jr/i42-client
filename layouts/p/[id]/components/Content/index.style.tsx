@@ -46,8 +46,23 @@ export const PostContentWrapper = styled.section`
     margin: 0 auto;
   }
 
-  .arve-embed-container {
-    padding: 0 !important;
+  .arve-wrapper {
+    max-width: 100% !important;
+
+    .arve-embed-container {
+      position: relative;
+      padding-bottom: 56.25% !important; /* 16:9 */
+      padding-top: 25px !important;
+      height: 0;
+
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 
   .wp-block-embed-youtube {
