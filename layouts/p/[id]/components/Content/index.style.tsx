@@ -55,4 +55,12 @@ export const PostContentWrapper = styled.section`
       margin: 20px 0 0;
     }
   }
+
+  @media (min-width: 1200px) {
+    padding-right: 35px;
+  }
+
+  @media (max-width: 992px) {
+    margin-bottom: 50px;
+  }
 `;
