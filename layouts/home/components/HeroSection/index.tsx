@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container } from 'react-grid-system';
 import gql from 'graphql-tag';
 import { Query, useQuery } from 'react-apollo';
@@ -8,9 +8,10 @@ import PostCardCompact from '@components/PostCards/Compact';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
 
 const ALL_POSTS_QUERY = gql`
-  query allPosts($categoriesExclude: [ID], $limit: Int) {
-    posts(where: { categoryNotIn: $categoriesExclude }, first: $limit) {
+  query allPosts($limit: Int) {
+    posts(first: $limit) {
       nodes {
+        postId
         title
         featuredImage {
           sourceUrl
@@ -32,14 +33,21 @@ const ALL_POSTS_QUERY = gql`
 `;
 
 const HeroSection = ({
-  categoriesExclude
+  handlePostsHero
 }: {
-  categoriesExclude: number[];
+  handlePostsHero: (categoryIDs: number[]) => void;
 }) => {
   const componentClassName = 'hero-section';
   const { loading, error, data } = useQuery(ALL_POSTS_QUERY, {
-    variables: { categoriesExclude, limit: 3 }
+    variables: { limit: 3 }
   });
+
+  const getHeroPostIDs = (): number[] =>
+    data.posts.nodes.map(post => post.postId);
+
+  useEffect(() => {
+    !loading && handlePostsHero(getHeroPostIDs());
+  }, [loading]);
 
   return (
     <Container>

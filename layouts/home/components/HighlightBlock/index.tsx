@@ -14,8 +14,15 @@ import {
 } from './index.style';
 
 const POSTS_BY_CATEGORY_QUERY = gql`
-  query postsByCategory($categorySlug: String, $limit: Int) {
-    posts(first: $limit, where: { categoryName: $categorySlug }) {
+  query postsByCategory(
+    $categorySlug: String
+    $limit: Int
+    $postsExclude: [ID]
+  ) {
+    posts(
+      first: $limit
+      where: { categoryName: $categorySlug, notIn: $postsExclude }
+    ) {
       nodes {
         title
         excerpt
@@ -39,11 +46,14 @@ const POSTS_BY_CATEGORY_QUERY = gql`
   }
 `;
 
-const HighlightBlock = (props: HighlightBlockInterface) => {
+const HighlightBlock = ({
+  categorySlug,
+  sectionTitle,
+  postsExclude
+}: HighlightBlockInterface) => {
   const componentClassName = 'highlight-block';
-  const { categorySlug, sectionTitle } = props;
   const { loading, error, data } = useQuery(POSTS_BY_CATEGORY_QUERY, {
-    variables: { categorySlug, limit: 3 }
+    variables: { categorySlug, limit: 3, postsExclude }
   });
 
   return (
@@ -51,7 +61,7 @@ const HighlightBlock = (props: HighlightBlockInterface) => {
       <SectionTitle>{sectionTitle}</SectionTitle>
 
       <HighlightBlockPostsContainer>
-        {!loading
+        {!loading && postsExclude.length
           ? data &&
             data.posts.nodes.map((post, index) => {
               if (index === 0) {

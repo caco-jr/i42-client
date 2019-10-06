@@ -31,7 +31,7 @@ export const PostScreenHeaderRightColumn = styled.section`
 export const PostScreenHeaderTitle = styled.h1`
   font-family: var(--title-font-family);
   font-weight: var(--title-font-weight);
-  font-size: 48px;
+  font-size: 38px;
   color: var(--title-color);
   margin: 0 0 5px;
   line-height: 1.04;
@@ -50,7 +50,8 @@ export const PostScreenHeaderSubTitle = styled.h2`
   line-height: 1.27;
   color: var(--title-color);
   margin: 0;
-  font-family: var(--primary-font-family-medium);
+  font-family: var(--primary-font-family);
+  font-weight: var(--text-font-weight);
 `;
 
 export const PostScreenHeaderImage = styled.img`
