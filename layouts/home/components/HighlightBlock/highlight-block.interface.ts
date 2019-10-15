@@ -1,5 +1,11 @@
 export interface HighlightBlockInterface {
-  sectionTitle: string;
+  title: HighlightBlockTitleInterface;
   categorySlug: string;
   postsExclude: number[];
+}
+
+interface HighlightBlockTitleInterface {
+  normal: string;
+  highlighted?: string;
+  color?: string;
 }

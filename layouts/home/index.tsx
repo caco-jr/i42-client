@@ -52,18 +52,18 @@ const Home = () => {
 
             <PostCardList>
               <HighlightBlock
-                sectionTitle="Nave Mainha"
+                title={{ normal: 'Nave Mainha' }}
                 categorySlug="nave-mainha"
                 postsExclude={postsExclude}
               />
               <HighlightBlock
-                sectionTitle="Games"
+                title={{ normal: 'Games' }}
                 categorySlug="games"
                 postsExclude={postsExclude}
               />
 
               <HighlightBlock
-                sectionTitle="Controle da Missão"
+                title={{ normal: 'Controle da Missão' }}
                 categorySlug="controle-missao"
                 postsExclude={postsExclude}
               />
