@@ -13,6 +13,7 @@ import { Container } from 'react-grid-system';
 
 interface Props {
   isVisible: boolean;
+  handleMenuMobile: (isOpen: boolean) => void;
 }
 
 const MENU_QUERY = gql`
@@ -34,7 +35,7 @@ const handleURL = (url: string): string => {
   return urlSplited[urlSplited.length - 2];
 };
 
-const NavbarMobile = ({ isVisible }: Props) => {
+const NavbarMobile = ({ isVisible, handleMenuMobile }: Props) => {
   const componentClassName = 'c-navbar-mobile';
   const navbarHeight = useRef(null);
   const [height, setHeight] = useState(0);
@@ -71,6 +72,7 @@ const NavbarMobile = ({ isVisible }: Props) => {
                 <NavbarMobileItem
                   href={getCategoryURL(handleURL(item.url)).as}
                   aria-label={`Ir para a categoria ${item.label}`}
+                  onClick={() => handleMenuMobile(false)}
                 >
                   {item.label}
                 </NavbarMobileItem>

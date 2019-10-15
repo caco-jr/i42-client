@@ -21,7 +21,10 @@ const Header = () => {
   return (
     <>
       <Hidden md lg xl>
-        <NavbarMobile isVisible={isMenuMobileOpen} />
+        <NavbarMobile
+          isVisible={isMenuMobileOpen}
+          handleMenuMobile={handleMenuMobile}
+        />
       </Hidden>
 
       <HeaderWrapper>
