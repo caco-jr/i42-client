@@ -30,14 +30,24 @@ const Home = () => {
           <HomeBackground>
             <CategoryPostBlock
               categorySlug="noticias"
-              sectionTitle="Notícias"
+              title={{
+                normal: 'Império',
+                highlighted: 'news',
+                color: '#f42458'
+              }}
               postsExclude={postsExclude}
+              postQuantity={6}
             />
 
             <CategoryPostBlock
-              categorySlug="reviews"
-              sectionTitle="Reviews"
+              categorySlug="imperialista"
+              title={{
+                normal: 'Imperia',
+                highlighted: 'lista',
+                color: '#6638ed'
+              }}
               postsExclude={postsExclude}
+              postQuantity={3}
             />
 
             <PostCardList>
@@ -53,8 +63,8 @@ const Home = () => {
               />
 
               <HighlightBlock
-                sectionTitle="ImperiaLista"
-                categorySlug="imperialista"
+                sectionTitle="Controle da Missão"
+                categorySlug="controle-missao"
                 postsExclude={postsExclude}
               />
             </PostCardList>
