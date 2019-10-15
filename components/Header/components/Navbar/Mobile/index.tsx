@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import gql from 'graphql-tag';
-import { Query, useQuery } from 'react-apollo';
+import { Container } from 'react-grid-system';
+import { useQuery } from 'react-apollo';
 import Link from 'next/link';
 
 import { getCategoryURL } from '@helpers/urls';
@@ -9,7 +10,6 @@ import {
   NavbarMobileItem,
   NavbarMobileList
 } from './index.style';
-import { Container } from 'react-grid-system';
 
 interface Props {
   isVisible: boolean;
