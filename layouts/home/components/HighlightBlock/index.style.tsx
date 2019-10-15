@@ -7,7 +7,6 @@ import {
 } from '@components/PostCards/Horizontal/index.style';
 
 export const HighlightBlockWrapper = styled.section`
-  padding: 0 0 55px;
   border-radius: var(--border-radius);
   position: relative;
 
