@@ -134,7 +134,7 @@ const Footer = () => {
 
       <FooterBottom>
         <Container>
-          <p>© 2019 Império 42 | Versão 1.0 Λ</p>
+          <p>© 2019 Império 42 | Versão 1.2 Λ</p>
           <p>
             Todas as imagens de filmes, séries e etc são marcas registradas dos
             seus respectivos proprietários.
