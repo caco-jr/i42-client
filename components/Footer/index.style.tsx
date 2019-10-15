@@ -26,20 +26,11 @@ export const FooterTop = styled.section`
     display: inline-block;
     font-weight: 500;
     padding: 5px 15px;
+    margin-left: -15px;
   }
 
   ${component}__block {
     margin-bottom: 20px;
-  }
-
-  @media (min-width: 992px) {
-    a {
-      margin-left: -15px;
-    }
-  }
-
-  @media (max-width: 992px) {
-    text-align: center;
   }
 `;
 

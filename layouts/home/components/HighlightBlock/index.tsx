@@ -8,6 +8,8 @@ import PostCardHorizontal from '@components/PostCards/Horizontal';
 import PostCardCompactLoading from '@components/PostCards/Compact/Loading';
 import PostCardHorizontalLoading from '@components/PostCards/Horizontal/Loading';
 import SectionTitle from '@components/SectionTitle';
+import { getCategoryURL } from '@helpers/urls';
+import Link from 'next/link';
 import {
   HighlightBlockWrapper,
   HighlightBlockPostsContainer
@@ -48,7 +50,7 @@ const POSTS_BY_CATEGORY_QUERY = gql`
 
 const HighlightBlock = ({
   categorySlug,
-  sectionTitle,
+  title,
   postsExclude
 }: HighlightBlockInterface) => {
   const componentClassName = 'highlight-block';
@@ -58,7 +60,11 @@ const HighlightBlock = ({
 
   return (
     <HighlightBlockWrapper>
-      <SectionTitle>{sectionTitle}</SectionTitle>
+      <SectionTitle>
+        <Link {...getCategoryURL(categorySlug)}>
+          <a>{title.normal} </a>
+        </Link>
+      </SectionTitle>
 
       <HighlightBlockPostsContainer>
         {!loading && postsExclude.length

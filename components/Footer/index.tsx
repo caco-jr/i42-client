@@ -20,7 +20,7 @@ const Footer = () => {
         <Container>
           <Row>
             <Col
-              xs={12}
+              xs={6}
               sm={6}
               lg={3}
               className={`${componentClassName}__block`}
@@ -34,14 +34,14 @@ const Footer = () => {
                     target="_blank"
                     aria-label={`Mande um email para nós`}
                   >
-                    contato@imperio42.com.br
+                    Fale conosco
                   </a>
                 </FooterListItem>
               </FooterList>
             </Col>
 
             <Col
-              xs={12}
+              xs={6}
               sm={6}
               lg={3}
               className={`${componentClassName}__block`}
@@ -68,7 +68,7 @@ const Footer = () => {
             </Col>
 
             <Col
-              xs={12}
+              xs={6}
               sm={6}
               lg={3}
               className={`${componentClassName}__block`}
@@ -97,7 +97,7 @@ const Footer = () => {
             </Col>
 
             <Col
-              xs={12}
+              xs={6}
               sm={6}
               lg={3}
               className={`${componentClassName}__block`}
@@ -134,7 +134,7 @@ const Footer = () => {
 
       <FooterBottom>
         <Container>
-          <p>© 2019 Império 42 | Versão 1.0 Λ</p>
+          <p>© 2019 Império 42 | Versão 1.2 Λ</p>
           <p>
             Todas as imagens de filmes, séries e etc são marcas registradas dos
             seus respectivos proprietários.

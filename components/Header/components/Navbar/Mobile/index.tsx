@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import gql from 'graphql-tag';
-import { Query, useQuery } from 'react-apollo';
+import { Container } from 'react-grid-system';
+import { useQuery } from 'react-apollo';
 import Link from 'next/link';
 
 import { getCategoryURL } from '@helpers/urls';
@@ -9,10 +10,10 @@ import {
   NavbarMobileItem,
   NavbarMobileList
 } from './index.style';
-import { Container } from 'react-grid-system';
 
 interface Props {
   isVisible: boolean;
+  handleMenuMobile: (isOpen: boolean) => void;
 }
 
 const MENU_QUERY = gql`
@@ -34,7 +35,7 @@ const handleURL = (url: string): string => {
   return urlSplited[urlSplited.length - 2];
 };
 
-const NavbarMobile = ({ isVisible }: Props) => {
+const NavbarMobile = ({ isVisible, handleMenuMobile }: Props) => {
   const componentClassName = 'c-navbar-mobile';
   const navbarHeight = useRef(null);
   const [height, setHeight] = useState(0);
@@ -71,6 +72,7 @@ const NavbarMobile = ({ isVisible }: Props) => {
                 <NavbarMobileItem
                   href={getCategoryURL(handleURL(item.url)).as}
                   aria-label={`Ir para a categoria ${item.label}`}
+                  onClick={() => handleMenuMobile(false)}
                 >
                   {item.label}
                 </NavbarMobileItem>

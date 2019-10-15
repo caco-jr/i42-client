@@ -45,22 +45,38 @@ const POSTS_BY_CATEGORY_QUERY = gql`
 `;
 
 const CategoryPostBlock = ({
-  sectionTitle,
+  title,
   categorySlug,
-  postsExclude
+  postsExclude,
+  postQuantity
 }: CategoryPostInterface) => {
-  const componentClassName = 'category-post-block';
   const { loading, error, data } = useQuery(POSTS_BY_CATEGORY_QUERY, {
     variables: {
       categorySlug,
-      first: 3,
+      first: postQuantity,
       postsExclude
     }
   });
 
   return (
     <CategoryPostBlockWrapper>
-      <SectionTitle>{sectionTitle}</SectionTitle>
+      <SectionTitle>
+        <Link {...getCategoryURL(categorySlug)}>
+          <a>
+            {title.normal}
+
+            <span
+              style={{
+                color: title.color,
+                fontStyle: 'italic',
+                fontWeight: 'normal'
+              }}
+            >
+              {title.highlighted}
+            </span>
+          </a>
+        </Link>
+      </SectionTitle>
 
       <PostCardList>
         {!loading && postsExclude.length
@@ -81,16 +97,6 @@ const CategoryPostBlock = ({
             })
           : [...Array(3)].map((item, index) => <PostCardLoading key={index} />)}
       </PostCardList>
-
-      <Link {...getCategoryURL(categorySlug)}>
-        <Button
-          as="a"
-          styleType="outline"
-          href={getCategoryURL(categorySlug).as}
-        >
-          Mais {sectionTitle}
-        </Button>
-      </Link>
     </CategoryPostBlockWrapper>
   );
 };

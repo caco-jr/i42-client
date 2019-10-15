@@ -10,7 +10,8 @@ export const PostContentWrapper = styled.section`
 
   p {
     font-size: 1.125em;
-    line-height: 1.8;
+    line-height: 1.5;
+    margin-bottom: 15px;
   }
 
   h2,
@@ -61,6 +62,7 @@ export const PostContentWrapper = styled.section`
         left: 0;
         width: 100%;
         height: 100%;
+        border-radius: var(--border-radius);
       }
     }
   }
