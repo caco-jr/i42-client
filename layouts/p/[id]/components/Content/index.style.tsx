@@ -11,6 +11,7 @@ export const PostContentWrapper = styled.section`
   p {
     font-size: 1.125em;
     line-height: 1.8;
+    margin-bottom: 15px;
   }
 
   h2,
