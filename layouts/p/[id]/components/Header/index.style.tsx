@@ -5,12 +5,6 @@ export const PostScreenHeaderWrapper = styled.section`
     padding-left: 0;
     justify-content: flex-end;
   }
-
-  @media (max-width: 365px) {
-    .post-page-toggle-mode span {
-      display: none;
-    }
-  }
 `;
 
 export const PostScreenHeaderLeftColumn = styled.section`
