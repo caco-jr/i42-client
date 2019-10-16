@@ -7,7 +7,6 @@ import { NextRouter } from 'next/router';
 import withApolloClient from '@lib/with-apollo-client';
 import PodcastPlayer from '@components/PodcastPlayer';
 import { gTagInitialize } from '@components/Scripts/GoogleTagManager';
-import { gAdSenseInitialize } from '@components/Scripts/GoogleAdSense';
 
 export interface AppProps extends AppInitialProps {
   router: NextRouter;
@@ -35,7 +34,6 @@ class MyApp extends App<DefaultAppIProps & AppProps & IProps> {
 
   componentDidMount() {
     gTagInitialize();
-    // gAdSenseInitialize();
   }
 
   render() {

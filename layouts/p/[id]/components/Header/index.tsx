@@ -14,6 +14,7 @@ import {
   PostScreenHeaderLeftColumn,
   PostScreenHeaderRightColumn
 } from './index.style';
+import AdSenseBox from '@components/AdSenseBox';
 
 const PostScreenHeader = ({
   title,
@@ -56,7 +57,9 @@ const PostScreenHeader = ({
         </Col>
 
         <Col lg={4} className={`${componentClassName}__right-column`}>
-          <PostScreenHeaderRightColumn>teste</PostScreenHeaderRightColumn>
+          <PostScreenHeaderRightColumn>
+            <AdSenseBox slot="3392967836" />
+          </PostScreenHeaderRightColumn>
         </Col>
       </Row>
     </PostScreenHeaderWrapper>
