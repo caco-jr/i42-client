@@ -5,7 +5,6 @@ import { Query, useQuery } from 'react-apollo';
 import { getRandomItem } from '@helpers/helpers';
 import {
   PostRelatedContentWrapper,
-  PostRelatedContentLine,
   PostRelatedContentTitle
 } from './index.style';
 import { PostCardList } from '@components/PostCards/List/index.style';
@@ -62,8 +61,6 @@ const PostRelatedContent = ({
   if (loading) {
     return (
       <PostRelatedContentWrapper>
-        <PostRelatedContentLine />
-
         <PostRelatedContentTitle>Conteúdo Relacionado</PostRelatedContentTitle>
         <PostCardList>
           {[...Array(3)].map((item, index) => (
@@ -80,8 +77,6 @@ const PostRelatedContent = ({
 
   return (
     <PostRelatedContentWrapper>
-      <PostRelatedContentLine />
-
       <PostRelatedContentTitle>Conteúdo Relacionado</PostRelatedContentTitle>
 
       <PostCardList>

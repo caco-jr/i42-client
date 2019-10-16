@@ -199,7 +199,13 @@ const Layout = ({ router }: Props) => {
               <Row>
                 <Col lg={8} className={`${componentClassName}__left-column`}>
                   <PostScreenAudima />
+
                   <PostContent content={handleContent(content)} />
+
+                  {handleParticipantsPost({
+                    podcast,
+                    author
+                  })}
                 </Col>
                 <Col lg={4} className={`${componentClassName}__right-column`}>
                   {handleParticipantsPost({
