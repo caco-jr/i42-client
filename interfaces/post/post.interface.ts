@@ -32,6 +32,8 @@ export interface PostTermAPIInterface {
 
 interface PostExtraInterface {
   subtitle: string;
+  rating?: number;
+  readMore?: PostAPIInterface[];
 }
 
 export interface PostReviewInterface {

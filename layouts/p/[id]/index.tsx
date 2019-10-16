@@ -37,6 +37,7 @@ const GET_POST_QUERY = gql`
       }
       extra {
         subtitle
+        rating
         readMore {
           ... on Post {
             title
