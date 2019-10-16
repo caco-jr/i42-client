@@ -20,6 +20,7 @@ import { handleLimitCharacters, decode } from '@helpers/helpers';
 import PostScreenAudima from './components/Audima';
 import { PostScreenWrapper } from './index.style';
 import ReadMore from './components/ReadMore';
+import AdSenseBox from '@components/AdSenseBox';
 
 interface Props extends AppProps {}
 
@@ -163,6 +164,8 @@ const Layout = ({ router }: Props) => {
         <Header />
 
         <Container>
+          <AdSenseBox slot="8651859915" style={{ height: 90 }} />
+
           <PostScreenWrapper>
             <PostPageBase>
               <PostPageSEO

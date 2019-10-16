@@ -58,7 +58,7 @@ const PostScreenHeader = ({
 
         <Col lg={4} className={`${componentClassName}__right-column`}>
           <PostScreenHeaderRightColumn>
-            <AdSenseBox slot="3392967836" />
+            <AdSenseBox slot="3392967836" style={{ height: '170px' }} />
           </PostScreenHeaderRightColumn>
         </Col>
       </Row>
