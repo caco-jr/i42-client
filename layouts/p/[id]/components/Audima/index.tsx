@@ -1,8 +1,9 @@
 import React from 'react';
+import { PostScreenAudimaWrapper } from './index.style';
 
 const PostScreenAudima = () => (
   <>
-    <div id="audimaWidget"></div>
+    <PostScreenAudimaWrapper id="audimaWidget" />
     <script src="https://audio.audima.co/audima-widget.js" defer></script>
   </>
 );
