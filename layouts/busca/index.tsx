@@ -35,7 +35,7 @@ const Layout = ({ router }: Props) => {
         <Container>
           <SearchPageWrapper>
             <SearchPageTitle>
-              Resultados para sua busca <span>{q}</span>
+              Resultados para sua busca: <span>{q}</span>
             </SearchPageTitle>
 
             <SearchPagePosts
