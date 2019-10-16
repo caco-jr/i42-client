@@ -17,11 +17,6 @@ export const HighlightBlockWrapper = styled.section`
   ${PostCardHorizontalWrapper} {
     margin: 30px 0;
   }
-
-  ${PostCardHorizontalImage} {
-    width: 120px;
-    height: 120px;
-  }
 `;
 
 export const HighlightBlockPostsContainer = styled.section``;

@@ -16,6 +16,7 @@ export const PostScreenHeaderWrapper = styled.section`
 export const PostScreenHeaderLeftColumn = styled.section`
   display: flex;
   flex-flow: column;
+  margin-bottom: 30px;
 `;
 
 export const PostScreenHeaderRightColumn = styled.section``;

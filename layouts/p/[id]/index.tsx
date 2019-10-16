@@ -19,6 +19,7 @@ import PostPageLoading from './components/Loading';
 import { handleLimitCharacters, decode } from '@helpers/helpers';
 import PostScreenAudima from './components/Audima';
 import { PostScreenWrapper } from './index.style';
+import ReadMore from './components/ReadMore';
 
 interface Props extends AppProps {}
 
@@ -36,6 +37,18 @@ const GET_POST_QUERY = gql`
       }
       extra {
         subtitle
+        readMore {
+          ... on Post {
+            title
+            featuredImage {
+              sourceUrl
+              sizes
+              altText
+            }
+            slug
+            date
+          }
+        }
       }
       date
       modified
@@ -208,10 +221,7 @@ const Layout = ({ router }: Props) => {
                   })}
                 </Col>
                 <Col lg={4} className={`${componentClassName}__right-column`}>
-                  {handleParticipantsPost({
-                    podcast,
-                    author
-                  })}
+                  <ReadMore posts={extra.readMore} />
                 </Col>
               </Row>
 
