@@ -206,7 +206,7 @@ const Layout = ({ router }: Props) => {
                   subtitle={extra.subtitle}
                   media={featuredImage}
                   date={date}
-                  review={{ hasRating: false, rating: null }}
+                  rating={extra.rating}
                 />
               )}
 

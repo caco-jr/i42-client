@@ -20,7 +20,7 @@ const PostScreenHeader = ({
   subtitle,
   media,
   date,
-  review
+  rating
 }: PostScreenHeaderInterface) => {
   const componentClassName = 'c-post-screen-header';
 
@@ -43,7 +43,7 @@ const PostScreenHeader = ({
               </PostScreenHeaderSubTitle>
             ) : null}
 
-            {review.hasRating && <Rating rating={review.rating} />}
+            {rating && <Rating rating={rating} />}
 
             <PostPageToggleMode />
 

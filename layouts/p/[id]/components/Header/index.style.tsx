@@ -26,7 +26,7 @@ export const PostScreenHeaderTitle = styled.h1`
   font-weight: var(--title-font-weight);
   font-size: 38px;
   color: var(--title-color);
-  margin: 0 0 5px;
+  margin: 0 0 15px;
   line-height: 1.04;
 
   @media (max-width: 991px) {
