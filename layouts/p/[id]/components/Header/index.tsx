@@ -22,10 +22,18 @@ const PostScreenHeader = ({
   date,
   review
 }: PostScreenHeaderInterface) => {
+  const componentClassName = 'c-post-screen-header';
+
   return (
     <PostScreenHeaderWrapper>
+      <PostScreenHeaderImage
+        src={media.sourceUrl}
+        alt={media.altText}
+        srcSet={media.srcSet}
+      />
+
       <Row>
-        <Col lg={9}>
+        <Col lg={8} className={`${componentClassName}__left-column`}>
           <PostScreenHeaderLeftColumn>
             <PostScreenHeaderTitle>{decode(title)}</PostScreenHeaderTitle>
 
@@ -36,27 +44,21 @@ const PostScreenHeader = ({
             ) : null}
 
             {review.hasRating && <Rating rating={review.rating} />}
-          </PostScreenHeaderLeftColumn>
-        </Col>
 
-        <Col lg={3}>
-          <PostScreenHeaderRightColumn>
+            <PostPageToggleMode />
+
             {date ? (
               <PostScreenHeaderDate>
                 {handleFullDate(date)}
               </PostScreenHeaderDate>
             ) : null}
+          </PostScreenHeaderLeftColumn>
+        </Col>
 
-            <PostPageToggleMode />
-          </PostScreenHeaderRightColumn>
+        <Col lg={4} className={`${componentClassName}__right-column`}>
+          <PostScreenHeaderRightColumn>teste</PostScreenHeaderRightColumn>
         </Col>
       </Row>
-
-      <PostScreenHeaderImage
-        src={media.sourceUrl}
-        alt={media.altText}
-        srcSet={media.srcSet}
-      />
     </PostScreenHeaderWrapper>
   );
 };
