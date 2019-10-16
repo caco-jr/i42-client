@@ -15,4 +15,8 @@ export const ReadMoreWrapper = styled.section`
     font-size: 18px;
     line-height: 1.22;
   }
+
+  @media (max-width: 992px) {
+    margin-top: 30px;
+  }
 `;
