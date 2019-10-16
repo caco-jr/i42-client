@@ -13,7 +13,7 @@ const ReadMore = ({ posts }: Props) => {
   return (
     <ReadMoreWrapper>
       <PostCardList>
-        {posts.length
+        {posts && posts.length
           ? posts.map((post, index) => (
               <PostCardHorizontal
                 key={index}
