@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const PostScreenWrapper = styled.section`
   @media (min-width: 992px) {
-    .c-post-screen-header,
     .c-post-screen {
       &__left-column {
         padding-right: 30px !important;
@@ -11,6 +10,14 @@ export const PostScreenWrapper = styled.section`
 
       &__right-column {
         padding-left: 30px !important;
+      }
+    }
+  }
+
+  @media (max-width: 992px) {
+    .c-post-screen {
+      &__right-column {
+        margin-top: 50px;
       }
     }
   }

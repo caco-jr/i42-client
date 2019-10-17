@@ -56,6 +56,10 @@ export const PostScreenHeaderSubTitle = styled.h2`
 
 export const PostScreenHeaderImage = styled.img`
   margin: 40px 0 40px;
+
+  @media (max-width: 991px) {
+    margin: 25px 0 15px;
+  }
 `;
 
 export const PostScreenHeaderDate = styled.span`
