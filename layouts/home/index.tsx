@@ -10,6 +10,7 @@ import { HomeBackground } from './index.style';
 import { PostCardList } from '@components/PostCards/List/index.style';
 import HomePageSEO from './components/SEO';
 import Footer from '@components/Footer';
+import AdSenseBox from '@components/AdSenseBox';
 
 const Home = () => {
   const [postsExclude, setPostsExclude] = useState([]);
@@ -37,6 +38,11 @@ const Home = () => {
               }}
               postsExclude={postsExclude}
               postQuantity={6}
+            />
+
+            <AdSenseBox
+              slot="9869696524"
+              style={{ marginTop: 50, marginBottom: 50 }}
             />
 
             <CategoryPostBlock
