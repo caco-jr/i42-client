@@ -164,7 +164,7 @@ const Layout = ({ router }: Props) => {
         <Header />
 
         <Container>
-          <AdSenseBox slot="8651859915" style={{ height: 90 }} />
+          {/* <AdSenseBox slot="8651859915" style={{ height: 90 }} /> */}
 
           <PostScreenWrapper>
             <PostPageBase>
