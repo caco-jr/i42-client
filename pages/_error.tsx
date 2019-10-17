@@ -11,7 +11,7 @@ const Error = ({ statusCode }) => {
     return <ErrorPage />;
   };
 
-  return statusCode ? handlePage() : <p> An error occurred on client</p>;
+  return statusCode ? handlePage() : <ErrorPage />;
 };
 
 Error.getInitialProps = ({ res, err }) => {
