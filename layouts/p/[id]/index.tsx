@@ -234,6 +234,8 @@ const Layout = ({ router }: Props) => {
                   })}
                 </Col>
                 <Col lg={4} className={`${componentClassName}__right-column`}>
+                  <AdSenseBox slot="3392967836" />
+
                   <ReadMore posts={extra.readMore} />
                 </Col>
               </Row>
