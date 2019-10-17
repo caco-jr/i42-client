@@ -8,11 +8,3 @@ export const GAdSenseScript = () => {
     ></script>
   );
 };
-
-export const gAdSenseInitialize = () => {
-  // @ts-ignore
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: 'ca-pub-2787359838428098',
-    enable_page_level_ads: true
-  });
-};

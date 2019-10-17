@@ -13,7 +13,6 @@ export interface PostAPIInterface {
   tags: PostTermAPIInterface[];
   categories: CategoryAPIInterface;
   extra: PostExtraInterface;
-  review: PostReviewInterface;
   podcast: PostPodcastInterface;
 }
 
@@ -32,11 +31,8 @@ export interface PostTermAPIInterface {
 
 interface PostExtraInterface {
   subtitle: string;
-}
-
-export interface PostReviewInterface {
-  hasRating: boolean;
-  rating: string;
+  rating?: number;
+  readMore?: PostAPIInterface[];
 }
 
 export interface PostPodcastInterface {

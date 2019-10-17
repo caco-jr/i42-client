@@ -18,6 +18,9 @@ import Footer from '@components/Footer';
 import PostPageLoading from './components/Loading';
 import { handleLimitCharacters, decode } from '@helpers/helpers';
 import PostScreenAudima from './components/Audima';
+import { PostScreenWrapper } from './index.style';
+import ReadMore from './components/ReadMore';
+import AdSenseBox from '@components/AdSenseBox';
 
 interface Props extends AppProps {}
 
@@ -35,6 +38,20 @@ const GET_POST_QUERY = gql`
       }
       extra {
         subtitle
+        rating
+        readMore {
+          ... on Post {
+            postId
+            title
+            featuredImage {
+              sourceUrl
+              sizes
+              altText
+            }
+            slug
+            date
+          }
+        }
       }
       date
       modified
@@ -104,6 +121,7 @@ const getPodcastAttributes = (content: string): { src: string } => {
 };
 
 const Layout = ({ router }: Props) => {
+  const componentClassName = 'c-post-screen';
   const { loading, error, data } = useQuery(GET_POST_QUERY, {
     variables: { slug: router.query.id }
   });
@@ -141,79 +159,93 @@ const Layout = ({ router }: Props) => {
     seo
   } = data.postBy;
 
+  const handlePostExclude = (): number[] => {
+    if (extra.readMore) {
+      return [postId, ...extra.readMore.map(post => post.postId)];
+    }
+
+    return [postId];
+  };
+
   return (
     <ScreenClassProvider>
       <BodyBackground>
         <Header />
 
         <Container>
-          <PostPageBase>
-            <PostPageSEO
-              title={decode(seo.title)}
-              description={
-                seo.metaDesc || handleLimitCharacters(decode(content))
-              }
-              url={router.asPath}
-              openGraph={{
-                title: decode(seo.opengraphTitle),
-                description:
-                  seo.opengraphDescription ||
-                  handleLimitCharacters(decode(content)),
-                images: [
-                  {
-                    url: seo.opengraphImage || featuredImage.sourceUrl,
-                    height: 650,
-                    width: 850,
-                    alt: decode(featuredImage.altText)
-                  }
-                ]
-              }}
-              article={{
-                publishedTime: date,
-                modifiedTime: modified,
-                tags: tags.nodes.map(item => item.name),
-                section: categories.nodes[0] ? categories.nodes[0].name : '',
-                authors: [{ name: author.name, image: author.avatar.url }]
-              }}
-            />
+          {/* <AdSenseBox slot="8651859915" style={{ height: 90 }} /> */}
 
-            {podcast.isPodcastPost ? (
-              <PostScreenPodcastHeader
-                title={title}
-                media={featuredImage}
-                podcastSrc={getPodcastAttributes(content).src}
+          <PostScreenWrapper>
+            <PostPageBase>
+              <PostPageSEO
+                title={decode(seo.title)}
+                description={
+                  seo.metaDesc || handleLimitCharacters(decode(content))
+                }
+                url={router.asPath}
+                openGraph={{
+                  title: decode(seo.opengraphTitle),
+                  description:
+                    seo.opengraphDescription ||
+                    handleLimitCharacters(decode(content)),
+                  images: [
+                    {
+                      url: seo.opengraphImage || featuredImage.sourceUrl,
+                      height: 650,
+                      width: 850,
+                      alt: decode(featuredImage.altText)
+                    }
+                  ]
+                }}
+                article={{
+                  publishedTime: date,
+                  modifiedTime: modified,
+                  tags: tags.nodes.map(item => item.name),
+                  section: categories.nodes[0] ? categories.nodes[0].name : '',
+                  authors: [{ name: author.name, image: author.avatar.url }]
+                }}
               />
-            ) : (
-              <PostScreenHeader
+
+              {podcast.isPodcastPost ? (
+                <PostScreenPodcastHeader
+                  title={title}
+                  media={featuredImage}
+                  podcastSrc={getPodcastAttributes(content).src}
+                />
+              ) : (
+                <PostScreenHeader
+                  title={title}
+                  subtitle={extra.subtitle}
+                  media={featuredImage}
+                  date={date}
+                  rating={extra.rating}
+                />
+              )}
+
+              <Row>
+                <Col lg={8} className={`${componentClassName}__left-column`}>
+                  <PostScreenAudima />
+
+                  <PostContent content={handleContent(content)} />
+
+                  {handleParticipantsPost({
+                    podcast,
+                    author
+                  })}
+                </Col>
+                <Col lg={4} className={`${componentClassName}__right-column`}>
+                  <ReadMore posts={extra.readMore} />
+                </Col>
+              </Row>
+
+              <PostRelatedContent
+                postIdsExclude={handlePostExclude()}
                 title={title}
-                subtitle={extra.subtitle}
-                media={featuredImage}
-                date={date}
-                review={{ hasRating: false, rating: null }}
+                tags={tags.nodes.map(item => item.name)}
+                categories={categories.nodes.map(item => item.name)}
               />
-            )}
-
-            <PostScreenAudima />
-
-            <Row>
-              <Col lg={8}>
-                <PostContent content={handleContent(content)} />
-              </Col>
-              <Col lg={4}>
-                {handleParticipantsPost({
-                  podcast,
-                  author
-                })}
-              </Col>
-            </Row>
-
-            <PostRelatedContent
-              postIdExclude={postId}
-              title={title}
-              tags={tags.nodes.map(item => item.name)}
-              categories={categories.nodes.map(item => item.name)}
-            />
-          </PostPageBase>
+            </PostPageBase>
+          </PostScreenWrapper>
         </Container>
       </BodyBackground>
 

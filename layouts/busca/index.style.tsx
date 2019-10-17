@@ -15,5 +15,6 @@ export const SearchPageTitle = styled.h1`
 
   span {
     font-style: oblique;
+    font-weight: normal;
   }
 `;

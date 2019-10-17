@@ -3,14 +3,14 @@ import React from 'react';
 import SvgLoader from '@components/SvgLoader';
 import { RatingWrapper } from './index.style';
 
-const Rating = ({ rating }: { rating: string }) => {
+const Rating = ({ rating }: { rating: number }) => {
   const componentClassName = 'c-rating';
   const totalRating = 5;
 
   return (
     <RatingWrapper>
       {[...Array(totalRating)].map((item, index) => {
-        const isActive = index + 1 <= Number(rating) ? `active` : `inactive`;
+        const isActive = index + 1 <= rating ? `active` : `inactive`;
 
         return (
           <SvgLoader

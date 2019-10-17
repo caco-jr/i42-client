@@ -2,38 +2,25 @@ import styled from 'styled-components';
 
 export const PostScreenHeaderWrapper = styled.section`
   .post-page-toggle-mode {
-    padding-right: 0;
+    padding-left: 0;
     justify-content: flex-end;
   }
-
-  @media (max-width: 365px) {
-    .post-page-toggle-mode span {
-      display: none;
-    }
-  }
 `;
 
-export const PostScreenHeaderLeftColumn = styled.section``;
-
-export const PostScreenHeaderRightColumn = styled.section`
+export const PostScreenHeaderLeftColumn = styled.section`
   display: flex;
   flex-flow: column;
-  align-items: flex-end;
-
-  @media (max-width: 991px) {
-    flex-flow: row;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
+  margin-bottom: 30px;
 `;
+
+export const PostScreenHeaderRightColumn = styled.section``;
 
 export const PostScreenHeaderTitle = styled.h1`
   font-family: var(--title-font-family);
   font-weight: var(--title-font-weight);
   font-size: 38px;
   color: var(--title-color);
-  margin: 0 0 5px;
+  margin: 0 0 15px;
   line-height: 1.04;
 
   @media (max-width: 991px) {
@@ -46,7 +33,7 @@ export const PostScreenHeaderTitle = styled.h1`
 `;
 
 export const PostScreenHeaderSubTitle = styled.h2`
-  font-size: 22px;
+  font-size: 18px;
   line-height: 1.27;
   color: var(--title-color);
   margin: 0;
@@ -55,7 +42,7 @@ export const PostScreenHeaderSubTitle = styled.h2`
 `;
 
 export const PostScreenHeaderImage = styled.img`
-  margin: 40px 0 40px;
+  margin: 0px 0 40px;
 `;
 
 export const PostScreenHeaderDate = styled.span`

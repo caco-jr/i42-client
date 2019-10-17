@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const PostContentWrapper = styled.section`
   min-height: 400px;
+  margin-bottom: 30px;
 
   * {
     max-width: 100%;
@@ -71,13 +72,5 @@ export const PostContentWrapper = styled.section`
     figcaption {
       margin: 20px 0 0;
     }
-  }
-
-  @media (min-width: 1200px) {
-    padding-right: 35px;
-  }
-
-  @media (max-width: 992px) {
-    margin-bottom: 50px;
   }
 `;
