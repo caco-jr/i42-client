@@ -31,4 +31,6 @@ export const PostCardHorizontalDate = styled.span`
 
 export const PostCardHorizontalImage = styled.img`
   object-fit: cover;
+  width: 120px;
+  height: 120px;
 `;

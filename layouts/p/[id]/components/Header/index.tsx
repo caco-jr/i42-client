@@ -14,18 +14,27 @@ import {
   PostScreenHeaderLeftColumn,
   PostScreenHeaderRightColumn
 } from './index.style';
+import AdSenseBox from '@components/AdSenseBox';
 
 const PostScreenHeader = ({
   title,
   subtitle,
   media,
   date,
-  review
+  rating
 }: PostScreenHeaderInterface) => {
+  const componentClassName = 'c-post-screen-header';
+
   return (
     <PostScreenHeaderWrapper>
+      <PostScreenHeaderImage
+        src={media.sourceUrl}
+        alt={media.altText}
+        srcSet={media.srcSet}
+      />
+
       <Row>
-        <Col lg={9}>
+        <Col lg={8} className={`${componentClassName}__left-column`}>
           <PostScreenHeaderLeftColumn>
             <PostScreenHeaderTitle>{decode(title)}</PostScreenHeaderTitle>
 
@@ -35,28 +44,24 @@ const PostScreenHeader = ({
               </PostScreenHeaderSubTitle>
             ) : null}
 
-            {review.hasRating && <Rating rating={review.rating} />}
-          </PostScreenHeaderLeftColumn>
-        </Col>
+            {rating && <Rating rating={rating} />}
 
-        <Col lg={3}>
-          <PostScreenHeaderRightColumn>
+            <PostPageToggleMode />
+
             {date ? (
               <PostScreenHeaderDate>
                 {handleFullDate(date)}
               </PostScreenHeaderDate>
             ) : null}
+          </PostScreenHeaderLeftColumn>
+        </Col>
 
-            <PostPageToggleMode />
+        <Col lg={4} className={`${componentClassName}__right-column`}>
+          <PostScreenHeaderRightColumn>
+            <AdSenseBox slot="3392967836" style={{ height: '170px' }} />
           </PostScreenHeaderRightColumn>
         </Col>
       </Row>
-
-      <PostScreenHeaderImage
-        src={media.sourceUrl}
-        alt={media.altText}
-        srcSet={media.srcSet}
-      />
     </PostScreenHeaderWrapper>
   );
 };

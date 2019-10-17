@@ -5,7 +5,6 @@ import { Query, useQuery } from 'react-apollo';
 import { getRandomItem } from '@helpers/helpers';
 import {
   PostRelatedContentWrapper,
-  PostRelatedContentLine,
   PostRelatedContentTitle
 } from './index.style';
 import { PostCardList } from '@components/PostCards/List/index.style';
@@ -39,12 +38,12 @@ const SEARCH_POSTS_QUERY = gql`
 `;
 
 const PostRelatedContent = ({
-  postIdExclude,
+  postIdsExclude,
   title,
   tags,
   categories
 }: {
-  postIdExclude: number;
+  postIdsExclude: number[];
   title: string;
   tags: string[];
   categories: string[];
@@ -55,15 +54,13 @@ const PostRelatedContent = ({
     variables: {
       search: itemSelected || title,
       limit: 3,
-      exclude: postIdExclude
+      exclude: postIdsExclude
     }
   });
 
   if (loading) {
     return (
       <PostRelatedContentWrapper>
-        <PostRelatedContentLine />
-
         <PostRelatedContentTitle>Conteúdo Relacionado</PostRelatedContentTitle>
         <PostCardList>
           {[...Array(3)].map((item, index) => (
@@ -80,8 +77,6 @@ const PostRelatedContent = ({
 
   return (
     <PostRelatedContentWrapper>
-      <PostRelatedContentLine />
-
       <PostRelatedContentTitle>Conteúdo Relacionado</PostRelatedContentTitle>
 
       <PostCardList>

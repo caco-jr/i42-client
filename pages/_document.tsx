@@ -79,7 +79,6 @@ export default class MyDocument extends Document<any> {
 
           {this.props.styleTags}
           <GtagScript />
-          <GAdSenseScript />
         </Head>
         <body>
           <GtagNoscript />
@@ -88,6 +87,7 @@ export default class MyDocument extends Document<any> {
           <NextScript />
 
           <SmartLookScript />
+          <GAdSenseScript />
         </body>
       </html>
     );
