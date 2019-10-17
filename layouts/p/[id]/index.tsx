@@ -159,6 +159,14 @@ const Layout = ({ router }: Props) => {
     seo
   } = data.postBy;
 
+  const handlePostExclude = (): number[] => {
+    if (extra.readMore) {
+      return [postId, ...extra.readMore.map(post => post.postId)];
+    }
+
+    return [postId];
+  };
+
   return (
     <ScreenClassProvider>
       <BodyBackground>
@@ -231,10 +239,7 @@ const Layout = ({ router }: Props) => {
               </Row>
 
               <PostRelatedContent
-                postIdsExclude={[
-                  postId,
-                  ...extra.readMore.map(post => post.postId)
-                ]}
+                postIdsExclude={handlePostExclude()}
                 title={title}
                 tags={tags.nodes.map(item => item.name)}
                 categories={categories.nodes.map(item => item.name)}
