@@ -38,12 +38,12 @@ const SEARCH_POSTS_QUERY = gql`
 `;
 
 const PostRelatedContent = ({
-  postIdExclude,
+  postIdsExclude,
   title,
   tags,
   categories
 }: {
-  postIdExclude: number;
+  postIdsExclude: number[];
   title: string;
   tags: string[];
   categories: string[];
@@ -54,7 +54,7 @@ const PostRelatedContent = ({
     variables: {
       search: itemSelected || title,
       limit: 3,
-      exclude: postIdExclude
+      exclude: postIdsExclude
     }
   });
 

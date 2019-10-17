@@ -41,6 +41,7 @@ const GET_POST_QUERY = gql`
         rating
         readMore {
           ... on Post {
+            postId
             title
             featuredImage {
               sourceUrl
@@ -230,7 +231,10 @@ const Layout = ({ router }: Props) => {
               </Row>
 
               <PostRelatedContent
-                postIdExclude={postId}
+                postIdsExclude={[
+                  postId,
+                  ...extra.readMore.map(post => post.postId)
+                ]}
                 title={title}
                 tags={tags.nodes.map(item => item.name)}
                 categories={categories.nodes.map(item => item.name)}
